@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MagneticDB</string>
+    <string name="title_activity_picture">Prendre une photo</string>
+    <string name="title_activity_export">Exporter les donnees</string>
+    <string name="title_activity_heat">Donnees collectees</string>
+
+    <string name="title_absMagneticField">CM absolu :</string>
+    <string name="title_relMagneticField">CM relatif :</string>
+    <string name="title_absLinearAcce">AL absolue :</string>
+    <string name="title_relLinearAcce">AL relative :</string>
+    <string name="title_gravity">Gravite :</string>
+    <string name="title_gps">GPS :</string>
+    <string name="title_x">X : %1$s</string>
+    <string name="title_y">Y : %1$s</string>
+    <string name="title_z">Z : %1$s</string>
+    <string name="title_lat">Lat : %1$s</string>
+    <string name="title_lon">Lon : %1$s</string>
+    <string name="title_alt">Alt : %1$s</string>
+    <string name="title_acc">Pre : %1$s</string>
+    <string name="title_listMeasurement">Liste des mesures :</string>
+    <string name="title_folder">Dossier :</string>
+    <string name="title_folderJSON">Dossier JSON:</string>
+    <string name="title_folderPicture">Dossier Photos:</string>
+    <string name="title_pickFolder">&#8230;</string>
+    <string name="title_fileName">Nom du fichier :</string>
+    <string name="title_dateFormat">Format de la date:</string>
+    <string name="title_settingsMain">Parametres principaux :</string>
+    <string name="title_settingsExport">Parametres exportation :</string>
+
+    <string name="menu_play">Commencer l\'enregistrement</string>
+    <string name="menu_stop">Arreter l\'enregistrement</string>
+    <string name="menu_gps">GPS et Wifi</string>
+    <string name="menu_wifi">Wifi uniquement</string>
+    <string name="menu_picture">Prendre une photo</string>
+    <string name="menu_all">Afficher tout</string>
+    <string name="menu_maps">Afficher que la carte</string>
+    <string name="menu_list">Afficher que la liste</string>
+    <string name="menu_delete">Supprimer toutes les mesures</string>
+    <string name="menu_export">Exporter les donnees</string>
+    <string name="menu_norm">See the norm of magnetic field</string>
+    <string name="menu_x">See the x axe of magnetic field</string>
+    <string name="menu_y">See the y axe of magnetic field</string>
+    <string name="menu_z">See the z axe of magnetic field</string>
+    <string name="menu_center">Centrer la vue</string>
+    <string name="menu_bounds">Actualiser la vue</string>
+    <string name="menu_interpolation">Interpolation</string>
+    <string name="menu_save">Sauver</string>
+
+    <string name="inter_raw">RAW (Pas d\'interpolation)</string>
+    <string name="inter_nn">NN (Plus Proche Voisin)</string>
+    <string name="inter_lin">Lin (Lineaire)</string>
+    <string name="inter_inv">Inv (Inverse des distances)</string>
+    <string name="inter_spl">Spl (Spline)</string>
+
+    <string name="send_server">Envoyer les donnees sur l\'appareil au serveur.</string>
+
+    <string name="apiKey">AIzaSyAhx4zWd9KoasTM44AXf_GnuchLe6haDXo</string>
+    <string name="back">Retour</string>
+    <string name="provider_enabled">Le fournisseur %s est maintenant active.</string>
+    <string name="provider_disabled">Le fournisseur %s est maintenant desactive.</string>
+    <string name="new_location">Nouvelle localisation : Latitude = %1$s, Longitude = %2$s, Altitude = %3$s ; Precision : %4$s m</string>
+    <string name="use_gps">Utilisation du GPS et du Wifi.</string>
+    <string name="use_wifiOnly">Utilisation du Wifi uniquement.</string>
+    <string name="recordingStop">Session d\'enregistrement commencee.</string>
+    <string name="recordingPlay">Session d\'enregistrement terminee.</string>
+
+    <string name="impossible_getLatlon">Impossible de recuperer les coordonnees GPS : %s</string>
+    <string name="impossible_setLatlon">Impossible de transferer les coordonnees GPS : %s</string>
+    <string name="impossible_parserJSON">Impossible de parser les donnees JSON : %s</string>
+    <string name="impossible_setJSON">Impossible de recuperer les donnees JSON : %s</string>
+    <string name="impossible_getJSON">Impossible de transferer les donnees JSON : %s</string>
+
+    <string name="error_dataNotExported">Impossible d\exporter les donnees!</string>
+
+    <string name="done_dataExported">Donnes exportees avec succes!</string>
+</resources>

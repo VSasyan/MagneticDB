@@ -1,0 +1,77 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_center"
+        android:icon="@drawable/ic_center"
+        android:showAsAction="always"
+        android:title="@string/menu_center" />
+
+    <item
+        android:id="@+id/menu_bounds"
+        android:icon="@drawable/ic_bounds"
+        android:showAsAction="always"
+        android:title="@string/menu_bounds" />
+
+    <item
+        android:id="@+id/menu_show"
+        android:icon="@drawable/ic_norm"
+        android:showAsAction="always"
+        android:title="@string/menu_norm" >
+
+        <menu>
+            <group android:id="@+id/menu_group_show">
+
+                <item
+                    android:id="@+id/menu_norm"
+                    android:icon="@drawable/ic_norm"
+                    android:title="@string/menu_norm" />
+
+                <item
+                    android:id="@+id/menu_x"
+                    android:icon="@drawable/ic_x"
+                    android:title="@string/menu_x" />
+
+                <item
+                    android:id="@+id/menu_y"
+                    android:icon="@drawable/ic_y"
+                    android:title="@string/menu_y" />
+
+                <item
+                    android:id="@+id/menu_z"
+                    android:icon="@drawable/ic_z"
+                    android:title="@string/menu_z" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/menu_interpolation"
+        android:icon="@drawable/ic_interpolation"
+        android:showAsAction="always"
+        android:title="@string/menu_interpolation" >
+
+        <menu>
+            <group android:id="@+id/menu_group_inter">
+                <item
+                    android:id="@+id/menu_raw"
+                    android:title="@string/inter_raw" />
+                <item
+                    android:id="@+id/menu_nn"
+                    android:title="@string/inter_nn" />
+
+                <item
+                    android:id="@+id/menu_lin"
+                    android:title="@string/inter_lin" />
+
+                <item
+                    android:id="@+id/menu_inv"
+                    android:title="@string/inter_inv" />
+
+                <item
+                    android:id="@+id/menu_spl"
+                    android:title="@string/inter_spl" />
+            </group>
+        </menu>
+    </item>
+
+</menu>

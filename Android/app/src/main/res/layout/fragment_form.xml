@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1"
+        android:shrinkColumns="1"
+        >
+        <TableRow>
+            <TextView android:text="@string/title_absMagneticField" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/amf_x" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/amf_y" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/amf_z" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/title_gps" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/gps_lat" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/gps_lon" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/gps_alt" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/gps_acc" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/title_absLinearAcce" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/ala_x" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/ala_y" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/ala_z" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/title_gravity" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/ac_x" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/ac_y" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/ac_z" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/title_relMagneticField" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/mf_x" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/mf_y" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/mf_z" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/title_relLinearAcce" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/la_x" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/la_y" android:text="" />
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/la_z" android:text="" />
+        </TableRow>
+    </TableLayout>
+
+</ScrollView>

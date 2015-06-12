@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="1"
+    android:shrinkColumns="1"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <TableRow>
+        <TextView android:text="@string/title_listMeasurement" />
+    </TableRow>
+
+    <TableRow>
+        <ListView android:id="@+id/listCompassGPS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </TableRow>
+
+</TableLayout>

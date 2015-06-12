@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.uottawa.sasyan.magneticdb.SettingsActivity">
+
+    <item
+        android:id="@+id/menu_save"
+        android:icon="@drawable/ic_save"
+        android:showAsAction="always"
+        android:title="@string/menu_save"/>
+
+    <item
+        android:id="@+id/menu_back"
+        android:icon="@drawable/ic_back"
+        android:showAsAction="always"
+        android:title="@string/back"/>
+</menu>

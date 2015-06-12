@@ -1,0 +1,121 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TableLayout>
+            <TableLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_settingsMain"
+                    android:id="@+id/title_settingsMain"
+                    android:textColor="@color/title_color"
+                    android:textSize="@dimen/title_settingsSize"
+                    android:paddingBottom="@dimen/title_settingsPadding" />
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_folderPicture"
+                    android:id="@+id/title_folderPicture" />
+            </TableLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/text_folderPicture" />
+                    <Button
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/title_pickFolder"
+                        android:id="@+id/pickFolderPicture" />
+                </LinearLayout>
+            </TableLayout>
+        </TableLayout>
+
+        <TableLayout>
+
+            <TableLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_settingsExport"
+                    android:id="@+id/title_settingsExport"
+                    android:textColor="@color/title_color"
+                    android:textSize="@dimen/title_settingsSize"
+                    android:paddingBottom="@dimen/title_settingsPadding"
+                    android:paddingTop="@dimen/title_settingsPadding" />
+
+            </TableLayout>
+
+            <TableLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_folderJSON"
+                    android:id="@+id/title_folderJSON" />
+            </TableLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_folderJSON" />
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_pickFolder"
+                    android:id="@+id/pickFolderJSON" />
+            </LinearLayout>
+
+            <TableLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_fileName"
+                    android:id="@+id/title_name"
+                    android:labelFor="@+id/text_name"/>
+            </TableLayout>
+            <TableLayout>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_name" />
+            </TableLayout>
+
+            <TableLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_dateFormat"
+                    android:id="@+id/title_date" />
+            </TableLayout>
+            <TableLayout>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_date" />
+            </TableLayout>
+
+        </TableLayout>
+
+    </TableLayout>
+
+</ScrollView>
