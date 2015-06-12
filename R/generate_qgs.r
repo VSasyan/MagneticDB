@@ -3,8 +3,8 @@ library('XML')		# For XML files
 library('tools')	# For the files' manipulation
 library('raster')	# For the rasters' manipulation
 
-#' create a QGIS project (.qgs file) with all the .asc and all the .shp files found in the folder
-#' @param folder string, folder where are the files to use
+#' Create a QGIS project (.qgs file) with all the .asc and all the .shp files found in the folder
+#' @param folder string, folder to scan
 #' @param file string, name of the QGIS project file
 #' @return nothing
 #' @author Valentin SASYAN
@@ -27,7 +27,6 @@ generate_qgs <- function(folder, file) {
 
 		layer_tree_group = newXMLNode('layer-tree-group', attrs=c(expanded="1", checked="Qt::Checked", name=""), parent=top)
 			newXMLNode('customproperties', parent=layer_tree_group)
-			# addChildren(layer_tree_group, getLayerTreeLayer('savedData', 'savedData20150610152937544'))
 			for (i in shp) {addChildren(layer_tree_group, getLayerTreeLayer(i$name, i$id))}
 			for (i in asc) {addChildren(layer_tree_group, getLayerTreeLayer(i$name, i$id))}
 
@@ -39,12 +38,10 @@ generate_qgs <- function(folder, file) {
 
 		layer_tree_canvas = newXMLNode('layer-tree-canvas', parent=top)
 			custom_order = newXMLNode('custom-order', attrs=c(enabled="0"), parent=layer_tree_canvas)
-				# newXMLNode('item', 'savedData20150610152937544', parent=custom_order)
 				for (i in shp) {newXMLNode('item', i$id, parent=custom_order)}
 				for (i in asc) {newXMLNode('item', i$id, parent=custom_order)}
 
 		legend = newXMLNode('legend', attrs=c(updateDrawingOrder="true"), parent=top)
-			# addChildren(legend, getLegendlayer('savedData', 'savedData20150610152937544'))
 			for (i in shp) {addChildren(legend, getLegendlayer(i$name, i$id))}
 			for (i in asc) {addChildren(legend, getLegendlayer(i$name, i$id))}
 
@@ -65,8 +62,7 @@ generate_qgs <- function(folder, file) {
 					i$name,
 					getSpatialrefsys(),
 					getNoData(1,3),
-					getPipe(list(red=i$red,green=i$green,blue=i$blue)),
-					'0'
+					getPipe(list(red=i$red,green=i$green,blue=i$blue))
 				))
 			}
 
@@ -75,6 +71,14 @@ generate_qgs <- function(folder, file) {
 	saveXML(top, file=paste(folder,file,sep='/'), compression=0, indent=TRUE, prefix=NULL, doctype="<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>\n", encoding = getEncoding(top))
 }
 
+#' Get information for all the .asc files of the folder passed in parameter
+#' @param folder string, folder to scan
+#' @return a list with all the informations
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
+#' @examples
+#' getASCinfo('data/generated/')
 getASCinfo <- function(folder) {
 	liste = list.files('data//generated','asc$',full.names=TRUE)
 	rListe = c(lapply(liste, function(file) {
@@ -109,6 +113,14 @@ getASCinfo <- function(folder) {
 	}))
 }
 
+#' Get information for all the .shp files of the folder passed in parameter
+#' @param folder string, folder to scan
+#' @return a list with all the informations
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
+#' @examples
+#' getSHPinfo('data/generated/')
 getSHPinfo <- function(folder) {
 	liste = list.files('data//generated','shp$',full.names=TRUE)
 	rListe = c(lapply(liste, function(file) {
@@ -124,7 +136,18 @@ getSHPinfo <- function(folder) {
 	}))
 }
 
-getMapLayerAsc <- function(id, datasource, layername, spatialrefsys, noData, pipe, blendMode) {
+#' Generate the 'maplayer' XML element of a .asc
+#' @param id string, id of the layer
+#' @param datasource string, datasource of the layer
+#' @param layername string, layername of the layer
+#' @param spatialrefsys XML element, specifications of the spatial reference systeme
+#' @param noData XML element, number of the data
+#' @param pipe XML element, specifications of the colorisation of the layer
+#' @return a XML element
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
+getMapLayerAsc <- function(id, datasource, layername, spatialrefsys, noData, pipe) {
 	maplayer = newXMLNode('maplayer', attrs=c(minimumScale="0", maximumScale="1e+08", type="raster", hasScaleBasedVisibilityFlag="0"))
 		newXMLNode('id', id, parent=maplayer)
 		newXMLNode('datasource', datasource, parent=maplayer)
@@ -152,11 +175,21 @@ getMapLayerAsc <- function(id, datasource, layername, spatialrefsys, noData, pip
 		
 		addChildren(maplayer, pipe)
 
-		newXMLNode('blendMode', blendMode, parent=maplayer)
+		newXMLNode('blendMode', '0', parent=maplayer)
 
 	maplayer
 }
 
+#' Generate the 'maplayer' XML element of a .shp
+#' @param id string, id of the layer
+#' @param datasource string, datasource of the layer
+#' @param layername string, layername of the layer
+#' @param spatialrefsys XML element, specifications of the spatial reference systeme
+#' @param editTypes list, list of the name of the file's band
+#' @return a XML element
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
 getMapLayerShp <- function(id, datasource, layername, spatialrefsys, editTypes) {
 	maplayer = newXMLNode('maplayer', attrs=c(minimumScale="0", maximumScale="1e+08", simplifyDrawingHints="0", minLabelScale="0", maxLabelScale="1e+08", simplifyDrawingTol="1", geometry="Point", simplifyMaxScale="1", type="vector", hasScaleBasedVisibilityFlag="0", simplifyLocal="1", scaleBasedLabelVisibilityFlag="0"))
 		newXMLNode('id', id, parent=maplayer)
@@ -191,6 +224,12 @@ getMapLayerShp <- function(id, datasource, layername, spatialrefsys, editTypes) 
 	maplayer
 }
 
+#' Generate the 'edittype' XML element of a .shp 'maplayer' XML element
+#' @param editTypes list, list of the name of the file's band
+#' @return a XML element
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
 getEditType <- function(editTypes) {
 	et = newXMLNode('edittype')
 		for (e in editTypes) {
@@ -200,6 +239,11 @@ getEditType <- function(editTypes) {
 	et
 }
 
+#' Generate the 'renderer-v2' XML element of a .shp 'maplayer' XML element
+#' @return a XML element
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
 getRendererv2 <- function() {
 	renderer = newXMLNode('renderer-v2', attrs=c(symbollevels="0", type="singleSymbol"))
 		symbols = newXMLNode('symbols', parent=renderer)
@@ -225,6 +269,11 @@ getRendererv2 <- function() {
 	renderer
 }
 
+#' Generate the 'spatialrefsys' XML element of a 'maplayer' XML element
+#' @return a XML element
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
 getSpatialrefsys <- function() {
 	spatialrefsys = newXMLNode('spatialrefsys')
 		newXMLNode('proj4', '+proj=longlat +datum=WGS84 +no_defs', parent=spatialrefsys)
@@ -238,6 +287,14 @@ getSpatialrefsys <- function() {
 	spatialrefsys
 }
 
+#' Generate the 'pipe' XML element of a .asc 'maplayer' XML element
+#' @param liste list, specification of the color used for each band
+#' @return a XML element
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
+#' @examples
+#' getPipe(list(red=c(min=-1,max=1),green=c(min=-0.84, max=0.42),blue=c(min=-0.42,max=0.84))
 getPipe <- function(liste) {
 	pipe = newXMLNode('pipe')
 		rasterrenderer = newXMLNode('rasterrenderer', attrs=c(opacity="1", alphaBand="0", blueBand="3", greenBand="2", type="multibandcolor", redBand="-1"), parent=pipe)
@@ -262,6 +319,15 @@ getPipe <- function(liste) {
 	pipe
 }
 
+#' Generate the 'ContrastEnhancement' XML element of a pipe XML element
+#' @param color string, name of the color
+#' @param liste list, min and max for this color
+#' @return a XML element
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
+#' @examples
+#' getContrastEnhancement('green', c(min=-0.84, max=0.42))
 getContrastEnhancement <- function(color, liste) {	
 	contrastEnhancement = newXMLNode(paste(color, 'ContrastEnhancement', sep=''))
 		newXMLNode('minValue', paste(liste[['min']], sep=''), parent=contrastEnhancement)
@@ -270,6 +336,15 @@ getContrastEnhancement <- function(color, liste) {
 	contrastEnhancement
 }
 
+#' Generate the 'noData' XML element of a .asc 'maplayer' XML element
+#' @param min int, first number of the data
+#' @param max int, last number of the data
+#' @return a XML element
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
+#' @examples
+#' getNoData(1,3)
 getNoData<- function(min, max) {
 	noData = newXMLNode('noData')
 	for (i in min:max) {
@@ -278,6 +353,11 @@ getNoData<- function(min, max) {
 	noData
 }
 
+#' Generate the 'properties' XML element of a .asc 'maplayer' XML element
+#' @return a XML element
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
 getProperties <- function() {
 	properties = newXMLNode('properties')
 
@@ -323,6 +403,15 @@ getProperties <- function() {
 	properties
 }
 
+#' Generate the 'noData' XML element of a 'legend' XML element
+#' @param Name string, name of the layer
+#' @param ID string, id of the layer
+#' @return a XML element
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
+#' @examples
+#' getLegendlayer('exportedData','exportedData20150612104242')
 getLegendlayer <- function(Name, ID) {
 	legendlayer = newXMLNode('legendlayer', attrs=c(drawingOrder="-1", open="true", checked="Qt::Checked", name=Name, showFeatureCount="0"))
 		filegroup = newXMLNode('filegroup', attrs=c(open="true", hidden="false"), parent=legendlayer)
@@ -330,12 +419,32 @@ getLegendlayer <- function(Name, ID) {
 	legendlayer
 }
 
+#' Generate the 'layer-tree-layer' XML element of a 'layer-tree-group' XML element
+#' @param Name string, name of the layer
+#' @param ID string, id of the layer
+#' @return a XML element
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
+#' @examples
+#' getLayerTreeLayer('exportedData','exportedData20150612104242')
 getLayerTreeLayer <- function(Name, ID) {
 	LayerTreeLayer = newXMLNode('layer-tree-layer', attrs=c(expanded="1", checked="Qt::Checked", id=ID, name=Name))
 		newXMLNode('customproperties', parent=LayerTreeLayer)
 	LayerTreeLayer
 }
 
+#' Generate the 'mapcanvas' XML element of a 'qgis' XML element
+#' @param xmin double, xmin limit of the map canevas
+#' @param ymin double, ymin limit of the map canevas
+#' @param xmax double, xmax limit of the map canevas
+#' @param ymax double, ymax limit of the map canevas
+#' @return a XML element
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
+#' @examples
+#' getMapcanvas(-42,-42,42,42)
 getMapcanvas <- function(xmin, ymin, xmax, ymax) {
 	mapcanvas = newXMLNode('mapcanvas')
 		newXMLNode('units', 'degrees', parent=mapcanvas)

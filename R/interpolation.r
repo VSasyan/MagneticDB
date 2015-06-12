@@ -2,7 +2,7 @@
 library('rgdal')		# for SpatialDataFrame
 library('automap')		# for interpolation
 
-#' interpolate the date in the SpatialPointsDataFrame passed in parameter
+#' Interpolate the date in the SpatialPointsDataFrame passed in parameter
 #' @param folder string, folder where are the files to use
 #' @param proj.df SpatialPointsDataFrame, the data to interpolate
 #' @param file string, name of the JSON file in the data folder (without the .json extension)
@@ -36,8 +36,15 @@ interpolation <- function(proj.df, file='generated', sizeIGrid=70) {
 	proj.dfKri
 }
 
-# USED FUNCTIONS :
-
+#' Check if the script can write the specified file (erasing or not an eventual existing file)
+#' @param erase boolean, the script can erase an eventual existing file 
+#' @param file string, path of the file to test
+#' @return boolean, true if the file can be written
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
+#' @example
+#' isWritable(false, 'myNewFile.txt')
 isWritable <- function(erase, file) {
 	r = TRUE
 	if (file.exists(file) && erase) {r = file.remove(file)}
@@ -45,10 +52,22 @@ isWritable <- function(erase, file) {
 	r
 }
 
+#' Convert the raw JSON export in a usable listPointXYZ
+#' @param x list, the raw JSON export
+#' @return list, the usable listPointXYZ
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
 convertJsonExport <- function(x){
 	list(lat=x[['gps']][['lat']], lon=x[['gps']][['lon']], x=x[['absMagneticField']][['x']], y=x[['absMagneticField']][['y']], z=x[['absMagneticField']][['z']])
 }
 
+#' Convert the raw JSON export in a usable listPointXYZ
+#' @param listPointXYZ list, a list of points with magnetic field information
+#' @return extrem list, a list with the extrem value
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
 getExtremPointXYZ <- function(listPointXYZ) {
 	extrem = list(minLat = NA, maxLat = NA, minLon = NA, maxLon = NA, minX = NA, maxX = NA, minY = NA, maxY = NA, minZ = NA, maxZ = NA)
 	for (i in 1:length(listPointXYZ)) {
@@ -66,6 +85,13 @@ getExtremPointXYZ <- function(listPointXYZ) {
 	extrem
 }
 
+#' Generate a list of SpatialPoint
+#' @param extent extent, area to cover
+#' @param size integer, number of points
+#' @return pointList, a list of a list of SpatialPoint
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
 getPointList <- function(extent, size) {
 	deltaX = abs(xmax(extent) - xmin(extent))
 	deltaY = abs(ymax(extent) - ymin(extent))
