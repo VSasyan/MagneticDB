@@ -1,15 +1,18 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
 <qgis projectname="" version="2.8.2-Wien">
   <title></title>
-  <layer-tree-group expanded="1" checked="Qt::Checked" name="">
+  <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
     <customproperties/>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="savedData20150612092323" name="savedData">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="savedData20150612121337" name="savedData">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="interpolatedData_20020150612092324" name="interpolatedData_200">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="interpolatedData_50020150612121337" name="interpolatedData_500">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="interpolatedData_7020150611160951" name="interpolatedData_70">
+    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="interpolatedData_20020150612092324" name="interpolatedData_200">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="interpolatedData_7020150612112924" name="interpolatedData_70">
       <customproperties/>
     </layer-tree-layer>
   </layer-tree-group>
@@ -17,10 +20,10 @@
   <mapcanvas>
     <units>degrees</units>
     <extent>
-      <xmin>4415119.9593502264469862</xmin>
-      <ymin>4753904.43101889081299305</ymin>
-      <xmax>4865946.08594429306685925</xmax>
-      <ymax>5349387.26932388730347157</ymax>
+      <xmin>2618354.14114248845726252</xmin>
+      <ymin>3767693.95153622794896364</ymin>
+      <xmax>4511823.87283957097679377</xmax>
+      <ymax>6268721.87241749931126833</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>0</projections>
@@ -41,29 +44,35 @@
   <visibility-presets/>
   <layer-tree-canvas>
     <custom-order enabled="0">
-      <item>savedData20150612092323</item>
+      <item>savedData20150612121337</item>
       <item>interpolatedData_20020150612092324</item>
-      <item>interpolatedData_7020150611160951</item>
+      <item>interpolatedData_50020150612121337</item>
+      <item>interpolatedData_7020150612112924</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="savedData" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="savedData20150612092323" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="savedData20150612121337" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="interpolatedData_200" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="interpolatedData_500" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="interpolatedData_20020150612092324" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="interpolatedData_50020150612121337" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="interpolatedData_70" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="interpolatedData_200" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="interpolatedData_7020150611160951" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="interpolatedData_20020150612092324" visible="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="interpolatedData_70" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="interpolatedData_7020150612112924" visible="0"/>
       </filegroup>
     </legendlayer>
   </legend>
-  <projectlayers layercount="3">
+  <projectlayers layercount="4">
     <maplayer minimumScale="0" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
       <id>interpolatedData_20020150612092324</id>
       <datasource>./interpolatedData_200.asc</datasource>
@@ -116,7 +125,58 @@
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
-      <id>interpolatedData_7020150611160951</id>
+      <id>interpolatedData_50020150612121337</id>
+      <datasource>./interpolatedData_500.asc</datasource>
+      <title></title>
+      <abstract></abstract>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>interpolatedData_500</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <customproperties/>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList bandNo="1" useSrcNoData="0"/>
+        <noDataList bandNo="2" useSrcNoData="0"/>
+        <noDataList bandNo="3" useSrcNoData="0"/>
+      </noData>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <pipe>
+        <rasterrenderer opacity="1" alphaBand="0" blueBand="3" greenBand="2" type="multibandcolor" redBand="-1">
+          <rasterTransparency/>
+          <greenContrastEnhancement>
+            <minValue>-0.0161091</minValue>
+            <maxValue>0.0150273</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </greenContrastEnhancement>
+          <blueContrastEnhancement>
+            <minValue>-0.249422</minValue>
+            <maxValue>0.247259</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </blueContrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0"/>
+        <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
+        <rasterresampler maxOversampling="2"/>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
+      <id>interpolatedData_7020150612112924</id>
       <datasource>./interpolatedData_70.asc</datasource>
       <title></title>
       <abstract></abstract>
@@ -167,7 +227,7 @@
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <id>savedData20150612092323</id>
+      <id>savedData20150612121337</id>
       <datasource>./savedData.shp</datasource>
       <title></title>
       <abstract></abstract>
@@ -299,8 +359,12 @@
     </Gui>
     <Digitizing>
       <DefaultSnapToleranceUnit type="int">2</DefaultSnapToleranceUnit>
-      <LayerSnappingList type="QStringList"/>
-      <LayerSnappingEnabledList type="QStringList"/>
+      <LayerSnappingList type="QStringList">
+        <value>savedData20150612121337</value>
+      </LayerSnappingList>
+      <LayerSnappingEnabledList type="QStringList">
+        <value>enabled</value>
+      </LayerSnappingEnabledList>
       <SnappingMode type="QString">current_layer</SnappingMode>
       <AvoidIntersectionsList type="QStringList"/>
       <LayerSnappingToleranceUnitList type="QStringList">
