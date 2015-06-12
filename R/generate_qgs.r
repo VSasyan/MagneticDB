@@ -75,12 +75,12 @@ generate_qgs <- function(folder, file) {
 #' @param folder string, folder to scan
 #' @return a list with all the informations
 #' @author Valentin SASYAN
-#' @version 1.0.0
+#' @version 1.0.1
 #' @date  06/12/2015
 #' @examples
 #' getASCinfo('data/generated/')
 getASCinfo <- function(folder) {
-	liste = list.files('data//generated','asc$',full.names=TRUE)
+	liste = list.files(folder,'asc$',full.names=TRUE)
 	rListe = c(lapply(liste, function(file) {
 		raster <- raster(file)
 		extent <- extent(raster)
@@ -117,12 +117,12 @@ getASCinfo <- function(folder) {
 #' @param folder string, folder to scan
 #' @return a list with all the informations
 #' @author Valentin SASYAN
-#' @version 1.0.0
+#' @version 1.0.1
 #' @date  06/12/2015
 #' @examples
 #' getSHPinfo('data/generated/')
 getSHPinfo <- function(folder) {
-	liste = list.files('data//generated','shp$',full.names=TRUE)
+	liste = list.files(folder,'shp$',full.names=TRUE)
 	rListe = c(lapply(liste, function(file) {
 		filename <- paste('/',basename(file),sep='')
 		name <- basename(file_path_sans_ext(file))

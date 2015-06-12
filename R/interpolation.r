@@ -6,14 +6,14 @@ library('automap')		# for interpolation
 #' @param folder string, folder where are the files to use
 #' @param proj.df SpatialPointsDataFrame, the data to interpolate
 #' @param file string, name of the JSON file in the data folder (without the .json extension)
-#' @param sizeIGrid integer, size of the grid of interpolation
+#' @param resolution double, resolution of the grid of interpolation (size of 1 px in real)
 #' @return proj.dfKri SpatialPointsDataFrame, the data interpolated
 #' @author Valentin SASYAN
-#' @version 1.0.0
+#' @version 1.1.0
 #' @date  06/12/2015
-interpolation <- function(proj.df, file='generated', sizeIGrid=70) {
+interpolation <- function(proj.df, file='generated', resolution=100) {
 	# getPointList:
-	pointList = getPointList(extent(proj.df), sizeIGrid);
+	pointList = getPointList(extent(proj.df), resolution);
 
 	# Create the interpolation mesh:
 	proj.new = SpatialPoints(pointList)
@@ -87,23 +87,25 @@ getExtremPointXYZ <- function(listPointXYZ) {
 
 #' Generate a list of SpatialPoint
 #' @param extent extent, area to cover
-#' @param size integer, number of points
+#' @param resolution double, resolution of the grid of interpolation (size of 1 px in real)
 #' @return pointList, a list of a list of SpatialPoint
 #' @author Valentin SASYAN
-#' @version 1.0.0
+#' @version 1.1.0
 #' @date  06/12/2015
-getPointList <- function(extent, size) {
-	deltaX = abs(xmax(extent) - xmin(extent))
-	deltaY = abs(ymax(extent) - ymin(extent))
-	byX = deltaX / size;
-	byY = deltaY / size;
+getPointList <- function(extent, resolution) {
+	deltaX <- abs(xmax(extent) - xmin(extent))
+	deltaY <- abs(ymax(extent) - ymin(extent))
+	sizeX <- deltaX / resolution
+	sizeY <- deltaY / resolution
+	byX <- deltaX / sizeX;
+	byY <- deltaY / sizeY;
 
 	# Generate Seq :
-	seqX = seq(from=xmin(extent), to=xmax(extent), by=byX)
-	seqY = seq(from=ymin(extent), to=ymax(extent), by=byY)
-	pointList = list(x=rep(seqX[1],size+1), y=seqY)
+	seqX <- seq(from=xmin(extent), to=xmax(extent), by=byX)
+	seqY <- seq(from=ymin(extent), to=ymax(extent), by=byY)
+	pointList <- list(x=rep(seqX[1],length(seqY)), y=seqY)
 	for (i in 2:length(seqX)) {
-		pointList = mapply(c, pointList, list(x=rep(seqX[i], size+1), y=seqY), SIMPLIFY=FALSE)
+		pointList <- mapply(c, pointList, list(x=rep(seqX[i], length(seqY)), y=seqY), SIMPLIFY=FALSE)
 	}
 	pointList
 }
