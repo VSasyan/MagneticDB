@@ -12,7 +12,7 @@ import com.uottawa.sasyan.magneticdb.SettingsActivity;
 
 public class Settings {
     private Context context;
-    private String folderJSON, dateFormat, fileName, show, folderPicture;
+    private String folder, dateFormat, fileName, show, session;
     private int showType, interType, normType;
     private boolean WifiOnly, isRecording;
 
@@ -23,9 +23,8 @@ public class Settings {
 
     public boolean getSettings() {
         SharedPreferences preferences = context.getSharedPreferences("settings", 0);
-        this.folderJSON = preferences.getString("folderJSON", "");
-        this.folderPicture = preferences.getString("folderPicture", "");
-        this.fileName = preferences.getString("fileName", "MagneticDB");
+        this.folder = preferences.getString("folder", "/MagneticDB");
+        this.session = preferences.getString("session", "Session_1");
         this.dateFormat = preferences.getString("dateFormat", "yyyy-MM-dd_HH-mm-ss");
         this.WifiOnly = preferences.getBoolean("WifiOnly", true);
         this.isRecording = preferences.getBoolean("isRecording", false);
@@ -39,9 +38,8 @@ public class Settings {
     public boolean saveSettings() {
         SharedPreferences preferences = context.getSharedPreferences("settings", 0);
         SharedPreferences.Editor e = preferences.edit();
-        e.putString("folderJSON", folderJSON);
-        e.putString("folderPicture", folderPicture);
-        e.putString("fileName", fileName);
+        e.putString("folder", folder);
+        e.putString("session", session);
         e.putString("dateFormat", dateFormat);
         e.putBoolean("WifiOnly", this.WifiOnly);
         e.putBoolean("isRecording", this.isRecording);
@@ -67,14 +65,8 @@ public class Settings {
     public String getDateFormat() {
         return dateFormat;
     }
-    public String getFileName() {
-        return fileName;
-    }
-    public String getFolderJSON() {
-        return folderJSON;
-    }
-    public String getFolderPicture() {
-        return folderPicture;
+    public String getFolder() {
+        return folder;
     }
     public String getShow() {
         return show;
@@ -88,21 +80,16 @@ public class Settings {
     public int getNormType() {
         return normType;
     }
+    public String getSession() {
+        return session;
+    }
 
     public void setDateFormat(String dateFormat) {
         this.dateFormat = dateFormat;
         saveSettings();
     }
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-        saveSettings();
-    }
-    public void setFolderJSON(String folderJSON) {
-        this.folderJSON = folderJSON;
-        saveSettings();
-    }
-    public void setFolderPicture(String folderPicture) {
-        this.folderPicture = folderPicture;
+    public void setFolder(String folder) {
+        this.folder = folder;
         saveSettings();
     }
     public void setIsRecording(boolean isRecording) {
@@ -128,5 +115,17 @@ public class Settings {
     public void setNormType(int normType) {
         this.normType = normType;
         saveSettings();
+    }
+    public void setSession(String session) {
+        this.session = session;
+        saveSettings();
+    }
+
+    public String getFolderSession() {
+        return getFolder() + "/" + getSession();
+    }
+
+    public String getFolderPictures() {
+        return getFolderSession() + "/" + "pictures";
     }
 }

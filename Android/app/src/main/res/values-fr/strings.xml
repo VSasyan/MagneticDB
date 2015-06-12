@@ -19,14 +19,14 @@
     <string name="title_alt">Alt : %1$s</string>
     <string name="title_acc">Pre : %1$s</string>
     <string name="title_listMeasurement">Liste des mesures :</string>
-    <string name="title_folder">Dossier :</string>
-    <string name="title_folderJSON">Dossier JSON:</string>
-    <string name="title_folderPicture">Dossier Photos:</string>
+    <string name="title_folder">Dossier ou enregistrer les sessions :</string>
+    <string name="title_exportationFolder">Dossier d\'exportation :</string>
     <string name="title_pickFolder">&#8230;</string>
     <string name="title_fileName">Nom du fichier :</string>
+    <string name="title_sessionName">Nom de la session :</string>
     <string name="title_dateFormat">Format de la date:</string>
-    <string name="title_settingsMain">Parametres principaux :</string>
-    <string name="title_settingsExport">Parametres exportation :</string>
+    <string name="title_settingsSession">Parametres pour la session :</string>
+    <string name="title_settingsExport">Parametres pour l\'exportation :</string>
 
     <string name="menu_play">Commencer l\'enregistrement</string>
     <string name="menu_stop">Arreter l\'enregistrement</string>
@@ -57,6 +57,7 @@
 
     <string name="apiKey">AIzaSyAhx4zWd9KoasTM44AXf_GnuchLe6haDXo</string>
     <string name="back">Retour</string>
+    <string name="sendDataEmail">Envoyer les donnees par mail</string>
     <string name="provider_enabled">Le fournisseur %s est maintenant active.</string>
     <string name="provider_disabled">Le fournisseur %s est maintenant desactive.</string>
     <string name="new_location">Nouvelle localisation : Latitude = %1$s, Longitude = %2$s, Altitude = %3$s ; Precision : %4$s m</string>

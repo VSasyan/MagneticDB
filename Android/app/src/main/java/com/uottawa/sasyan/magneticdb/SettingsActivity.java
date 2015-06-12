@@ -20,38 +20,18 @@ public class SettingsActivity extends Activity {
         setContentView(R.layout.activity_settings);
         settings = new Settings(this);
 
-        findViewById(R.id.pickFolderPicture).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.pickFolder).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 DirectoryChooserDialog DCD = new DirectoryChooserDialog(SettingsActivity.this, new DirectoryChooserDialog.ChosenDirectoryListener() {
                     @Override
                     public void onChosenDir(String chosenDir) {
-                        ((EditText)findViewById(R.id.text_folderPicture)).setText(chosenDir);
+                        ((EditText)findViewById(R.id.text_folder)).setText(chosenDir);
                     }
                 });
                 DCD.setNewFolderEnabled(true);
-                String temp = ((EditText)findViewById(R.id.text_folderPicture)).getText().toString();
-                if (temp != null) {
-                    DCD.chooseDirectory(temp);
-                } else {
-                    DCD.chooseDirectory();
-                }
-            }
-        });
-
-        findViewById(R.id.pickFolderJSON).setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                DirectoryChooserDialog DCD = new DirectoryChooserDialog(SettingsActivity.this, new DirectoryChooserDialog.ChosenDirectoryListener() {
-                    @Override
-                    public void onChosenDir(String chosenDir) {
-                        ((EditText)findViewById(R.id.text_folderJSON)).setText(chosenDir);
-                    }
-                });
-                DCD.setNewFolderEnabled(true);
-                String temp = ((EditText)findViewById(R.id.text_folderJSON)).getText().toString();
+                String temp = ((EditText)findViewById(R.id.text_folder)).getText().toString();
                 if (temp != null) {
                     DCD.chooseDirectory(temp);
                 } else {
@@ -66,10 +46,9 @@ public class SettingsActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_settings, menu);
         // read setting in the composent:
-        ((EditText)findViewById(R.id.text_folderPicture)).setText(settings.getFolderPicture());
+        ((EditText)findViewById(R.id.text_folder)).setText(settings.getFolder());
         ((EditText)findViewById(R.id.text_date)).setText(settings.getDateFormat());
-        ((EditText)findViewById(R.id.text_folderJSON)).setText(settings.getFolderJSON());
-        ((EditText)findViewById(R.id.text_name)).setText(settings.getFileName());
+        ((EditText)findViewById(R.id.text_session)).setText(settings.getSession());
         return true;
     }
 
@@ -78,10 +57,9 @@ public class SettingsActivity extends Activity {
         int id = item.getItemId();
 
         if (id == R.id.menu_save) {
-            settings.setFolderPicture(((EditText) findViewById(R.id.text_folderPicture)).getText().toString());
+            settings.setFolder(((EditText) findViewById(R.id.text_folder)).getText().toString());
             settings.setDateFormat(((EditText) findViewById(R.id.text_date)).getText().toString());
-            settings.setFolderJSON(((EditText) findViewById(R.id.text_folderJSON)).getText().toString());
-            settings.setFileName(((EditText) findViewById(R.id.text_name)).getText().toString());
+            settings.setSession(((EditText) findViewById(R.id.text_session)).getText().toString());
             this.finish();
             return true;
         }

@@ -12,11 +12,17 @@ import android.hardware.Camera;
 import android.media.ExifInterface;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.uottawa.sasyan.magneticdb.PictureActivity;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,7 +38,7 @@ public class PhotoHandler implements Camera.PictureCallback {
 
     public void onPictureTaken(byte[] bytes, Camera camera) {
         Settings settings = new Settings(this.context);
-        File pictureFileDir = Environment.getExternalStoragePublicDirectory(settings.getFolderPicture());
+        File pictureFileDir = Environment.getExternalStoragePublicDirectory(settings.getFolderPictures());
 
         if (!pictureFileDir.exists() && !pictureFileDir.mkdirs()) {
             Toast.makeText(context, "Can't create directory to save image.", Toast.LENGTH_LONG).show();
@@ -69,7 +75,7 @@ public class PhotoHandler implements Camera.PictureCallback {
                 exif.setAttribute(ExifInterface.TAG_FLASH, this.activity.camera.getParameters().getFlashMode());
                 exif.saveAttributes();
                 Toast.makeText(context, "New Image saved with the EXIF information: " + photoFile, Toast.LENGTH_LONG).show();
-                activity.isFinish();
+                this.addPictureJSON(settings.getFolderSession(), photoFile, this.activity.gps);
             }
             else {
                 Toast.makeText(context, "Couldn't save image:" + photoFile, Toast.LENGTH_LONG).show();
@@ -78,5 +84,43 @@ public class PhotoHandler implements Camera.PictureCallback {
         } catch (Exception error) {
             Toast.makeText(context, "Image could not be saved.", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void addPictureJSON(String folder, String filename, GPS gps) {
+        File pictureFileDir = Environment.getExternalStoragePublicDirectory(folder);
+        File file = new File(pictureFileDir.getPath() + File.separator + "pictures.json");
+        JSONArray json = new JSONArray();
+        // If there are already a pictures.json we load it:
+        if (file.exists()) {
+            try {
+                FileInputStream input = new FileInputStream(file.getPath());
+                DataInputStream dataIO = new DataInputStream(input);
+                json = new JSONArray(dataIO.readLine());
+            } catch (org.json.JSONException e) {
+                Log.e("JSON read error", e.toString());
+            } catch (java.io.FileNotFoundException e) {
+                Log.e("file error", e.toString());
+            } catch (java.io.IOException e) {
+                Log.e("file read error", e.toString());
+            }
+        }
+
+        // We add the new picture:
+        try {
+            JSONObject j = new JSONObject();
+            j.put("name", filename);
+            j.put("lat", gps.getLat());
+            j.put("lon", gps.getLon());
+            json.put(j);
+            FileOutputStream output = new FileOutputStream(file.getPath(), false);
+            output.write(json.toString().getBytes());
+        } catch (org.json.JSONException e) {
+            Log.e("JSON add error", e.toString());
+        } catch (java.io.FileNotFoundException e) {
+            Log.e("file error", e.toString());
+        } catch (java.io.IOException e) {
+            Log.e("JSON save error", e.toString());
+        }
+        activity.isFinish();
     }
 }

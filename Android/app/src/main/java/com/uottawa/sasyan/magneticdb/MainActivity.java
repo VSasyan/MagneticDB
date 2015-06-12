@@ -133,19 +133,22 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
 
     @Override
     protected void onPause() {
-        // Unlistener sensor :
-        //sensorManager.unregisterListener(this, sensorMagneticField);
-        //sensorManager.unregisterListener(this, sensorLinearAcce);
-        //sensorManager.unregisterListener(this, sensorGravity);
+        if (!this.settings.isRecording()) {
+            // Unlistener sensor :
+            sensorManager.unregisterListener(this, sensorMagneticField);
+            sensorManager.unregisterListener(this, sensorLinearAcce);
+            sensorManager.unregisterListener(this, sensorGravity);
 
-        //UnUpdate GPS ;
-        //lm.removeUpdates(this);
+            //UnUpdate GPS ;
+            lm.removeUpdates(this);
 
-        // Application ;ust be still worcking with the locked screen:
-        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
-        PowerManager mgr = (PowerManager)this.getSystemService(Context.POWER_SERVICE);
-        wakeLock = mgr.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,"WakeLockMagneticDB");
-        wakeLock.acquire();
+            // Application ;ust be still worcking with the locked screen:
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+        } else {
+            PowerManager mgr = (PowerManager)this.getSystemService(Context.POWER_SERVICE);
+            wakeLock = mgr.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,"WakeLockMagneticDB");
+            wakeLock.acquire();
+        }
 
         super.onPause();
     }
@@ -179,12 +182,12 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     @Override
     public void onDestroy() {
         // Unlistener sensor :
-        //sensorManager.unregisterListener(this, sensorMagneticField);
-        //sensorManager.unregisterListener(this, sensorLinearAcce);
-        //sensorManager.unregisterListener(this, sensorGravity);
+        sensorManager.unregisterListener(this, sensorMagneticField);
+        sensorManager.unregisterListener(this, sensorLinearAcce);
+        sensorManager.unregisterListener(this, sensorGravity);
 
         //UnUpdate GPS ;
-        //lm.removeUpdates(this);
+        lm.removeUpdates(this);
 
         helper.close();
         super.onDestroy();
@@ -541,7 +544,6 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
                 this.relLinearAcce
         );
         Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show();
-        //adapter.add(result);
         helper.insert(result);
         model.requery();
     }

@@ -14,52 +14,28 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/title_folder"
-                android:id="@+id/title_folderJSON" />
+                android:text="@string/title_exportationFolder" />
         </TableLayout>
         <TableLayout>
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/text_folderJSON" />
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/title_pickFolder"
-                    android:id="@+id/pickFolder" />
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/title_exportationFolder" />
         </TableLayout>
 
         <TableLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/title_fileName"
-                android:id="@+id/title_name" />
+                android:text="@string/title_fileName" />
         </TableLayout>
-        <TableLayout>
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/text_name" />
-        </TableLayout>
-
         <TableLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/title_dateFormat"
-                android:id="@+id/title_date" />
-        </TableLayout>
-        <TableLayout>
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/text_date" />
+                android:text=""
+                android:id="@+id/title_fileName" />
         </TableLayout>
 
         <TableLayout>
@@ -68,6 +44,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/title_activity_export"
                 android:id="@+id/exportData" />
+        </TableLayout>
+
+        <TableLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sendDataEmail"
+                android:id="@+id/sendDataMail" />
         </TableLayout>
 
     </TableLayout>

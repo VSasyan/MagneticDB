@@ -19,13 +19,13 @@
     <string name="title_alt">Alt: %1$s</string>
     <string name="title_acc">Acc: %1$s</string>
     <string name="title_listMeasurement">List measurements:</string>
-    <string name="title_folder">Folder:</string>
-    <string name="title_folderJSON">Folder JSON:</string>
-    <string name="title_folderPicture">Folder Pictures:</string>
+    <string name="title_folder">Folder where store the session:</string>
+    <string name="title_exportationFolder">Exportation folder:</string>
     <string name="title_pickFolder">&#8230;</string>
     <string name="title_fileName">File name:</string>
+    <string name="title_sessionName">Session name:</string>
     <string name="title_dateFormat">Date format:</string>
-    <string name="title_settingsMain">Main Settings:</string>
+    <string name="title_settingsSession">Session Settings:</string>
     <string name="title_settingsExport">Export Settings:</string>
 
     <string name="menu_play">Start record</string>
@@ -58,6 +58,7 @@
 
     <string name="apiKey">AIzaSyAhx4zWd9KoasTM44AXf_GnuchLe6haDXo</string>
     <string name="back">Back</string>
+    <string name="sendDataEmail">Send data by email</string>
     <string name="provider_enabled">The provider %s is now enabled</string>
     <string name="provider_disabled">The provider %s is now disabled</string>
     <string name="new_location">New Location : Latitude = %1$s, Longitude = %2$s, Altitude = %3$s; Accuracy: %4$s m</string>
