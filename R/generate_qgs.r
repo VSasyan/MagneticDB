@@ -1,7 +1,17 @@
-library(XML)
-library(tools)
-library(raster)
+# Add some used library:
+library('XML')		# For XML files
+library('tools')	# For the files' manipulation
+library('raster')	# For the rasters' manipulation
 
+#' create a QGIS project (.qgs file) with all the .asc and all the .shp files found in the folder
+#' @param folder string, folder where are the files to use
+#' @param file string, name of the QGIS project file
+#' @return nothing
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
+#' @examples
+#' generate_qgs('data/generated/','qgis_project.qgs')
 generate_qgs <- function(folder, file) {
 
 	asc = getASCinfo(folder)

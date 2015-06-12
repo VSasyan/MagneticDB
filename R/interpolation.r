@@ -1,25 +1,16 @@
-# setwd("C:/R/MagneticDB/")
-# source("main.r")
-
 # Add some used library:
-library('rjson')		# for JSON
 library('rgdal')		# for SpatialDataFrame
 library('automap')		# for interpolation
-library('caret')		# for scaling
-library('tictoc')		# for tictoc
 
-# Add some used functions:
-source(file='generate_qgs.r', encoding='UTF-8')
-
-#####################################
-# Function interpolation: interpolate the date in the json file.
-# 	Enter:
-# 		- proj.df: SpatialPointsDataFrame, the data to interpolate
-# 		- file: string, name of the JSON file in the data folder (without the .json extension)
-# 		- sizeIGrid: integer, size of the grid of interpolation
-# 	Returns:
-# 		- proj.dfKri: SpatialPointsDataFrame, the data interpolated
-#####################################
+#' interpolate the date in the SpatialPointsDataFrame passed in parameter
+#' @param folder string, folder where are the files to use
+#' @param proj.df SpatialPointsDataFrame, the data to interpolate
+#' @param file string, name of the JSON file in the data folder (without the .json extension)
+#' @param sizeIGrid integer, size of the grid of interpolation
+#' @return proj.dfKri SpatialPointsDataFrame, the data interpolated
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/12/2015
 interpolation <- function(proj.df, file='generated', sizeIGrid=70) {
 	# getPointList:
 	pointList = getPointList(extent(proj.df), sizeIGrid);
