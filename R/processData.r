@@ -1,6 +1,9 @@
 # setwd("C:/MagneticDB/R/")
 # source("processData.r")
 
+# EPSG for Canada/Ottawa :
+EPSG_ <- c(authid='EPSG:2951', srsid='920', proj4='+proj=tmerc +lat_0=0 +lon_0=-76.5 +k=0.9999 +x_0=304800 +y_0=0 +ellps=GRS80 +units=m +no_defs', srid='2951', description='NAD83(CSRS) / MTM zone 9', projectionacronym='tmerc', ellipsoidacronym='GRS80', geographicflag=FALSE)
+
 # Add some used library:
 library('rjson')		# for JSON
 library('rgdal')		# for SpatialDataFrame
@@ -18,18 +21,19 @@ source(file='generate_qgs.r', encoding='UTF-8')
 #' @param resolution double, resolution of the grid of interpolation (size of 1 px in real)
 #' @param export bool, true if the function have to export the used data
 #' @param erase bool, true if the function can erase existing used data
+#' @param EPSG list, EPSG description of the reference systeme used as destination
 #' @return nothing
 #' @author Valentin SASYAN
-#' @version 0.1.1
+#' @version 0.2.0
 #' @date  06/12/2015
 #' @examples
-#' generate_qgs(file'generated',sizeIGrid=200,erase=FALSE)
-processData <- function(file='generated', resolution=1000, export=TRUE, erase=TRUE) {
+#' generate_qgs(file'generated',resolution=200,erase=FALSE)
+processData <- function(file='generated', resolution=1000, export=TRUE, erase=TRUE, EPSG=EPSG_) {
 	tic('processData')
 
 		# 1) We read the exported data:
 		tic('readExport')
-		proj.df <- readExport(paste('data//', file, '.json',sep=''))
+		proj.df <- readExport(paste('data//', file, '/measurements.json',sep=''), EPSG)
 		toc()
 
 		# 2) Interpolation:
@@ -50,10 +54,36 @@ processData <- function(file='generated', resolution=1000, export=TRUE, erase=TR
 				writeGDAL(proj.dfKri, paste('data//',file,'//interpolatedData_',resolution,'.asc',sep=''))
 			}
 			if (isWritable(erase, paste('data//',file,'//QGIS_project.qgs',sep=''))) {
-				generate_qgs(paste('data',file,sep='/'), 'QGIS_project.qgs')
+				generate_qgs(paste('data',file,sep='/'), 'QGIS_project.qgs', EPSG)
 			}			
 		}
 		toc()
 
 	toc()
+}
+
+#' Calculate the size of the interpolation mesh for the given data and the given interpolation
+#' @param file string, name of the JSON file in the data folder (without the .json extension)
+#' @param resolution double, resolution of the grid of interpolation (size of 1 px in real)
+#' @param EPSG list, EPSG description of the reference systeme used as destination
+#' @return list, the X size and the Y size
+#' @author Valentin SASYAN
+#' @version 0.2.0
+#' @date  06/15/2015
+#' @examples
+#' sizeData(file'generated',resolution=1)
+sizeData <- function(file='generated', resolution=1000, EPSG=EPSG_) {
+	# 1) We read the exported data:
+	proj.df <- readExport(paste('data//', file, '/measurements.json',sep=''), EPSG)
+
+	# 2) We calculate the size of the interpolation grid:
+	extent <- extent(proj.df)
+	deltaX <- abs(xmax(extent) - xmin(extent))
+	deltaY <- abs(ymax(extent) - ymin(extent))
+	sizeX <- deltaX / resolution
+	sizeY <- deltaY / resolution
+
+	# 3) return :
+	r <- c(X=sizeX,Y=sizeY)
+	r
 }

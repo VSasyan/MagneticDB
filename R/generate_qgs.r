@@ -6,16 +6,19 @@ library('raster')	# For the rasters' manipulation
 #' Create a QGIS project (.qgs file) with all the .asc and all the .shp files found in the folder
 #' @param folder string, folder to scan
 #' @param file string, name of the QGIS project file
+#' @param EPSG list, EPSG description of the reference systeme used as destination
+#' @param Google boolean, true to add a Google Streets Layer at the QGIS Project
 #' @return nothing
 #' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/12/2015
+#' @version 1.1.0
+#' @date  06/15/2015
 #' @examples
-#' generate_qgs('data/generated/','qgis_project.qgs')
-generate_qgs <- function(folder, file) {
+#' generate_qgs('data/generated/', 'qgis_project.qgs', EPSG, FALSE)
+generate_qgs <- function(folder, file, EPSG, Google=TRUE) {
 
 	asc = getASCinfo(folder)
 	shp = getSHPinfo(folder)
+	google = getGoogle(Google)
 
 	extent <- asc[[1]]$extent
 	for (i in shp) {extent <- union(extent, i$extent)}
@@ -29,10 +32,11 @@ generate_qgs <- function(folder, file) {
 			newXMLNode('customproperties', parent=layer_tree_group)
 			for (i in shp) {addChildren(layer_tree_group, getLayerTreeLayer(i$name, i$id))}
 			for (i in asc) {addChildren(layer_tree_group, getLayerTreeLayer(i$name, i$id))}
+			if (Google) {addChildren(layer_tree_group, getLayerTreeLayer(google$name, google$id))}
 
 		newXMLNode('relation', parent=top)
 
-		addChildren(top, getMapcanvas(xmin(extent), ymin(extent), xmax(extent), ymax(extent)))
+		addChildren(top, getMapcanvas(xmin(extent), ymin(extent), xmax(extent), ymax(extent), EPSG))
 
 		newXMLNode('visibility-presets', parent=top)
 
@@ -40,18 +44,27 @@ generate_qgs <- function(folder, file) {
 			custom_order = newXMLNode('custom-order', attrs=c(enabled="0"), parent=layer_tree_canvas)
 				for (i in shp) {newXMLNode('item', i$id, parent=custom_order)}
 				for (i in asc) {newXMLNode('item', i$id, parent=custom_order)}
+				if (Google) {newXMLNode('item', google$id, parent=custom_order)}
 
 		legend = newXMLNode('legend', attrs=c(updateDrawingOrder="true"), parent=top)
 			for (i in shp) {addChildren(legend, getLegendlayer(i$name, i$id))}
 			for (i in asc) {addChildren(legend, getLegendlayer(i$name, i$id))}
+			if (Google) {addChildren(legend, getLegendlayer(google$name, google$id))}
 
-		projectlayers = newXMLNode('projectlayers', attrs=c(layercount='3'), parent=top)
+		layercount <- length(asc) + length(shp)
+		if (Google) {
+			layercount <- layercount + 1
+			ascOpacity <- 0.21
+		} else {
+			ascOpacity <- 1
+		}
+		projectlayers = newXMLNode('projectlayers', attrs=c(layercount=layercount), parent=top)
 			for (i in shp) {
 				addChildren(projectlayers, getMapLayerShp(
 					i$id,
 					i$filename,
 					i$name,
-					getSpatialrefsys(),
+					getSpatialrefsys(EPSG),
 					c('x','y','z')
 				))
 			}
@@ -60,15 +73,53 @@ generate_qgs <- function(folder, file) {
 					i$id,
 					i$filename,
 					i$name,
-					getSpatialrefsys(),
+					getSpatialrefsys(EPSG),
 					getNoData(1,3),
-					getPipe(list(red=i$red,green=i$green,blue=i$blue))
+					getPipe(list(red=i$red,green=i$green,blue=i$blue), ascOpacity)
+				))
+			}
+			if (Google) {
+				addChildren(projectlayers, getMapLayerGoogle(
+					google$id,
+					google$name,
+					getSpatialrefsys(google$EPSG)
 				))
 			}
 
-		addChildren(top, getProperties())
+		addChildren(top, getProperties(EPSG))
 
 	saveXML(top, file=paste(folder,file,sep='/'), compression=0, indent=TRUE, prefix=NULL, doctype="<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>\n", encoding = getEncoding(top))
+}
+
+#' Create information for a Google Streets Layer
+#' @param Google boolean, must create the information or not?
+#' @return a list with all the informations OR FALSE
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/15/2015
+#' @examples
+#' google <- getGoogle(TRUE)
+#' google <- getGoogle(FALSE)
+getGoogle <- function(Google) {
+	if (Google == TRUE) {
+		Google <- list(
+			id = paste('OpenLayers_plugin_layer', gsub('[^0-9]','',Sys.time()), sep=''),
+			name = 'Google Streets',
+			EPSG = c(
+				proj4 = '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs',
+				srsid = '3857',
+				srid = '3857',
+				authid = 'EPSG:3857',
+				description = 'WGS 84 / Pseudo Mercator',
+				projectionacronym = 'merc',
+				ellipsoidacronym = 'WGS84',
+				geographicflag = 'false'
+			)
+		)
+	} else {
+		Google = FALSE
+	}
+	Google
 }
 
 #' Get information for all the .asc files of the folder passed in parameter
@@ -180,6 +231,36 @@ getMapLayerAsc <- function(id, datasource, layername, spatialrefsys, noData, pip
 	maplayer
 }
 
+#' Generate the 'maplayer' XML element of a Google Streets Layer
+#' @param id string, id of the layer
+#' @param layername string, layername of the layer
+#' @param spatialrefsys XML element, specifications of the spatial reference systeme
+#' @return a XML element
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/15/2015
+getMapLayerGoogle <- function(id, layername, spatialrefsys) {
+	maplayer = newXMLNode('maplayer', attrs=c(minimumScale="0", maximumScale="1e+08", type="plugin", hasScaleBasedVisibilityFlag="0", name="openlayers"))
+		newXMLNode('id', id, parent=maplayer)
+		newXMLNode('datasource', '', parent=maplayer)
+
+		newXMLNode('title', '', parent=maplayer)
+		newXMLNode('abstract', '', parent=maplayer)
+
+		keywordList = newXMLNode('keywordList', parent=maplayer)
+			newXMLNode('value', '', parent=keywordList)
+
+		newXMLNode('layername', layername, parent=maplayer)
+
+		srs = newXMLNode('srs', parent=maplayer)
+			addChildren(srs, spatialrefsys)
+
+		customproperties = newXMLNode('customproperties', parent=maplayer)
+			newXMLNode('property', attrs=c(key="ol_layer_type", value="Google Streets"), parent=customproperties)
+
+	maplayer
+}
+
 #' Generate the 'maplayer' XML element of a .shp
 #' @param id string, id of the layer
 #' @param datasource string, datasource of the layer
@@ -270,34 +351,36 @@ getRendererv2 <- function() {
 }
 
 #' Generate the 'spatialrefsys' XML element of a 'maplayer' XML element
+#' @param EPSG list, EPSG description of the reference systeme used as destination
 #' @return a XML element
 #' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/12/2015
-getSpatialrefsys <- function() {
+#' @version 1.1.0
+#' @date  06/15/2015
+getSpatialrefsys <- function(EPSG) {
 	spatialrefsys = newXMLNode('spatialrefsys')
-		newXMLNode('proj4', '+proj=longlat +datum=WGS84 +no_defs', parent=spatialrefsys)
-		newXMLNode('srsid', '3452', parent=spatialrefsys)
-		newXMLNode('srid', '4326', parent=spatialrefsys)
-		newXMLNode('authid', 'EPSG:4326', parent=spatialrefsys)
-		newXMLNode('description', 'WGS 84', parent=spatialrefsys)
-		newXMLNode('projectionacronym', 'longlat', parent=spatialrefsys)
-		newXMLNode('ellipsoidacronym', 'WGS84', parent=spatialrefsys)
-		newXMLNode('geographicflag', 'true', parent=spatialrefsys)
+		newXMLNode('proj4', EPSG[['proj4']], parent=spatialrefsys)
+		newXMLNode('srsid', EPSG[['srsid']], parent=spatialrefsys)
+		newXMLNode('srid', EPSG[['srid']], parent=spatialrefsys)
+		newXMLNode('authid', EPSG[['authid']], parent=spatialrefsys)
+		newXMLNode('description', EPSG[['description']], parent=spatialrefsys)
+		newXMLNode('projectionacronym', EPSG[['projectionacronym']], parent=spatialrefsys)
+		newXMLNode('ellipsoidacronym', EPSG[['ellipsoidacronym']], parent=spatialrefsys)
+		newXMLNode('geographicflag', EPSG[['geographicflag']], parent=spatialrefsys)
 	spatialrefsys
 }
 
 #' Generate the 'pipe' XML element of a .asc 'maplayer' XML element
 #' @param liste list, specification of the color used for each band
+#' @param opacity double, opacity of the layer
 #' @return a XML element
 #' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/12/2015
+#' @version 1.1.0
+#' @date  06/15/2015
 #' @examples
 #' getPipe(list(red=c(min=-1,max=1),green=c(min=-0.84, max=0.42),blue=c(min=-0.42,max=0.84))
-getPipe <- function(liste) {
+getPipe <- function(liste, opacity=1) {
 	pipe = newXMLNode('pipe')
-		rasterrenderer = newXMLNode('rasterrenderer', attrs=c(opacity="1", alphaBand="0", blueBand="3", greenBand="2", type="multibandcolor", redBand="-1"), parent=pipe)
+		rasterrenderer = newXMLNode('rasterrenderer', attrs=c(opacity=opacity, alphaBand="0", blueBand="3", greenBand="2", type="multibandcolor", redBand="-1"), parent=pipe)
 			if (is.vector(liste[['red']])) {
 				addChildren(rasterrenderer, getContrastEnhancement('red', liste[['red']]))
 			} else {
@@ -354,17 +437,18 @@ getNoData<- function(min, max) {
 }
 
 #' Generate the 'properties' XML element of a .asc 'maplayer' XML element
+#' @param EPSG list, EPSG description of the reference systeme used as destination
 #' @return a XML element
 #' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/12/2015
-getProperties <- function() {
+#' @version 1.1.0
+#' @date  06/15/2015
+getProperties <- function(EPSG) {
 	properties = newXMLNode('properties')
 
 		SpatialRefSys = newXMLNode('SpatialRefSys', parent=properties)
-			newXMLNode('ProjectCRSProj4String', '+proj=longlat +datum=WGS84 +no_defs', attrs=c(type="QString"), parent=SpatialRefSys)
-			newXMLNode('ProjectCrs', 'EPSG:4326', attrs=c(type="QString"), parent=SpatialRefSys)
-			newXMLNode('ProjectCRSID', '3452', attrs=c(type="int"), parent=SpatialRefSys)
+			newXMLNode('ProjectCRSProj4String', EPSG[['proj4']], attrs=c(type="QString"), parent=SpatialRefSys)
+			newXMLNode('ProjectCrs', EPSG[['authid']], attrs=c(type="QString"), parent=SpatialRefSys)
+			newXMLNode('ProjectCRSID', EPSG[['srid']], attrs=c(type="int"), parent=SpatialRefSys)
 
 		Paths = newXMLNode('Paths', parent=properties)
 			newXMLNode('Absolute', 'false', attrs=c(type="bool"), parent=Paths)
@@ -439,15 +523,16 @@ getLayerTreeLayer <- function(Name, ID) {
 #' @param ymin double, ymin limit of the map canevas
 #' @param xmax double, xmax limit of the map canevas
 #' @param ymax double, ymax limit of the map canevas
+#' @param EPSG list, EPSG description of the reference systeme used as destination
 #' @return a XML element
 #' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/12/2015
+#' @version 1.1.0
+#' @date  06/15/2015
 #' @examples
 #' getMapcanvas(-42,-42,42,42)
-getMapcanvas <- function(xmin, ymin, xmax, ymax) {
+getMapcanvas <- function(xmin, ymin, xmax, ymax, EPSG) {
 	mapcanvas = newXMLNode('mapcanvas')
-		newXMLNode('units', 'degrees', parent=mapcanvas)
+		newXMLNode('units', 'meters', parent=mapcanvas)
 		extent = newXMLNode('extent', parent=mapcanvas)
 			newXMLNode('xmin', xmin, parent=extent)
 			newXMLNode('ymin', ymin, parent=extent)
@@ -456,7 +541,7 @@ getMapcanvas <- function(xmin, ymin, xmax, ymax) {
 		newXMLNode('rotation', '0', parent=mapcanvas)
 		newXMLNode('projections', '0', parent=mapcanvas)
 		destinationsrs = newXMLNode('destinationsrs', parent=mapcanvas)
-			addChildren(destinationsrs, getSpatialrefsys())
+			addChildren(destinationsrs, getSpatialrefsys(EPSG))
 		newXMLNode('layer_coordinate_transform_info', parent=mapcanvas)
 	mapcanvas
 }
