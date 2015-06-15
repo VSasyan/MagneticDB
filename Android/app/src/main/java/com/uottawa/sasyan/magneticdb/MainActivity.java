@@ -200,19 +200,15 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         menu.findItem(R.id.menu_play).setVisible(!this.settings.isRecording());
         menu.findItem(R.id.menu_gps).setVisible(!this.settings.isWifiOnly());
         menu.findItem(R.id.menu_wifi).setVisible(this.settings.isWifiOnly());
-        switch (this.settings.getShow()) {
-            case "maps":
-                menu.findItem(R.id.menu_maps).setVisible(false);
-                menu.findItem(R.id.menu_view).setIcon(R.drawable.ic_maps).setTitle(R.string.menu_maps);
-                break;
-            case "list":
-                menu.findItem(R.id.menu_list).setVisible(false);
-                menu.findItem(R.id.menu_view).setIcon(R.drawable.ic_list).setTitle(R.string.menu_list);
-                break;
-            default: // "all"
-                menu.findItem(R.id.menu_all).setVisible(false);
-                menu.findItem(R.id.menu_view).setIcon(R.drawable.ic_all).setTitle(R.string.menu_all);
-                break;
+        if (this.settings.getShow().equals("maps")) {
+            menu.findItem(R.id.menu_maps).setVisible(false);
+            menu.findItem(R.id.menu_view).setIcon(R.drawable.ic_maps).setTitle(R.string.menu_maps);
+        } else if (this.settings.getShow().equals("list")) {
+            menu.findItem(R.id.menu_list).setVisible(false);
+            menu.findItem(R.id.menu_view).setIcon(R.drawable.ic_list).setTitle(R.string.menu_list);
+        } else { // "all"
+            menu.findItem(R.id.menu_all).setVisible(false);
+            menu.findItem(R.id.menu_view).setIcon(R.drawable.ic_all).setTitle(R.string.menu_all);
         }
 
         menu.findItem(R.id.menu_del).setVisible(this.settings.getShow().equals("list"));

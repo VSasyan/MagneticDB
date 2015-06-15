@@ -53,8 +53,8 @@ public class HeatActivity extends Activity {
 
         // Get JSON of the DB :
         helper = new HelperMeasurement(this);
-        this.dataBase = getResources().getString(R.string.testJSON_1);
-        //this.dataBase = helper.getAllJSON();
+        //this.dataBase = getResources().getString(R.string.testJSON_1);
+        this.dataBase = helper.getAllJSON();
 
         this.typeData();
         this.showData();

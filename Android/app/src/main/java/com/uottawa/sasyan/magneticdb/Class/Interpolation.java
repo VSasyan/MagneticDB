@@ -333,7 +333,7 @@ public class Interpolation {
     }
 
     public List<WeightedLatLng> getDataPoint(int normalize) {
-        List<WeightedLatLng> dataPoint = new ArrayList<>();
+        List<WeightedLatLng> dataPoint = new ArrayList<WeightedLatLng>();
         if (this.type != -1) { // interpolated data
             // Now Normalization:
             double min = this.pointZ[0][0], max = this.pointZ[0][0];
