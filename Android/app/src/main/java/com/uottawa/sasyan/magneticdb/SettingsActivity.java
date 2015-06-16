@@ -49,6 +49,7 @@ public class SettingsActivity extends Activity {
         ((EditText)findViewById(R.id.text_folder)).setText(settings.getFolder());
         ((EditText)findViewById(R.id.text_date)).setText(settings.getDateFormat());
         ((EditText)findViewById(R.id.text_session)).setText(settings.getSession());
+        ((EditText)findViewById(R.id.text_timeGPS)).setText(String.valueOf(settings.getTimeGPS()));
         return true;
     }
 
@@ -60,6 +61,7 @@ public class SettingsActivity extends Activity {
             settings.setFolder(((EditText) findViewById(R.id.text_folder)).getText().toString());
             settings.setDateFormat(((EditText) findViewById(R.id.text_date)).getText().toString());
             settings.setSession(((EditText) findViewById(R.id.text_session)).getText().toString());
+            settings.setTimeGPS(((EditText) findViewById(R.id.text_timeGPS)).getText().toString());
             this.finish();
             return true;
         }

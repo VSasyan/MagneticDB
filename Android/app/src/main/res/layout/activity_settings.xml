@@ -13,6 +13,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/title_settingsSession"
+                    android:id="@+id/title_settingsSession"
+                    android:textColor="@color/title_color"
+                    android:textSize="@dimen/title_settingsSize"
+                    android:paddingBottom="@dimen/title_settingsPadding"
+                    android:paddingTop="@dimen/title_settingsPadding" />
+
+            </TableLayout>
+
+            <TableLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/title_sessionName"
                     android:id="@+id/title_name"
                     android:labelFor="@+id/text_session"/>
@@ -23,6 +36,39 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/text_session" />
+            </TableLayout>
+
+        </TableLayout>
+
+        <TableLayout>
+
+            <TableLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_settingsRecord"
+                    android:id="@+id/title_settingsRecord"
+                    android:textColor="@color/title_color"
+                    android:textSize="@dimen/title_settingsSize"
+                    android:paddingBottom="@dimen/title_settingsPadding"
+                    android:paddingTop="@dimen/title_settingsPadding" />
+            </TableLayout>
+
+            <TableLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_timeGPS"
+                    android:id="@+id/title_timeGPS"
+                    android:labelFor="@+id/text_timeGPS" />
+            </TableLayout>
+
+            <TableLayout>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_timeGPS"
+                    android:inputType="number" />
             </TableLayout>
 
         </TableLayout>

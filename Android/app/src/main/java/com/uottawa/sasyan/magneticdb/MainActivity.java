@@ -159,19 +159,19 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         if (wakeLock != null) {wakeLock.release();}
 
         // Listener sensor :
-        sensorManager.registerListener(this, sensorMagneticField, SensorManager.SENSOR_DELAY_NORMAL);
-        sensorManager.registerListener(this, sensorLinearAcce, SensorManager.SENSOR_DELAY_NORMAL);
-        sensorManager.registerListener(this, sensorGravity, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(this, sensorMagneticField, SensorManager.SENSOR_DELAY_GAME);
+        sensorManager.registerListener(this, sensorLinearAcce, SensorManager.SENSOR_DELAY_GAME);
+        sensorManager.registerListener(this, sensorGravity, SensorManager.SENSOR_DELAY_GAME);
         // SENSOR_DELAY_FASTEST,  SENSOR_DELAY_GAME, SENSOR_DELAY_UI, SENSOR_DELAY_NORMAL
 
         // Update GPS (or Wifi if there is not GPS) :
         if (this.settings.isWifiOnly()) {
-            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, this);
+            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, settings.getTimeGPS(), 0, this);
         } else {
             if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER))
-                lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, this);
+                lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, settings.getTimeGPS(), 0, this);
             else
-                lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, this);
+                lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, settings.getTimeGPS(), 0, this);
         }
 
         initializeMap();
@@ -210,9 +210,8 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
             menu.findItem(R.id.menu_all).setVisible(false);
             menu.findItem(R.id.menu_view).setIcon(R.drawable.ic_all).setTitle(R.string.menu_all);
         }
-
-        menu.findItem(R.id.menu_del).setVisible(this.settings.getShow().equals("list"));
-        menu.findItem(R.id.menu_export).setVisible(this.settings.getShow().equals("list"));
+        //menu.findItem(R.id.menu_del).setVisible(this.settings.getShow().equals("list"));
+        //menu.findItem(R.id.menu_export).setVisible(this.settings.getShow().equals("list"));
         return true;
     }
 

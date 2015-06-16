@@ -8,7 +8,6 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,13 +15,8 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-import com.uottawa.sasyan.magneticdb.Class.CustomProcessDialog;
-import com.uottawa.sasyan.magneticdb.Class.DirectoryChooserDialog;
 import com.uottawa.sasyan.magneticdb.Class.Settings;
 
 

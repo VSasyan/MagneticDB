@@ -12,8 +12,8 @@ import com.uottawa.sasyan.magneticdb.SettingsActivity;
 
 public class Settings {
     private Context context;
-    private String folder, dateFormat, fileName, show, session;
-    private int showType, interType, normType;
+    private String folder, dateFormat, show, session;
+    private int showType, interType, normType, timeGPS;
     private boolean WifiOnly, isRecording;
 
     public Settings(Context context) {
@@ -32,6 +32,7 @@ public class Settings {
         this.showType = preferences.getInt("showType", 0);
         this.interType = preferences.getInt("interType", 0);
         this.normType = preferences.getInt("normType", 0);
+        this.timeGPS = preferences.getInt("timeGPS", 5000);
         return true;
     }
 
@@ -47,6 +48,7 @@ public class Settings {
         e.putInt("showType", this.showType);
         e.putInt("interType", this.interType);
         e.putInt("normType", this.normType);
+        e.putInt("timeGPS", this.timeGPS);
         e.commit();
         return true;
     }
@@ -83,6 +85,9 @@ public class Settings {
     public String getSession() {
         return session;
     }
+    public int getTimeGPS() {
+        return timeGPS;
+    }
 
     public void setDateFormat(String dateFormat) {
         this.dateFormat = dateFormat;
@@ -118,6 +123,10 @@ public class Settings {
     }
     public void setSession(String session) {
         this.session = session;
+        saveSettings();
+    }
+    public void setTimeGPS(String timeGPS) {
+        this.timeGPS = Integer.parseInt(timeGPS);
         saveSettings();
     }
 
