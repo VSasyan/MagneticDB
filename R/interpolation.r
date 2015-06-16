@@ -1,32 +1,40 @@
 # Add some used library:
 library('rgdal')		# for SpatialDataFrame
-library('automap')		# for interpolation
+library('automap')		# for interpolation (krige)
+library('gstat')		# for interpolation (idw)
 
 #' Interpolate the date in the SpatialPointsDataFrame passed in parameter
-#' @param folder string, folder where are the files to use
 #' @param proj.df SpatialPointsDataFrame, the data to interpolate
-#' @param file string, name of the JSON file in the data folder (without the .json extension)
 #' @param resolution double, resolution of the grid of interpolation (size of 1 px in real)
+#' @param EPSG list, EPSG description of the reference systeme used as destination
+#' @param interpolation string, the name of the interplation to use
+#' @param param variant, parameter for some interpolation
 #' @return proj.dfKri SpatialPointsDataFrame, the data interpolated
 #' @author Valentin SASYAN
-#' @version 1.1.1
-#' @date  06/15/2015
-interpolation <- function(proj.df, file='generated', resolution=100) {
+#' @version 1.3.0
+#' @date  06/16/2015
+interpolation <- function(proj.df, resolution=100, EPSG, interpolation='idw', param=0.5) {
 	# getPointList:
 	pointList = getPointList(extent(proj.df), resolution)
 
 	# Create the interpolation mesh:
 	proj.new = SpatialPoints(pointList)
-	# proj4string(my.new) <- CRS("+proj=longlat +datum=WGS84")
-	# proj.new <- spTransform(my.new, CRS("+proj=merc +zone=32s +datum=WGS84"))
+	proj4string(proj.new) <- CRS(EPSG[['proj4']])
 
 	# Now, try to interpolate:
-	proj.kriX <- autoKrige(x~1, proj.df, proj.new)
-	proj.kriY <- autoKrige(y~1, proj.df, proj.new)
-	proj.kriZ <- autoKrige(z~1, proj.df, proj.new)
+	if (type == 'interpolation') {
+		proj.intX <- autoKrige(x~1, proj.df, proj.new)
+		proj.intY <- autoKrige(y_~1, proj.df, proj.new)
+		proj.intZ <- autoKrige(z_~1, proj.df, proj.new)
+		kriList = list(x=proj.intX$krige_output['var1.pred'][[1]], y=proj.intY$krige_output['var1.pred'][[1]], z=proj.intZ$krige_output['var1.pred'][[1]])
+	} else if (type == 'interpolation') {
+		proj.intX <- idw(x~1, proj.df, proj.new, idp=param)
+		proj.intY <- idw(y~1, proj.df, proj.new, idp=param)
+		proj.intZ <- idw(z~1, proj.df, proj.new, idp=param)
+		kriList = list(x=proj.intX['var1.pred'][[1]], y=proj.intY['var1.pred'][[1]], z=proj.intZ['var1.pred'][[1]])
+	}
 
 	# Then create a SpatialDataFrame with the interpolated data:
-	kriList = list(x=proj.kriX$krige_output['var1.pred'][[1]], y=proj.kriY$krige_output['var1.pred'][[1]], z=proj.kriZ$krige_output['var1.pred'][[1]])
 	dfInterXYZ <- data.frame(t(matrix(unlist(kriList), nrow=3, byrow=T)))
 	colnames(dfInterXYZ) <- c('x', 'y', 'z')
 	proj.dfKri <- SpatialPointsDataFrame(coords=pointList, data=dfInterXYZ[,c(1,2,3)])
@@ -34,22 +42,7 @@ interpolation <- function(proj.df, file='generated', resolution=100) {
 
 	# Return:
 	proj.dfKri
-}
 
-#' Check if the script can write the specified file (erasing or not an eventual existing file)
-#' @param erase boolean, the script can erase an eventual existing file 
-#' @param file string, path of the file to test
-#' @return boolean, true if the file can be written
-#' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/12/2015
-#' @example
-#' isWritable(false, 'myNewFile.txt')
-isWritable <- function(erase, file) {
-	r = TRUE
-	if (file.exists(file) && erase) {r = file.remove(file)}
-	else {r = !file.exists(file)}
-	r
 }
 
 #' Generate a list of SpatialPoint

@@ -10,7 +10,7 @@ library('raster')	# For the rasters' manipulation
 #' @param Google boolean, true to add a Google Streets Layer at the QGIS Project
 #' @return nothing
 #' @author Valentin SASYAN
-#' @version 1.1.0
+#' @version 1.1.1
 #' @date  06/15/2015
 #' @examples
 #' generate_qgs('data/generated/', 'qgis_project.qgs', EPSG, FALSE)
@@ -54,7 +54,7 @@ generate_qgs <- function(folder, file, EPSG, Google=TRUE) {
 		layercount <- length(asc) + length(shp)
 		if (Google) {
 			layercount <- layercount + 1
-			ascOpacity <- 0.21
+			ascOpacity <- 0.90
 		} else {
 			ascOpacity <- 1
 		}
