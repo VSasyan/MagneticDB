@@ -21,7 +21,6 @@ public class SettingsActivity extends Activity {
         settings = new Settings(this);
 
         findViewById(R.id.pickFolder).setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 DirectoryChooserDialog DCD = new DirectoryChooserDialog(SettingsActivity.this, new DirectoryChooserDialog.ChosenDirectoryListener() {
@@ -50,6 +49,7 @@ public class SettingsActivity extends Activity {
         ((EditText)findViewById(R.id.text_date)).setText(settings.getDateFormat());
         ((EditText)findViewById(R.id.text_session)).setText(settings.getSession());
         ((EditText)findViewById(R.id.text_timeGPS)).setText(String.valueOf(settings.getTimeGPS()));
+        ((EditText)findViewById(R.id.text_timeSpot)).setText(String.valueOf(settings.getTimeSpot()));
         return true;
     }
 
@@ -62,6 +62,7 @@ public class SettingsActivity extends Activity {
             settings.setDateFormat(((EditText) findViewById(R.id.text_date)).getText().toString());
             settings.setSession(((EditText) findViewById(R.id.text_session)).getText().toString());
             settings.setTimeGPS(((EditText) findViewById(R.id.text_timeGPS)).getText().toString());
+            settings.setTimeSpot(((EditText) findViewById(R.id.text_timeSpot)).getText().toString());
             this.finish();
             return true;
         }

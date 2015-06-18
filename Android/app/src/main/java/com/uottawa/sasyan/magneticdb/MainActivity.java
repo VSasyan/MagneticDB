@@ -26,8 +26,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CursorAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +43,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import com.uottawa.sasyan.magneticdb.Class.ConvertInt;
+import com.uottawa.sasyan.magneticdb.Class.DirectoryChooserDialog;
 import com.uottawa.sasyan.magneticdb.Class.Measurement;
 import com.uottawa.sasyan.magneticdb.Class.GPS;
 import com.uottawa.sasyan.magneticdb.Class.Settings;
@@ -46,17 +53,26 @@ import com.uottawa.sasyan.magneticdb.Helper.HelperMeasurement;
 
 import org.json.JSONObject;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Handler;
 
 public class MainActivity extends FragmentActivity implements SensorEventListener, LocationListener {
     // Elements :
     TextView mf_x, mf_y, mf_z, amf_x, amf_y, amf_z, la_x, la_y, la_z, ala_x, ala_y, ala_z,
             ac_x, ac_y, ac_z, gps_lat, gps_lon, gps_alt, gps_acc;
+    Spinner spinner;
     ListView list;
     GoogleMap map;
+    EditText id;
 
     // Utilitaires :
+    Timer spotTimer;
+    TimerTask spotTask;
+    long lastSave = 0;
     Settings settings;
     Cursor model;
     SensorManager sensorManager;
@@ -113,12 +129,19 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         gps_alt = (TextView)findViewById(R.id.gps_alt);
         gps_acc = (TextView)findViewById(R.id.gps_acc);
         list = (ListView)findViewById(R.id.listCompassGPS);
+        id = (EditText) findViewById(R.id.text_id);
 
         // Add link between adapter and the list:
         model = helper.getAll();
         startManagingCursor(model);
         adapter = new MeasurementAdapter(model);
         list.setAdapter(adapter);
+
+        // Populate the spinner:
+        spinner = (Spinner)findViewById(R.id.type_spinner);
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.type_array, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
 
         // Load the maps:
         if (initializeMap()) {
@@ -128,12 +151,24 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
             map.getUiSettings().setMyLocationButtonEnabled(true);
         }
 
+        // Add click function:
+        ((Button)findViewById(R.id.button_plus)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (id.getText().toString().equals("")) {
+                    id.setText("1");
+                } else {
+                    id.setText(String.valueOf(1 + Integer.parseInt(id.getText().toString())));
+                }
+            }
+        });
+
         majAffichage("");
     }
 
     @Override
     protected void onPause() {
-        if (!this.settings.isRecording()) {
+        if (this.settings.getRecording().equals("false")) {
             // Unlistener sensor :
             sensorManager.unregisterListener(this, sensorMagneticField);
             sensorManager.unregisterListener(this, sensorLinearAcce);
@@ -196,8 +231,16 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        menu.findItem(R.id.menu_stop).setVisible(this.settings.isRecording());
-        menu.findItem(R.id.menu_play).setVisible(!this.settings.isRecording());
+        if (this.settings.getRecording().equals("false")) {
+            menu.findItem(R.id.menu_stop).setVisible(false);
+            menu.findItem(R.id.menu_record).setIcon(R.drawable.ic_stop);
+        } else if (this.settings.getRecording().equals("true")) {
+            menu.findItem(R.id.menu_play).setVisible(false);
+            menu.findItem(R.id.menu_record).setIcon(R.drawable.ic_play);
+        } else { // "all"
+            menu.findItem(R.id.menu_spot).setVisible(false);
+            menu.findItem(R.id.menu_record).setIcon(R.drawable.ic_spot);
+        }
         menu.findItem(R.id.menu_gps).setVisible(!this.settings.isWifiOnly());
         menu.findItem(R.id.menu_wifi).setVisible(this.settings.isWifiOnly());
         if (this.settings.getShow().equals("maps")) {
@@ -223,15 +266,23 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         switch (item.getItemId()) {
 
             case R.id.menu_stop:
-                this.settings.setIsRecording(false);
+                this.settings.setRecording("false");
                 invalidateOptionsMenu();
                 Toast.makeText(this, R.string.recordingStop, Toast.LENGTH_SHORT).show();
+                unsetSpot();
                 return true;
 
             case R.id.menu_play:
-                this.settings.setIsRecording(true);
+                this.settings.setRecording("true");
                 invalidateOptionsMenu();
                 Toast.makeText(this, R.string.recordingPlay, Toast.LENGTH_SHORT).show();
+                unsetSpot();
+                return true;
+
+            case R.id.menu_spot:
+                this.settings.setRecording("forced");
+                invalidateOptionsMenu();
+                Toast.makeText(this, R.string.recordingForced, Toast.LENGTH_SHORT).show();
                 return true;
 
             case R.id.menu_gps:
@@ -466,7 +517,8 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         this.showGPS();
 
         // We save the result ;
-        if (this.settings.isRecording()) {this.saveResult();}
+        if (!this.settings.getRecording().equals("false")) {this.saveResult(false);}
+        if (settings.getRecording().equals("forced")) {resetSpot();}
     }
 
     @Override
@@ -529,8 +581,17 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     /********************************************************************/
     /*** Sauvegarde ******************************************************/
     /********************************************************************/
-    public void saveResult() {
+    public void saveResult(boolean spot) {
+        // Check if we cam spot if necessary:
+        long temp = System.currentTimeMillis();
+        if (spot & (temp - lastSave < settings.getTimeSpot())) {return;}
+        lastSave = temp;
+
+        // Then save data:
+        ConvertInt ID = new ConvertInt(id.getText().toString(), 0);
         Measurement result = new Measurement(
+                ID.getValue(),
+                spinner.getSelectedItem().toString(),
                 this.gps,
                 this.absMagneticField,
                 this.relMagneticField,
@@ -538,7 +599,8 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
                 this.absLinearAcce,
                 this.relLinearAcce
         );
-        Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show();
+        if (spot) {Toast.makeText(this, "Spot: " + result.toString(), Toast.LENGTH_SHORT).show();}
+        else {Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show();}
         helper.insert(result);
         model.requery();
     }
@@ -590,6 +652,37 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
             addMarker(absMF.toString(), "", g.toLatLng());
         }
 
+    }
+
+    /********************************************************************/
+    /*** Spot's function ************************************************/
+    /********************************************************************/
+    private void setSpot() {
+        spotTask = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        saveResult(true);
+                    }
+                });
+            }
+        };
+        spotTimer = new Timer();
+        spotTimer.schedule(spotTask, settings.getTimeGPS(), settings.getTimeSpot());
+    }
+
+    private void unsetSpot() {
+        if (spotTask != null) {spotTask.cancel();}
+        if (spotTimer != null) {spotTimer.cancel();}
+    }
+
+    private void resetSpot() {
+        unsetSpot();
+        if (settings.getRecording().equals("forced")) {
+            setSpot();
+        }
     }
 
 }

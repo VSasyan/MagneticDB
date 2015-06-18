@@ -1,16 +1,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/menu_play"
-        android:icon="@drawable/ic_play"
+        android:id="@+id/menu_record"
+        android:icon="@drawable/ic_all"
         android:showAsAction="always"
-        android:title="@string/menu_play"/>
+        android:title="@string/menu_record" >
 
-    <item
-        android:id="@+id/menu_stop"
-        android:icon="@drawable/ic_stop"
-        android:showAsAction="always"
-        android:title="@string/menu_stop"/>
+        <menu>
+            <group android:id="@+id/menu_group_record">
+
+                <item
+                    android:id="@+id/menu_play"
+                    android:icon="@drawable/ic_play"
+                    android:title="@string/menu_play"/>
+
+                <item
+                    android:id="@+id/menu_stop"
+                    android:icon="@drawable/ic_stop"
+                    android:title="@string/menu_stop"/>
+
+                <item
+                    android:id="@+id/menu_spot"
+                    android:icon="@drawable/ic_spot"
+                    android:title="@string/menu_spot"/>
+            </group>
+        </menu>
+    </item>
 
     <item
         android:id="@+id/menu_picture"

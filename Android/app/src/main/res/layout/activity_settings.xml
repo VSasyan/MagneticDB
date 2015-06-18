@@ -62,12 +62,27 @@
                     android:id="@+id/title_timeGPS"
                     android:labelFor="@+id/text_timeGPS" />
             </TableLayout>
-
             <TableLayout>
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/text_timeGPS"
+                    android:inputType="number" />
+            </TableLayout>
+
+            <TableLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_timeSpot"
+                    android:id="@+id/title_timeSpot"
+                    android:labelFor="@+id/text_timeSpot" />
+            </TableLayout>
+            <TableLayout>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_timeSpot"
                     android:inputType="number" />
             </TableLayout>
 

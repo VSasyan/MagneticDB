@@ -10,8 +10,12 @@ import org.json.JSONObject;
 public class Measurement {
     Vector absMagneticField, relMagneticField, relGravity, absLinearAcce, relLinearAcce;
     GPS gps;
+    String type;
+    int id;
 
-    public Measurement(GPS gps, Vector absMagneticField, Vector relMagneticField, Vector relGravity, Vector absLinearAcce, Vector relLinearAcce) {
+    public Measurement(int id, String type, GPS gps, Vector absMagneticField, Vector relMagneticField, Vector relGravity, Vector absLinearAcce, Vector relLinearAcce) {
+        this.id = id;
+        this.type = type;
         this.gps = gps;
         this.absMagneticField = absMagneticField;
         this.relMagneticField = relMagneticField;
@@ -21,13 +25,15 @@ public class Measurement {
     }
 
     public String toString() {
-        return "{" + gps.toString() + "," + absMagneticField.toString() + "," + relMagneticField.toString() + "," + relGravity.toString() +
+        return "{" + String.valueOf(id) + "," + type + "," + gps.toString() + "," + absMagneticField.toString() + "," + relMagneticField.toString() + "," + relGravity.toString() +
                "," + absLinearAcce.toString() + "," + relLinearAcce.toString() + "}";
     }
 
     public JSONObject toJSON() {
         JSONObject mesure = new JSONObject();
         try {
+            mesure.put("id", this.getId());
+            mesure.put("type", this.getType());
             mesure.put("gps", this.getGps().toJSON());
             mesure.put("absMagneticField", this.getAbsMagneticField().toJSON());
             mesure.put("relMagneticField", this.getRelMagneticField().toJSON());
@@ -39,6 +45,14 @@ public class Measurement {
             Log.e("Measurement.toJSON", e.toString());
         }
         return mesure;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public GPS getGps() {

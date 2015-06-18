@@ -12,9 +12,9 @@ import com.uottawa.sasyan.magneticdb.SettingsActivity;
 
 public class Settings {
     private Context context;
-    private String folder, dateFormat, show, session;
-    private int showType, interType, normType, timeGPS;
-    private boolean WifiOnly, isRecording;
+    private String folder, dateFormat, show, session, recording;
+    private int showType, interType, normType, timeGPS, timeSpot;
+    private boolean WifiOnly;
 
     public Settings(Context context) {
         this.context = context;
@@ -27,12 +27,13 @@ public class Settings {
         this.session = preferences.getString("session", "Session_1");
         this.dateFormat = preferences.getString("dateFormat", "yyyy-MM-dd_HH-mm-ss");
         this.WifiOnly = preferences.getBoolean("WifiOnly", true);
-        this.isRecording = preferences.getBoolean("isRecording", false);
+        this.recording = preferences.getString("recording", "false");
         this.show = preferences.getString("show", "all");
         this.showType = preferences.getInt("showType", 0);
         this.interType = preferences.getInt("interType", 0);
         this.normType = preferences.getInt("normType", 0);
-        this.timeGPS = preferences.getInt("timeGPS", 5000);
+        this.timeGPS = preferences.getInt("timeGPS", 3000);
+        this.timeSpot = preferences.getInt("timeSpot", 6000);
         return true;
     }
 
@@ -43,12 +44,13 @@ public class Settings {
         e.putString("session", session);
         e.putString("dateFormat", dateFormat);
         e.putBoolean("WifiOnly", this.WifiOnly);
-        e.putBoolean("isRecording", this.isRecording);
+        e.putString("recording", this.recording);
         e.putString("show", this.show);
         e.putInt("showType", this.showType);
         e.putInt("interType", this.interType);
         e.putInt("normType", this.normType);
         e.putInt("timeGPS", this.timeGPS);
+        e.putInt("timeSpot", this.timeSpot);
         e.commit();
         return true;
     }
@@ -58,8 +60,8 @@ public class Settings {
         context.startActivity(intent);
     }
 
-    public boolean isRecording() {
-        return isRecording;
+    public String getRecording() {
+        return recording;
     }
     public boolean isWifiOnly() {
         return WifiOnly;
@@ -88,6 +90,9 @@ public class Settings {
     public int getTimeGPS() {
         return timeGPS;
     }
+    public int getTimeSpot() {
+        return timeSpot;
+    }
 
     public void setDateFormat(String dateFormat) {
         this.dateFormat = dateFormat;
@@ -97,8 +102,8 @@ public class Settings {
         this.folder = folder;
         saveSettings();
     }
-    public void setIsRecording(boolean isRecording) {
-        this.isRecording = isRecording;
+    public void setRecording(String recording) {
+        this.recording = recording;
         saveSettings();
     }
     public void setShow(String show) {
@@ -125,9 +130,22 @@ public class Settings {
         this.session = session;
         saveSettings();
     }
-    public void setTimeGPS(String timeGPS) {
-        this.timeGPS = Integer.parseInt(timeGPS);
+    public void setTimeGPS(int timeGPS) {
+        this.timeGPS = timeGPS;
         saveSettings();
+    }
+    public void setTimeSpot(int timeSpot) {
+        this.timeSpot = timeSpot;
+        saveSettings();
+    }
+
+    public void setTimeGPS(String timeGPS) {
+        ConvertInt time = new ConvertInt(timeGPS, 3000);
+        setTimeGPS(time.getValue());
+    }
+    public void setTimeSpot(String timeSpot) {
+        ConvertInt time = new ConvertInt(timeSpot, 6000);
+        setTimeSpot(time.getValue());
     }
 
     public String getFolderSession() {

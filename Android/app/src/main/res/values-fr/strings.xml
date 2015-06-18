@@ -27,10 +27,13 @@
     <string name="title_dateFormat">Format de la date:</string>
     <string name="title_settingsSession">Parametres pour la session :</string>
     <string name="title_timeGPS">Temps entre deux mesures GPS (ms):</string>
+    <string name="title_timeSpot">Temps entre deux mesures Spot (ms):</string>
     <string name="title_settingsExport">Parametres pour l\'exportation :</string>
 
+    <string name="menu_record">Enregistrement&#8230;</string>
     <string name="menu_play">Commencer l\'enregistrement</string>
     <string name="menu_stop">Arreter l\'enregistrement</string>
+    <string name="menu_spot">Forcer l\'enregistrement</string>
     <string name="menu_gps">GPS et Wifi</string>
     <string name="menu_wifi">Wifi uniquement</string>
     <string name="menu_picture">Prendre une photo</string>
@@ -66,6 +69,7 @@
     <string name="use_wifiOnly">Utilisation du Wifi uniquement.</string>
     <string name="recordingStop">Session d\'enregistrement commencee.</string>
     <string name="recordingPlay">Session d\'enregistrement terminee.</string>
+    <string name="recordingForced">Session d\'enregistrement forcee.</string>
 
     <string name="impossible_getLatlon">Impossible de recuperer les coordonnees GPS : %s</string>
     <string name="impossible_setLatlon">Impossible de transferer les coordonnees GPS : %s</string>
@@ -76,4 +80,7 @@
     <string name="error_dataNotExported">Impossible d\exporter les donnees!</string>
 
     <string name="done_dataExported">Donnes exportees avec succes!</string>
+
+    <string name="hint_BuildingId">Identifiant du batiment</string>
+    <string name="hint_BuildingType">Type du batiment</string>
 </resources>

@@ -1,7 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    class="com.google.android.gms.maps.MapFragment"
-    android:id="@+id/map"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp" >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="65"
+            android:inputType="number"
+            android:id="@+id/text_id"
+            android:hint="@string/hint_BuildingId" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="42dp"
+            android:layout_height="match_parent"
+            android:text="+"
+            android:id="@+id/button_plus" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="45"
+            android:id="@+id/type_spinner"
+            android:hint="@string/hint_BuildingType" />
+    </LinearLayout>
+
+    <TableRow>
+        <fragment
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            class="com.google.android.gms.maps.MapFragment"
+            android:id="@+id/map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </TableRow>
+
+</TableLayout>
