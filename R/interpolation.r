@@ -11,8 +11,8 @@ library('gstat')		# for interpolation (idw)
 #' @param param variant, parameter for some interpolation
 #' @return proj.dfKri SpatialPointsDataFrame, the data interpolated
 #' @author Valentin SASYAN
-#' @version 1.3.0
-#' @date  06/16/2015
+#' @version 1.3.1
+#' @date  06/17/2015
 interpolation <- function(proj.df, resolution=100, EPSG, interpolation='idw', param=0.5) {
 	# getPointList:
 	pointList = getPointList(extent(proj.df), resolution)
@@ -22,12 +22,12 @@ interpolation <- function(proj.df, resolution=100, EPSG, interpolation='idw', pa
 	proj4string(proj.new) <- CRS(EPSG[['proj4']])
 
 	# Now, try to interpolate:
-	if (type == 'interpolation') {
+	if (interpolation == 'krige') { # scaled data
 		proj.intX <- autoKrige(x~1, proj.df, proj.new)
 		proj.intY <- autoKrige(y_~1, proj.df, proj.new)
 		proj.intZ <- autoKrige(z_~1, proj.df, proj.new)
 		kriList = list(x=proj.intX$krige_output['var1.pred'][[1]], y=proj.intY$krige_output['var1.pred'][[1]], z=proj.intZ$krige_output['var1.pred'][[1]])
-	} else if (type == 'interpolation') {
+	} else if (interpolation == 'idw') { # raw data
 		proj.intX <- idw(x~1, proj.df, proj.new, idp=param)
 		proj.intY <- idw(y~1, proj.df, proj.new, idp=param)
 		proj.intZ <- idw(z~1, proj.df, proj.new, idp=param)
