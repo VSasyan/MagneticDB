@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "type": "Masonry",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42256326,
       "lon": -75.68615912,
@@ -36,7 +36,7 @@
   },
   {
     "id": 1,
-    "type": "Masonry",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42256288,
       "lon": -75.68616393,
@@ -71,7 +71,7 @@
   },
   {
     "id": 1,
-    "type": "Masonry",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42256743,
       "lon": -75.68609813,
@@ -106,7 +106,7 @@
   },
   {
     "id": 1,
-    "type": "Masonry",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42258638,
       "lon": -75.68606655,
@@ -141,7 +141,7 @@
   },
   {
     "id": 1,
-    "type": "Masonry",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.4226049,
       "lon": -75.68604052,
@@ -176,7 +176,7 @@
   },
   {
     "id": 1,
-    "type": "Masonry",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42262695,
       "lon": -75.68603608,
@@ -211,7 +211,7 @@
   },
   {
     "id": 1,
-    "type": "Masonry",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.4226337,
       "lon": -75.68605295,
@@ -246,7 +246,7 @@
   },
   {
     "id": 1,
-    "type": "Masonry",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42263301,
       "lon": -75.68604941,
@@ -281,7 +281,7 @@
   },
   {
     "id": 1,
-    "type": "Masonry",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42263243,
       "lon": -75.68604471,
@@ -316,7 +316,7 @@
   },
   {
     "id": 1,
-    "type": "Masonry",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42263138,
       "lon": -75.68608862,
@@ -351,7 +351,7 @@
   },
   {
     "id": 1,
-    "type": "Masonry",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42263507,
       "lon": -75.68613294,
@@ -386,7 +386,7 @@
   },
   {
     "id": 1,
-    "type": "Masonry",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42264177,
       "lon": -75.68615993,
@@ -420,78 +420,8 @@
     }
   },
   {
-    "id": 3,
-    "type": "none   ",
-    "gps": {
-      "lat": 45.42274793,
-      "lon": -75.68620107,
-      "alt": 47.900001525878906,
-      "acc": 12
-    },
-    "absMagneticField": {
-      "x": 0,
-      "y": 13779.13671875,
-      "z": -40861.33984375
-    },
-    "relMagneticField": {
-      "x": 7139.58740234375,
-      "y": -14878.845703125,
-      "z": -39839.171875
-    },
-    "relGravity": {
-      "x": -0.10880685597658157,
-      "y": 5.89276647567749,
-      "z": 7.837975025177002
-    },
-    "absLinearAcce": {
-      "x": -1.0872243642807007,
-      "y": -0.34206533432006836,
-      "z": 2.6767940521240234
-    },
-    "relLinearAcce": {
-      "x": -0.01853322982788086,
-      "y": -2.162691831588745,
-      "z": 1.9459481239318848
-    }
-  },
-  {
-    "id": 3,
-    "type": "none   ",
-    "gps": {
-      "lat": 45.4228013,
-      "lon": -75.68629197,
-      "alt": 36.20000076293945,
-      "acc": 10
-    },
-    "absMagneticField": {
-      "x": -0.0019073486328125,
-      "y": 7014.29248046875,
-      "z": -42400.82421875
-    },
-    "relMagneticField": {
-      "x": 6359.86328125,
-      "y": -17039.490234375,
-      "z": -38938.90234375
-    },
-    "relGravity": {
-      "x": 0.01344972476363182,
-      "y": 4.520878314971924,
-      "z": 8.70240592956543
-    },
-    "absLinearAcce": {
-      "x": 0.28049564361572266,
-      "y": 1.2445974349975586,
-      "z": 0.7102956771850586
-    },
-    "relLinearAcce": {
-      "x": -0.5984498262405396,
-      "y": 0.5686406493186951,
-      "z": 1.204460859298706
-    }
-  },
-  {
     "id": 2,
-    "type": "Wood",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42281352,
       "lon": -75.68632007,
@@ -526,7 +456,7 @@
   },
   {
     "id": 2,
-    "type": "Wood",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42281712,
       "lon": -75.68631853,
@@ -561,7 +491,7 @@
   },
   {
     "id": 2,
-    "type": "Wood",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42281877,
       "lon": -75.68631768,
@@ -596,7 +526,7 @@
   },
   {
     "id": 2,
-    "type": "Wood",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42282783,
       "lon": -75.68630807,
@@ -631,7 +561,7 @@
   },
   {
     "id": 2,
-    "type": "Wood",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42284588,
       "lon": -75.68628838,
@@ -666,7 +596,7 @@
   },
   {
     "id": 2,
-    "type": "Wood",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42286554,
       "lon": -75.68626388,
@@ -701,7 +631,7 @@
   },
   {
     "id": 2,
-    "type": "Wood",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42288305,
       "lon": -75.68623759,
@@ -736,7 +666,7 @@
   },
   {
     "id": 2,
-    "type": "Wood",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42291186,
       "lon": -75.68624114,
@@ -771,7 +701,7 @@
   },
   {
     "id": 2,
-    "type": "Wood",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42293621,
       "lon": -75.68626648,
@@ -806,7 +736,7 @@
   },
   {
     "id": 2,
-    "type": "Wood",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42296278,
       "lon": -75.68629776,
@@ -841,7 +771,7 @@
   },
   {
     "id": 2,
-    "type": "Wood",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42298006,
       "lon": -75.68633224,
@@ -876,7 +806,7 @@
   },
   {
     "id": 2,
-    "type": "Wood",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.4229611,
       "lon": -75.68636015,
@@ -911,7 +841,7 @@
   },
   {
     "id": 2,
-    "type": "Wood",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.422953389999996,
       "lon": -75.68640486,
@@ -942,146 +872,6 @@
       "x": -0.8354133367538452,
       "y": 0.5543484687805176,
       "z": 2.036714792251587
-    }
-  },
-  {
-    "id": 4,
-    "type": "none   ",
-    "gps": {
-      "lat": 45.42297651,
-      "lon": -75.68645912,
-      "alt": 35.29999923706055,
-      "acc": 11
-    },
-    "absMagneticField": {
-      "x": 0,
-      "y": 8410.4091796875,
-      "z": -33355.68359375
-    },
-    "relMagneticField": {
-      "x": -1078.79638671875,
-      "y": -28318.787109375,
-      "z": -19499.20703125
-    },
-    "relGravity": {
-      "x": -1.1557897329330444,
-      "y": 6.78480339050293,
-      "z": 6.985769748687744
-    },
-    "absLinearAcce": {
-      "x": 0.4168264865875244,
-      "y": 0.367368221282959,
-      "z": 0.14288949966430664
-    },
-    "relLinearAcce": {
-      "x": -0.26661089062690735,
-      "y": -0.40484142303466797,
-      "z": 0.306827574968338
-    }
-  },
-  {
-    "id": 4,
-    "type": "none   ",
-    "gps": {
-      "lat": 45.42302065,
-      "lon": -75.68650604,
-      "alt": 36.20000076293945,
-      "acc": 12
-    },
-    "absMagneticField": {
-      "x": -0.00095367431640625,
-      "y": 22513.556640625,
-      "z": -30180.244140625
-    },
-    "relMagneticField": {
-      "x": -19918.82421875,
-      "y": 1438.90380859375,
-      "z": -31919.861328125
-    },
-    "relGravity": {
-      "x": -0.09000970423221588,
-      "y": 2.6301846504211426,
-      "z": 9.44692611694336
-    },
-    "absLinearAcce": {
-      "x": 0.690464973449707,
-      "y": 0.010458707809448242,
-      "z": 0.5761871337890625
-    },
-    "relLinearAcce": {
-      "x": 0.17773082852363586,
-      "y": -0.6878088116645813,
-      "z": 0.5515193343162537
-    }
-  },
-  {
-    "id": 2,
-    "type": "none",
-    "gps": {
-      "lat": 45.42302065,
-      "lon": -75.68650604,
-      "alt": 36.20000076293945,
-      "acc": 12
-    },
-    "absMagneticField": {
-      "x": -0.00095367431640625,
-      "y": 22513.556640625,
-      "z": -30180.244140625
-    },
-    "relMagneticField": {
-      "x": -19918.82421875,
-      "y": 1438.90380859375,
-      "z": -31919.861328125
-    },
-    "relGravity": {
-      "x": -0.09000970423221588,
-      "y": 2.6301846504211426,
-      "z": 9.44692611694336
-    },
-    "absLinearAcce": {
-      "x": 0.690464973449707,
-      "y": 0.010458707809448242,
-      "z": 0.5761871337890625
-    },
-    "relLinearAcce": {
-      "x": 0.17773082852363586,
-      "y": -0.6878088116645813,
-      "z": 0.5515193343162537
-    }
-  },
-  {
-    "id": 2,
-    "type": "none",
-    "gps": {
-      "lat": 45.42302065,
-      "lon": -75.68650604,
-      "alt": 36.20000076293945,
-      "acc": 12
-    },
-    "absMagneticField": {
-      "x": -0.00095367431640625,
-      "y": 22513.556640625,
-      "z": -30180.244140625
-    },
-    "relMagneticField": {
-      "x": -19918.82421875,
-      "y": 1438.90380859375,
-      "z": -31919.861328125
-    },
-    "relGravity": {
-      "x": -0.09000970423221588,
-      "y": 2.6301846504211426,
-      "z": 9.44692611694336
-    },
-    "absLinearAcce": {
-      "x": 0.690464973449707,
-      "y": 0.010458707809448242,
-      "z": 0.5761871337890625
-    },
-    "relLinearAcce": {
-      "x": 0.17773082852363586,
-      "y": -0.6878088116645813,
-      "z": 0.5515193343162537
     }
   }
 ]
