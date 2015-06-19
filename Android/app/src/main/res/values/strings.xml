@@ -91,26 +91,22 @@
     <string name="hint_BuildingType">Building type</string>
 
     <string-array name="type_array">
-        <item>none</item>
-        <item>Wood</item>
-        <item>Wood, Light Frame (≤ 5,000 sq. ft.)</item>
-        <item>Wood, Commercial and Industrial (>5,000 sq. ft.)</item>
-        <item>Steel</item>
-        <item>Steel Moment Frame</item>
-        <item>Steel Braced Frame</item>
-        <item>Steel Light Frame</item>
-        <item>Steel Frame with Cast-in-Place Concrete Shear Walls</item>
-        <item>Steel Frame with Unreinforced Masonry Infill Walls</item>
-        <item>Concrete</item>
-        <item>Concrete Moment Frame</item>
-        <item>Concrete Shear Walls</item>
-        <item>Concrete Frame with Unreinforced Masonry Infill Walls</item>
-        <item>Precast Concrete Tilt-Up Walls</item>
-        <item>Precast Concrete Frames with Concrete Shear Walls</item>
-        <item>Masonry</item>
-        <item>Reinforced Masonry Bearing Walls with Wood or Metal Deck Diaphragms</item>
-        <item>Reinforced Masonry Bearing Walls with Precast Concrete Diaphragms</item>
-        <item>Unreinforced Masonry Bearing Walls</item>
-        <item>Mobile Homes</item>
+        <item type="array-string">none</item>
+        <item type="array-string">(W1) Wood, Light Frame (≤ 5,000 sq. ft.)</item>
+        <item type="array-string">(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)</item>
+        <item type="array-string">(S1) Steel Moment Frame</item>
+        <item type="array-string">(S2) Steel Braced Frame</item>
+        <item type="array-string">(S3) Steel Light Frame</item>
+        <item type="array-string">(S4) Steel Frame with Cast-in-Place Concrete Shear Walls</item>
+        <item type="array-string">(S5) Steel Frame with Unreinforced Masonry Infill Walls</item>
+        <item type="array-string">(C1) Concrete Moment Frame</item>
+        <item type="array-string">(C2) Concrete Shear Walls</item>
+        <item type="array-string">(C3) Concrete Frame with Unreinforced Masonry Infill Walls</item>
+        <item type="array-string">(PC1) Precast Concrete Tilt-Up Walls</item>
+        <item type="array-string">(PC2) Precast Concrete Frames with Concrete Shear Walls</item>
+        <item type="array-string">(RM1) Reinforced Masonry Bearing Walls with Wood or Metal Deck Diaphragms</item>
+        <item type="array-string">(RM2) Reinforced Masonry Bearing Walls with Precast Concrete Diaphragms</item>
+        <item type="array-string">(URM) Unreinforced Masonry Bearing Walls</item>
+        <item type="array-string">(MH) Mobile Homes</item>
     </string-array>
 </resources>
