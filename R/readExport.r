@@ -34,7 +34,7 @@ readExport <- function(filter, EPSG) {
 		dfPointXYZ[,'folder'] = folder
 
 		# Final colonne name:
-		colnames(dfPointXYZ) <- c('lat', 'lon', 'x', 'y', 'z', 'id', 'type', 'y_', 'z_', 'folder')
+		#colnames(dfPointXYZ) <- c('lat', 'lon', 'x', 'y', 'z', 'id', 'type', 'y_', 'z_', 'folder')
 
 		# Return
 		dfPointXYZ
@@ -85,37 +85,35 @@ convertJsonExport <- function(x, folder){
 #' @version 1.0.0
 #' @date  06/18/2015
 getIdType <- function(typeString) {
-	if (typeString %in% listTypeBuilding) {
-		idType <- grep(paste('^',typeString,'$',sep=''), listTypeBuilding)
-	} else {
-		idType <- 0
+	idType <- 0
+	for (i in 1:sizeListTypeBuilding) {
+		if (listTypeBuilding[[i]] == typeString) {
+			idType <- i
+		}
 	}
 	idType
 }
 
 #' List of the possible building type
 #' @author LAGGISS, uOttawa
-#' @version 1.0.0
-#' @date  06/18/2015
-listTypeBuilding <<- list(
-	'Wood',
-	'Wood, Light Frame (≤ 5,000 sq. ft.)',
-	'Wood, Commercial and Industrial (>5,000 sq. ft.)',
-	'Steel',
-	'Steel Moment Frame',
-	'Steel Braced Frame',
-	'Steel Light Frame',
-	'Steel Frame with Cast-in-Place Concrete Shear Walls',
-	'Steel Frame with Unreinforced Masonry Infill Walls',
-	'Concrete',
-	'Concrete Moment Frame',
-	'Concrete Shear Walls',
-	'Concrete Frame with Unreinforced Masonry Infill Walls',
-	'Precast Concrete Tilt-Up Walls',
-	'Precast Concrete Frames with Concrete Shear Walls',
-	'Masonry',
-	'Reinforced Masonry Bearing Walls with Wood or Metal Deck Diaphragms',
-	'Reinforced Masonry Bearing Walls with Precast Concrete Diaphragms',
-	'Unreinforced Masonry Bearing Walls',
-	'Mobile Homes'
+#' @version 1.1.0
+#' @date  06/19/2015
+listTypeBuilding <<- c(
+	'(W1) Wood, Light Frame (≤ 5,000 sq. ft.)',
+	'(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)',
+	'(S1) Steel Moment Frame',
+	'(S2) Steel Braced Frame',
+	'(S3) Steel Light Frame',
+	'(S4) Steel Frame with Cast-in-Place Concrete Shear Walls',
+	'(S5) Steel Frame with Unreinforced Masonry Infill Walls',
+	'(C1) Concrete Moment Frame',
+	'(C2) Concrete Shear Walls',
+	'(C3) Concrete Frame with Unreinforced Masonry Infill Walls',
+	'(PC1) Precast Concrete Tilt-Up Walls',
+	'(PC2) Precast Concrete Frames with Concrete Shear Walls',
+	'(RM1) Reinforced Masonry Bearing Walls with Wood or Metal Deck Diaphragms',
+	'(RM2) Reinforced Masonry Bearing Walls with Precast Concrete Diaphragms',
+	'(URM) Unreinforced Masonry Bearing Walls',
+	'(MH) Mobile Homes'
 )
+sizeListTypeBuilding <<- length(listTypeBuilding)

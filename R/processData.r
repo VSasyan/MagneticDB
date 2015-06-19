@@ -46,7 +46,7 @@ processData <- function(filter='uOttawa', resolution=1000, export=TRUE, erase=TR
 
 		# 3) Classification:
 		tic('Classification')
-		classif <- classification(proj.df)
+		proj.classif <- classification(proj.df)
 		toc()
 
 		# 4) Exportation:
@@ -60,6 +60,7 @@ processData <- function(filter='uOttawa', resolution=1000, export=TRUE, erase=TR
 			if (isWritable(erase, paste('data//',folder,'//QGIS_project.qgs',sep=''))) {
 				generate_qgs(paste('data',folder,sep='/'), 'QGIS_project.qgs', EPSG)
 			}			
+			writeOGR(proj.classif, dsn = paste('data//',folder,sep=''), layer = 'classifData', driver = "ESRI Shapefile", overwrite_layer=erase, check_exists=TRUE)
 		}
 		toc()
 
