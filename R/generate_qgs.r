@@ -10,8 +10,8 @@ library('raster')	# For the rasters' manipulation
 #' @param Google boolean, true to add a Google Streets Layer at the QGIS Project
 #' @return nothing
 #' @author Valentin SASYAN
-#' @version 1.1.1
-#' @date  06/15/2015
+#' @version 1.2.0
+#' @date  06/22/2015
 #' @examples
 #' generate_qgs('data/generated/', 'qgis_project.qgs', EPSG, FALSE)
 generate_qgs <- function(folder, file, EPSG, Google=TRUE) {
