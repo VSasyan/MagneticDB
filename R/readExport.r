@@ -19,13 +19,13 @@ readExport <- function(filter, EPSG) {
 		jsonExport <- fromJSON(file=paste(folder,'measurements.json',sep='/'))
 
 		# Convert the listJsonExport in list of listPointXYZ [{lat:numeric,lon:numeric,x:numeric,y:numeric,z:numeric}]:
-		listPointXYZ <<- lapply(jsonExport, function(x) {convertJsonExport(x,folder)})
+		listPointXYZ <- lapply(jsonExport, function(x) {convertJsonExport(x,folder)})
 
 		# Convert to a dataFrame:
-		dfPointXYZ <<- data.frame(matrix(unlist(listPointXYZ), nrow=length(listPointXYZ), byrow=T))
+		dfPointXYZ <- data.frame(matrix(unlist(listPointXYZ), nrow=length(listPointXYZ), byrow=T))
 
 		# Give a good name to the df's col:
-		colnames(dfPointXYZ) <<- c('lat', 'lon', 'x', 'y', 'z', 'id', 'type')
+		colnames(dfPointXYZ) <- c('lat', 'lon', 'x', 'y', 'z', 'id', 'type')
 
 		# The data is scaled and centered:
 		#dfPointXYZ[,'x'] = scale(dfPointXYZ[,'x'])[,1] NOT with x witch is ~0 and witch is kept just to show error
@@ -96,10 +96,10 @@ getIdType <- function(typeString) {
 
 #' List of the possible building type
 #' @author LAGGISS, uOttawa
-#' @version 1.1.0
+#' @version 1.1.1
 #' @date  06/19/2015
 listTypeBuilding <<- c(
-	'(W1) Wood, Light Frame (≤ 5,000 sq. ft.)',
+	'(W1) Wood, Light Frame (<= 5,000 sq. ft.)',
 	'(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)',
 	'(S1) Steel Moment Frame',
 	'(S2) Steel Braced Frame',
