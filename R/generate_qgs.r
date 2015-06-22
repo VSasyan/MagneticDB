@@ -65,7 +65,7 @@ generate_qgs <- function(folder, file, EPSG, Google=TRUE) {
 					i$filename,
 					i$name,
 					getSpatialrefsys(EPSG),
-					c('x','y','z')
+					c('x','y','z','type','svm')
 				))
 			}
 			for (i in asc) {
@@ -323,31 +323,66 @@ getEditType <- function(editTypes) {
 #' Generate the 'renderer-v2' XML element of a .shp 'maplayer' XML element
 #' @return a XML element
 #' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/12/2015
+#' @version 1.1.0
+#' @date  06/22/2015
 getRendererv2 <- function() {
-	renderer = newXMLNode('renderer-v2', attrs=c(symbollevels="0", type="singleSymbol"))
-		symbols = newXMLNode('symbols', parent=renderer)
-			symbol = newXMLNode('symbol', attrs=c(alpha="1", type="marker", name="0"), parent=symbols)
-				layer = newXMLNode('layer', attrs=c(pass="0", class="SimpleMarker", locked="0"), parent=symbol)
-					newXMLNode('prop', attrs=c(k="angle", v="0"), parent=layer)
-					newXMLNode('prop', attrs=c(k="color", v="227,26,28,255"), parent=layer)
-					newXMLNode('prop', attrs=c(k="horizontal_anchor_point", v="1"), parent=layer)
-					newXMLNode('prop', attrs=c(k="name", v="circle"), parent=layer)
-					newXMLNode('prop', attrs=c(k="offset", v="0,0"), parent=layer)
-					newXMLNode('prop', attrs=c(k="offset_map_unit_scale", v="0,0"), parent=layer)
-					newXMLNode('prop', attrs=c(k="offset_unit", v="MM"), parent=layer)
-					newXMLNode('prop', attrs=c(k="outline_color", v="0,0,0,255"), parent=layer)
-					newXMLNode('prop', attrs=c(k="outline_style", v="solid"), parent=layer)
-					newXMLNode('prop', attrs=c(k="outline_width", v="0"), parent=layer)
-					newXMLNode('prop', attrs=c(k="outline_width_map_unit_scale", v="0,0"), parent=layer)
-					newXMLNode('prop', attrs=c(k="outline_width_unit", v="MM"), parent=layer)
-					newXMLNode('prop', attrs=c(k="scale_method", v="area"), parent=layer)
-					newXMLNode('prop', attrs=c(k="size", v="0.6"), parent=layer)
-					newXMLNode('prop', attrs=c(k="size_map_unit_scale", v="0,0"), parent=layer)
-					newXMLNode('prop', attrs=c(k="size_unit", v="MM"), parent=layer)
-					newXMLNode('prop', attrs=c(k="vertical_anchor_point", v="1"), parent=layer)
+	I <- length(symbolsList)
+	renderer = newXMLNode('renderer-v2', attrs=c(attr="type", symbollevels="0", type="categorizedSymbol"))
+		categoriesXML = newXMLNode('categories', parent=renderer)
+			for (i in 1:I) {
+				addChildren(categoriesXML, getCategory(i))
+			}
+		symbolsXML = newXMLNode('symbols', parent=renderer)
+			for (i in 1:I) {
+				addChildren(symbolsXML, getSymbol(i))
+			}
 	renderer
+}
+
+#' Generate the 'categroy' XML element of a .shp 'categories' XML element
+#' @param i integer, indice of the symbol in the symbols list
+#' @return a XML element
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/22/2015
+getCategory <- function(i) {
+	newXMLNode('category', attrs=c(render="true", symbol=symbolsList[[i]][['symbol']], value=symbolsList[[i]][['value']], label=symbolsList[[i]][['label']]))
+}
+
+#' Generate the 'categroy' XML element of a .shp 'categories' XML element
+#' @param i integer, indice of the symbol in the symbols list
+#' @return a XML element
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/22/2015
+getSymbol <- function(i) {
+	if (symbolsList[[i]][['symbol']] == 0) {
+		name <- 'rectangle'
+		size <- '2.5'
+	} else {
+		name <- 'circle'
+		size <- '2'
+	}
+	symbol = newXMLNode('symbol', attrs=c(alpha="1", type="marker", name=symbolsList[[i]][['symbol']]))
+		layer = newXMLNode('layer', attrs=c(pass="0", class="SimpleMarker", locked="0"), parent=symbol)
+			newXMLNode('prop', attrs=c(k="angle", v="0"), parent=layer)
+			newXMLNode('prop', attrs=c(k="color", v=symbolsList[[i]][['color']]), parent=layer)
+			newXMLNode('prop', attrs=c(k="horizontal_anchor_point", v="1"), parent=layer)
+			newXMLNode('prop', attrs=c(k="name", v=name), parent=layer)
+			newXMLNode('prop', attrs=c(k="offset", v="0,0"), parent=layer)
+			newXMLNode('prop', attrs=c(k="offset_map_unit_scale", v="0,0"), parent=layer)
+			newXMLNode('prop', attrs=c(k="offset_unit", v="MM"), parent=layer)
+			newXMLNode('prop', attrs=c(k="outline_color", v="0,0,0,255"), parent=layer)
+			newXMLNode('prop', attrs=c(k="outline_style", v="solid"), parent=layer)
+			newXMLNode('prop', attrs=c(k="outline_width", v="0"), parent=layer)
+			newXMLNode('prop', attrs=c(k="outline_width_map_unit_scale", v="0,0"), parent=layer)
+			newXMLNode('prop', attrs=c(k="outline_width_unit", v="MM"), parent=layer)
+			newXMLNode('prop', attrs=c(k="scale_method", v="area"), parent=layer)
+			newXMLNode('prop', attrs=c(k="size", v=size), parent=layer)
+			newXMLNode('prop', attrs=c(k="size_map_unit_scale", v="0,0"), parent=layer)
+			newXMLNode('prop', attrs=c(k="size_unit", v="MM"), parent=layer)
+			newXMLNode('prop', attrs=c(k="vertical_anchor_point", v="1"), parent=layer)
+	symbol
 }
 
 #' Generate the 'spatialrefsys' XML element of a 'maplayer' XML element
@@ -545,3 +580,45 @@ getMapcanvas <- function(xmin, ymin, xmax, ymax, EPSG) {
 		newXMLNode('layer_coordinate_transform_info', parent=mapcanvas)
 	mapcanvas
 }
+
+#' Symboles for the classified shp
+#' @author Valentin SASYAN
+#' @version 1.0.0
+#' @date  06/22/2015
+symbolsList <<- list(
+	c(symbol="0", value="", label="", color="178,223,138,255"),
+	c(symbol="1", value="1", label="W1", color="106,0,51,255"),
+	c(symbol="2", value="2", label="W2", color="106,0,51,255"),
+	c(symbol="3", value="11", label="PC1", color="255,0,0,255"),
+	c(symbol="4", value="12", label="PC2H", color="97,215,223,255"),
+	c(symbol="5", value="12", label="PC2L", color="97,215,223,255"),
+	c(symbol="6", value="12", label="PC2M", color="97,215,223,255"),
+	c(symbol="7", value="13", label="RM1L", color="97,215,223,255"),
+	c(symbol="8", value="14", label="RM2H", color="97,215,223,255"),
+	c(symbol="9", value="14", label="RM2L", color="97,215,223,255"),
+	c(symbol="10", value="14", label="RM2M", color="0,0,255,255"),
+	c(symbol="11", value="15", label="URML", color="255,0,0,255"),
+	c(symbol="12", value="16", label="URMM", color="255,0,0,255"),
+	c(symbol="13", value="3", label="S1M", color="124,124,124,255"),
+	c(symbol="14", value="3", label="S1H", color="124,124,124,255"),
+	c(symbol="15", value="3", label="S1L", color="124,124,124,255"),
+	c(symbol="16", value="4", label="S2M", color="124,124,124,255"),
+	c(symbol="17", value="4", label="S2L", color="124,124,124,255"),
+	c(symbol="18", value="4", label="S2H", color="124,124,124,255"),
+	c(symbol="19", value="5", label="S3", color="124,124,124,255"),
+	c(symbol="20", value="6", label="S4H", color="124,124,124,255"),
+	c(symbol="21", value="6", label="S4L", color="124,124,124,255"),
+	c(symbol="22", value="6", label="S4M", color="124,124,124,255"),
+	c(symbol="23", value="7", label="S5L", color="124,124,124,255"),
+	c(symbol="24", value="7", label="S5M", color="124,124,124,255"),
+	c(symbol="25", value="7", label="S5H", color="124,124,124,255"),
+	c(symbol="26", value="8", label="C1H", color="97,215,223,255"),
+	c(symbol="27", value="8", label="C1M", color="97,215,223,255"),
+	c(symbol="28", value="8", label="C1L", color="97,215,223,255"),
+	c(symbol="29", value="9", label="C2H", color="97,215,223,255"),
+	c(symbol="30", value="9", label="C2L", color="97,215,223,255"),
+	c(symbol="31", value="9", label="C2M", color="97,215,223,255"),
+	c(symbol="32", value="10", label="C3H", color="97,215,223,255"),
+	c(symbol="33", value="10", label="C3L", color="97,215,223,255"),
+	c(symbol="34", value="10", label="C3M", color="97,215,223,255")
+)
