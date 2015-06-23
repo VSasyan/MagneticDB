@@ -27,11 +27,11 @@ source(file='generate_qgs.r', encoding='UTF-8')
 #' @param param variant, parameter for some interpolation
 #' @return nothing
 #' @author Valentin SASYAN
-#' @version 0.3.0
-#' @date  06/16/2015
+#' @version 0.4.0
+#' @date  06/23/2015
 #' @examples
-#' generate_qgs(filter='uOttawa.*',resolution=200,erase=FALSE)
-processData <- function(filter='uOttawa', resolution=1000, export=TRUE, erase=TRUE, EPSG=EPSG_, interpolation='idw', param=0.5) {
+#' generate_qgs(filter='uOttawa.*',resolution=1,erase=FALSE)
+processData <- function(filter='uOttawa', resolution=0, export=TRUE, erase=TRUE, EPSG=EPSG_, interpolation='idw', param=0.5) {
 	tic('processData')
 
 		# 1) We read the exported data:
@@ -40,9 +40,11 @@ processData <- function(filter='uOttawa', resolution=1000, export=TRUE, erase=TR
 		toc()
 
 		# 2) Interpolation:
-		tic('Interpolation')
-		proj.dfKri <- interpolation(proj.df, resolution, EPSG, interpolation, param)
-		toc()
+		if (resolution != 0) {
+			tic('Interpolation')
+			proj.dfKri <- interpolation(proj.df, resolution, EPSG, interpolation, param)
+			toc()
+		}
 
 		# 3) Classification:
 		tic('Classification')
@@ -53,14 +55,20 @@ processData <- function(filter='uOttawa', resolution=1000, export=TRUE, erase=TR
 		tic('Exportation')
 		folder <- gsub('[^a-zA-Z_0-9-]', '', filter)
 		if (export) {
+			# Saved data:
 			writeOGR(proj.df, dsn = paste('data//',folder,sep=''), layer = 'savedData', driver = "ESRI Shapefile", overwrite_layer=erase, check_exists=TRUE)
-			if (isWritable(erase, paste('data//',folder,'//interpolatedData_',interpolation,'_',resolution,'.asc',sep=''))) {
-				writeGDAL(proj.dfKri, paste('data//',folder,'//interpolatedData_',interpolation,'_',resolution,'.asc',sep=''))
+			# Interpolated data:
+			if (resolution != 0) {
+				if (isWritable(erase, paste('data//',folder,'//interpolatedData_',interpolation,'_',resolution,'.asc',sep=''))) {
+					writeGDAL(proj.dfKri, paste('data//',folder,'//interpolatedData_',interpolation,'_',resolution,'.asc',sep=''))
+				}
 			}
+			# Classified data:
+			writeOGR(proj.classif, dsn = paste('data//',folder,sep=''), layer = 'classifData', driver = "ESRI Shapefile", overwrite_layer=erase, check_exists=TRUE)
+			# QGIS Project:
 			if (isWritable(erase, paste('data//',folder,'//QGIS_project.qgs',sep=''))) {
 				generate_qgs(paste('data',folder,sep='/'), 'QGIS_project.qgs', EPSG)
-			}			
-			writeOGR(proj.classif, dsn = paste('data//',folder,sep=''), layer = 'classifData', driver = "ESRI Shapefile", overwrite_layer=erase, check_exists=TRUE)
+			}
 		}
 		toc()
 

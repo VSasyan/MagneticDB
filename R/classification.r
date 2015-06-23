@@ -5,8 +5,8 @@ library('e1071')
 #' @param debug boolean, to use the debug mode
 #' @return proj.done SpatialPointsDataFrame, the points classified
 #' @author Valentin SASYAN
-#' @version 1.1.0
-#' @date  06/22/2015
+#' @version 1.1.1
+#' @date  06/23/2015
 classification <- function(proj.df, debug=FALSE) {
 
 	# Separate 1) the data used as model and 2) the data to process:
@@ -41,9 +41,6 @@ classification <- function(proj.df, debug=FALSE) {
 
 	# Set the prediction in the data to process:
 	proj.process$type <- process.pred
-	
-	print(length(proj.model))
-	print(length(proj.process))
 	
 	# Tag the data:
 	proj.model$svm = 'learn'

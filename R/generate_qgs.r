@@ -353,16 +353,19 @@ getCategory <- function(i) {
 #' @param i integer, indice of the symbol in the symbols list
 #' @return a XML element
 #' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/22/2015
+#' @version 1.1.0
+#' @date  06/23/2015
 getSymbol <- function(i) {
+	name <- 'circle'
+	size <- '2'
 	if (symbolsList[[i]][['symbol']] == 0) {
 		name <- 'rectangle'
 		size <- '2.5'
-	} else {
-		name <- 'circle'
-		size <- '2'
 	}
+	if (symbolsList[[i]][['symbol']] == 1) {
+		name <- 'regular_star'
+	}
+	
 	symbol = newXMLNode('symbol', attrs=c(alpha="1", type="marker", name=symbolsList[[i]][['symbol']]))
 		layer = newXMLNode('layer', attrs=c(pass="0", class="SimpleMarker", locked="0"), parent=symbol)
 			newXMLNode('prop', attrs=c(k="angle", v="0"), parent=layer)
