@@ -2,16 +2,16 @@
   <title></title>
   <layer-tree-group expanded="1" checked="Qt::Checked" name="">
     <customproperties/>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="classifData20150623112425" name="classifData">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="classifData20150623150958" name="classifData">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="savedData20150623151302" name="savedData">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="savedData20150623150957" name="savedData">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="interpolatedData_idw_120150623151302" name="interpolatedData_idw_1">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="interpolatedData_idw_120150623150958" name="interpolatedData_idw_1">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="OpenLayers_plugin_layer20150623151303" name="Google Streets">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="OpenLayers_plugin_layer20150623150959" name="Google Streets">
       <customproperties/>
     </layer-tree-layer>
   </layer-tree-group>
@@ -43,37 +43,37 @@
   <visibility-presets/>
   <layer-tree-canvas>
     <custom-order enabled="0">
-      <item>classifData20150623112425</item>
-      <item>savedData20150623151302</item>
-      <item>interpolatedData_idw_120150623151302</item>
-      <item>OpenLayers_plugin_layer20150623151303</item>
+      <item>classifData20150623150958</item>
+      <item>savedData20150623150957</item>
+      <item>interpolatedData_idw_120150623150958</item>
+      <item>OpenLayers_plugin_layer20150623150959</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="classifData" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="classifData20150623112425" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="classifData20150623150958" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="savedData" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="savedData20150623151302" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="savedData20150623150957" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="interpolatedData_idw_1" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="interpolatedData_idw_120150623151302" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="interpolatedData_idw_120150623150958" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Google Streets" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="OpenLayers_plugin_layer20150623151303" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="OpenLayers_plugin_layer20150623150959" visible="1"/>
       </filegroup>
     </legendlayer>
   </legend>
   <projectlayers layercount="4">
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <id>classifData20150623112425</id>
+      <id>classifData20150623150958</id>
       <datasource>.//classifData.shp</datasource>
       <title></title>
       <abstract></abstract>
@@ -907,7 +907,7 @@
       </renderer-v2>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <id>savedData20150623151302</id>
+      <id>savedData20150623150957</id>
       <datasource>.//savedData.shp</datasource>
       <title></title>
       <abstract></abstract>
@@ -1741,7 +1741,7 @@
       </renderer-v2>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
-      <id>interpolatedData_idw_120150623151302</id>
+      <id>interpolatedData_idw_120150623150958</id>
       <datasource>./interpolatedData_idw_1.asc</datasource>
       <title></title>
       <abstract></abstract>
@@ -1777,13 +1777,13 @@
         <rasterrenderer opacity="0.9" alphaBand="0" blueBand="3" greenBand="2" type="multibandcolor" redBand="-1">
           <rasterTransparency/>
           <greenContrastEnhancement>
-            <minValue>18803.12890625</minValue>
-            <maxValue>20485.123046875</maxValue>
+            <minValue>18680.240234375</minValue>
+            <maxValue>20438.083984375</maxValue>
             <algorithm>StretchToMinimumMaximum</algorithm>
           </greenContrastEnhancement>
           <blueContrastEnhancement>
-            <minValue>-46990.81640625</minValue>
-            <maxValue>-42034.03515625</maxValue>
+            <minValue>-44461.64453125</minValue>
+            <maxValue>-41495.94140625</maxValue>
             <algorithm>StretchToMinimumMaximum</algorithm>
           </blueContrastEnhancement>
         </rasterrenderer>
@@ -1794,7 +1794,7 @@
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" type="plugin" hasScaleBasedVisibilityFlag="0" name="openlayers">
-      <id>OpenLayers_plugin_layer20150623151303</id>
+      <id>OpenLayers_plugin_layer20150623150959</id>
       <datasource></datasource>
       <title></title>
       <abstract></abstract>
