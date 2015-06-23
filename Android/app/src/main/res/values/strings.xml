@@ -92,8 +92,8 @@
 
     <string-array name="type_array">
         <item type="array-string">none</item>
-        <item type="array-string">(W1) Wood, Light Frame (<= 5,000 sq. ft.)</item>
-        <item type="array-string">(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)</item>
+        <item type="array-string">(W1) Wood, Light Frame (&lt;= 5,000 sq. ft.)</item>
+        <item type="array-string">(W2) Wood, Commercial and Industrial (&gt;5,000 sq. ft.)</item>
         <item type="array-string">(S1) Steel Moment Frame</item>
         <item type="array-string">(S2) Steel Braced Frame</item>
         <item type="array-string">(S3) Steel Light Frame</item>

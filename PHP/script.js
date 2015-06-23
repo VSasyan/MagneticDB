@@ -1,7 +1,12 @@
 $(document).ready(loadFunctions);
 
 function loadFunctions() {
+	$('#send').click(function() {
+		$('#before').val($('#after').val());
+		$('p#return').html('Text copied!');
+	});
 	$('#modify').click(function() {modify();});
+	$('textarea').click(function() {$(this).select();});	
 }
 
 function modify() {
@@ -16,6 +21,6 @@ function modify() {
 			nb++;
 		}
 	});
-	$('#after').val(JSON.stringify(measurements)).select();
+	$('#after').val(JSON.stringify(measurements, null, 4)).select();
 	$('p#return').html('Success: ' + nb + ' modification' + (nb > 1 ? 's' : '') + ' done !');
 }

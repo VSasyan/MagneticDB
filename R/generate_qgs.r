@@ -65,7 +65,7 @@ generate_qgs <- function(folder, file, EPSG, Google=TRUE) {
 					i$filename,
 					i$name,
 					getSpatialrefsys(EPSG),
-					c('x','y','z','type','svm')
+					c('x','y','z','id','type','svm','y_','z_','folder')
 				))
 			}
 			for (i in asc) {
@@ -577,12 +577,12 @@ getMapcanvas <- function(xmin, ymin, xmax, ymax, EPSG) {
 			newXMLNode('xmax', xmax, parent=extent)
 			newXMLNode('ymax', ymax, parent=extent)
 		newXMLNode('rotation', '0', parent=mapcanvas)
-		newXMLNode('projections', '0', parent=mapcanvas)
+		newXMLNode('projections', '1', parent=mapcanvas)
 		destinationsrs = newXMLNode('destinationsrs', parent=mapcanvas)
 			addChildren(destinationsrs, getSpatialrefsys(EPSG))
 		newXMLNode('layer_coordinate_transform_info', parent=mapcanvas)
 	mapcanvas
-}
+
 
 #' Symboles for the classified shp
 #' @author Valentin SASYAN

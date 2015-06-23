@@ -11,6 +11,7 @@
 		<section>
 			<textarea id="before" placeholder="Text to modify" title="Text to modify"></textarea>
 			<div id="form">
+				<button id="send">▲</button>
 				<input value="" placeholder="ID" title="ID" id="id" />
 				<select id="type" title="Type of Building to use">
 					<option value="0">none</option>
