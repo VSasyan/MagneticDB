@@ -2,19 +2,16 @@
   <title></title>
   <layer-tree-group expanded="1" checked="Qt::Checked" name="">
     <customproperties/>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="classifData20150622160510" name="classifData">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="classifData20150623111749" name="classifData">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="savedData20150622160513" name="savedData">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="savedData20150623111749" name="savedData">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="interpolatedData_idw_0.520150622153713" name="interpolatedData_idw_0.5">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="interpolatedData_idw_120150623105101" name="interpolatedData_idw_1">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="interpolatedData_idw_1020150622160513" name="interpolatedData_idw_10">
-      <customproperties/>
-    </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="OpenLayers_plugin_layer20150622160515" name="Google Streets">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="OpenLayers_plugin_layer20150623111751" name="Google Streets">
       <customproperties/>
     </layer-tree-layer>
   </layer-tree-group>
@@ -22,10 +19,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>368414.853501454</xmin>
-      <ymin>5031475.91165237</ymin>
-      <xmax>369054.853501454</xmax>
-      <ymax>5032005.91165237</ymax>
+      <xmin>368419.353501454</xmin>
+      <ymin>5031480.41165237</ymin>
+      <xmax>369052.353501454</xmax>
+      <ymax>5032004.41165237</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>0</projections>
@@ -46,43 +43,37 @@
   <visibility-presets/>
   <layer-tree-canvas>
     <custom-order enabled="0">
-      <item>classifData20150622160510</item>
-      <item>savedData20150622160513</item>
-      <item>interpolatedData_idw_0.520150622153713</item>
-      <item>interpolatedData_idw_1020150622160513</item>
-      <item>OpenLayers_plugin_layer20150622160515</item>
+      <item>classifData20150623111749</item>
+      <item>savedData20150623111749</item>
+      <item>interpolatedData_idw_120150623105101</item>
+      <item>OpenLayers_plugin_layer20150623111751</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="classifData" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="classifData20150622160510" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="classifData20150623111749" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="savedData" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="savedData20150622160513" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="savedData20150623111749" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="interpolatedData_idw_0.5" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="interpolatedData_idw_1" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="interpolatedData_idw_0.520150622153713" visible="1"/>
-      </filegroup>
-    </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="interpolatedData_idw_10" showFeatureCount="0">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="interpolatedData_idw_1020150622160513" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="interpolatedData_idw_120150623105101" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Google Streets" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="OpenLayers_plugin_layer20150622160515" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="OpenLayers_plugin_layer20150623111751" visible="1"/>
       </filegroup>
     </legendlayer>
   </legend>
-  <projectlayers layercount="5">
+  <projectlayers layercount="4">
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <id>classifData20150622160510</id>
+      <id>classifData20150623111749</id>
       <datasource>.//classifData.shp</datasource>
       <title></title>
       <abstract></abstract>
@@ -191,7 +182,7 @@
               <prop k="angle" v="0"/>
               <prop k="color" v="106,0,51,255"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="circle"/>
+              <prop k="name" v="regular_star"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
               <prop k="offset_unit" v="MM"/>
@@ -904,7 +895,7 @@
       </renderer-v2>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <id>savedData20150622160513</id>
+      <id>savedData20150623111749</id>
       <datasource>.//savedData.shp</datasource>
       <title></title>
       <abstract></abstract>
@@ -1013,7 +1004,7 @@
               <prop k="angle" v="0"/>
               <prop k="color" v="106,0,51,255"/>
               <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="name" v="circle"/>
+              <prop k="name" v="regular_star"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
               <prop k="offset_unit" v="MM"/>
@@ -1726,14 +1717,14 @@
       </renderer-v2>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
-      <id>interpolatedData_idw_0.520150622153713</id>
-      <datasource>./interpolatedData_idw_0.5.asc</datasource>
+      <id>interpolatedData_idw_120150623105101</id>
+      <datasource>./interpolatedData_idw_1.asc</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>interpolatedData_idw_0.5</layername>
+      <layername>interpolatedData_idw_1</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=tmerc +lat_0=0 +lon_0=-76.5 +k=0.9999 +x_0=304800 +y_0=0 +ellps=GRS80 +units=m +no_defs</proj4>
@@ -1762,66 +1753,13 @@
         <rasterrenderer opacity="0.9" alphaBand="0" blueBand="3" greenBand="2" type="multibandcolor" redBand="-1">
           <rasterTransparency/>
           <greenContrastEnhancement>
-            <minValue>17886.056640625</minValue>
-            <maxValue>22266.076171875</maxValue>
+            <minValue>18680.240234375</minValue>
+            <maxValue>20438.083984375</maxValue>
             <algorithm>StretchToMinimumMaximum</algorithm>
           </greenContrastEnhancement>
           <blueContrastEnhancement>
-            <minValue>-44528.046875</minValue>
-            <maxValue>-39779.63671875</maxValue>
-            <algorithm>StretchToMinimumMaximum</algorithm>
-          </blueContrastEnhancement>
-        </rasterrenderer>
-        <brightnesscontrast brightness="0" contrast="0"/>
-        <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
-        <rasterresampler maxOversampling="2"/>
-      </pipe>
-      <blendMode>0</blendMode>
-    </maplayer>
-    <maplayer minimumScale="0" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
-      <id>interpolatedData_idw_1020150622160513</id>
-      <datasource>./interpolatedData_idw_10.asc</datasource>
-      <title></title>
-      <abstract></abstract>
-      <keywordList>
-        <value></value>
-      </keywordList>
-      <layername>interpolatedData_idw_10</layername>
-      <srs>
-        <spatialrefsys>
-          <proj4>+proj=tmerc +lat_0=0 +lon_0=-76.5 +k=0.9999 +x_0=304800 +y_0=0 +ellps=GRS80 +units=m +no_defs</proj4>
-          <srsid>920</srsid>
-          <srid>2951</srid>
-          <authid>EPSG:2951</authid>
-          <description>NAD83(CSRS) / MTM zone 9</description>
-          <projectionacronym>tmerc</projectionacronym>
-          <ellipsoidacronym>GRS80</ellipsoidacronym>
-          <geographicflag>FALSE</geographicflag>
-        </spatialrefsys>
-      </srs>
-      <customproperties>
-        <value key="identify/format" value="Value"/>
-      </customproperties>
-      <provider>gdal</provider>
-      <noData>
-        <noDataList bandNo="1" useSrcNoData="0"/>
-        <noDataList bandNo="2" useSrcNoData="0"/>
-        <noDataList bandNo="3" useSrcNoData="0"/>
-      </noData>
-      <map-layer-style-manager current="">
-        <map-layer-style name=""/>
-      </map-layer-style-manager>
-      <pipe>
-        <rasterrenderer opacity="0.9" alphaBand="0" blueBand="3" greenBand="2" type="multibandcolor" redBand="-1">
-          <rasterTransparency/>
-          <greenContrastEnhancement>
-            <minValue>18995.0703125</minValue>
-            <maxValue>19590.833984375</maxValue>
-            <algorithm>StretchToMinimumMaximum</algorithm>
-          </greenContrastEnhancement>
-          <blueContrastEnhancement>
-            <minValue>-43563.95703125</minValue>
-            <maxValue>-42380.34375</maxValue>
+            <minValue>-44461.64453125</minValue>
+            <maxValue>-41495.94140625</maxValue>
             <algorithm>StretchToMinimumMaximum</algorithm>
           </blueContrastEnhancement>
         </rasterrenderer>
@@ -1832,7 +1770,7 @@
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" type="plugin" hasScaleBasedVisibilityFlag="0" name="openlayers">
-      <id>OpenLayers_plugin_layer20150622160515</id>
+      <id>OpenLayers_plugin_layer20150623111751</id>
       <datasource></datasource>
       <title></title>
       <abstract></abstract>

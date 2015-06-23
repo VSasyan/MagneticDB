@@ -1,7 +1,7 @@
 [
   {
     "id": 10,
-    "type": "none",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42505085,
       "lon": -75.68288607,
@@ -36,7 +36,7 @@
   },
   {
     "id": 10,
-    "type": "none",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42504472,
       "lon": -75.68289525,
@@ -71,7 +71,7 @@
   },
   {
     "id": 10,
-    "type": "none",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42503832,
       "lon": -75.6829039,
@@ -106,7 +106,7 @@
   },
   {
     "id": 10,
-    "type": "none",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42501781,
       "lon": -75.6829421,
@@ -421,7 +421,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42485283,
       "lon": -75.68292181,
@@ -456,7 +456,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42484871,
       "lon": -75.68292639,
@@ -491,7 +491,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42484446,
       "lon": -75.68292622,
@@ -526,7 +526,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42483238,
       "lon": -75.68289799,
@@ -561,7 +561,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42483186,
       "lon": -75.68286988,
@@ -596,7 +596,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42483148,
       "lon": -75.68285669,
@@ -631,7 +631,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.4248429,
       "lon": -75.68285442,
@@ -666,7 +666,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42483858,
       "lon": -75.68285314,
@@ -701,7 +701,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42483314,
       "lon": -75.68285162,
@@ -736,7 +736,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42482483,
       "lon": -75.68284893,
@@ -771,7 +771,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42479955,
       "lon": -75.68282739,
@@ -806,7 +806,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42479651,
       "lon": -75.68278552,
@@ -841,7 +841,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42479837,
       "lon": -75.68273009,
@@ -876,7 +876,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.4248061,
       "lon": -75.68268867,
@@ -911,7 +911,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.4248162,
       "lon": -75.68265294,
@@ -946,7 +946,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.4248192,
       "lon": -75.68264594,
@@ -981,7 +981,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42483099,
       "lon": -75.68264324,
@@ -1016,7 +1016,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42484473,
       "lon": -75.68262651,
@@ -1051,7 +1051,7 @@
   },
   {
     "id": 11,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42485895,
       "lon": -75.6826417,
@@ -1086,7 +1086,7 @@
   },
   {
     "id": 12,
-    "type": "(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)",
+    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
     "gps": {
       "lat": 45.42468542,
       "lon": -75.68253057,
@@ -1121,7 +1121,7 @@
   },
   {
     "id": 12,
-    "type": "(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)",
+    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
     "gps": {
       "lat": 45.42465891,
       "lon": -75.68260369,
@@ -1156,7 +1156,7 @@
   },
   {
     "id": 12,
-    "type": "(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)",
+    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
     "gps": {
       "lat": 45.42463127,
       "lon": -75.68269082,
@@ -1191,7 +1191,7 @@
   },
   {
     "id": 12,
-    "type": "(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)",
+    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
     "gps": {
       "lat": 45.4246137,
       "lon": -75.68272265,
@@ -1226,7 +1226,7 @@
   },
   {
     "id": 12,
-    "type": "(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)",
+    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
     "gps": {
       "lat": 45.42458362,
       "lon": -75.68272735,
@@ -1261,7 +1261,7 @@
   },
   {
     "id": 12,
-    "type": "(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)",
+    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
     "gps": {
       "lat": 45.42451355,
       "lon": -75.68268726,
@@ -1296,7 +1296,7 @@
   },
   {
     "id": 12,
-    "type": "(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)",
+    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
     "gps": {
       "lat": 45.42451731,
       "lon": -75.68263727,
@@ -1331,7 +1331,7 @@
   },
   {
     "id": 12,
-    "type": "(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)",
+    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
     "gps": {
       "lat": 45.424549,
       "lon": -75.68253386,
@@ -1366,7 +1366,7 @@
   },
   {
     "id": 12,
-    "type": "(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)",
+    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
     "gps": {
       "lat": 45.42455909,
       "lon": -75.6824901,
@@ -1401,7 +1401,7 @@
   },
   {
     "id": 12,
-    "type": "(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)",
+    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
     "gps": {
       "lat": 45.4245886,
       "lon": -75.6824677,
@@ -1436,7 +1436,7 @@
   },
   {
     "id": 12,
-    "type": "(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)",
+    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
     "gps": {
       "lat": 45.42463311,
       "lon": -75.68244538,
@@ -1471,7 +1471,7 @@
   },
   {
     "id": 12,
-    "type": "(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)",
+    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
     "gps": {
       "lat": 45.4246792,
       "lon": -75.68244649,
@@ -1506,7 +1506,7 @@
   },
   {
     "id": 12,
-    "type": "(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)",
+    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
     "gps": {
       "lat": 45.42470342,
       "lon": -75.68248291,
@@ -1541,7 +1541,7 @@
   },
   {
     "id": 12,
-    "type": "(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)",
+    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
     "gps": {
       "lat": 45.42473065,
       "lon": -75.68250673,
@@ -1576,7 +1576,7 @@
   },
   {
     "id": 12,
-    "type": "(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)",
+    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
     "gps": {
       "lat": 45.42474863,
       "lon": -75.68253173,
@@ -3361,7 +3361,7 @@
   },
   {
     "id": 16,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42393721,
       "lon": -75.68219174,
@@ -3396,7 +3396,7 @@
   },
   {
     "id": 16,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42394768,
       "lon": -75.6821633,
@@ -3431,7 +3431,7 @@
   },
   {
     "id": 16,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42398102,
       "lon": -75.68214239,
@@ -3466,7 +3466,7 @@
   },
   {
     "id": 16,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42402309,
       "lon": -75.6821319,
@@ -3501,7 +3501,7 @@
   },
   {
     "id": 16,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42407033,
       "lon": -75.68211584,
@@ -3536,7 +3536,7 @@
   },
   {
     "id": 16,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42410397,
       "lon": -75.6820843,
@@ -3571,7 +3571,7 @@
   },
   {
     "id": 16,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42412538,
       "lon": -75.6820448,
@@ -3606,7 +3606,7 @@
   },
   {
     "id": 16,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42413774,
       "lon": -75.68198913,
@@ -3641,7 +3641,7 @@
   },
   {
     "id": 16,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42414925,
       "lon": -75.68198819,
@@ -3676,7 +3676,7 @@
   },
   {
     "id": 16,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42414406,
       "lon": -75.68200231,
@@ -3711,7 +3711,7 @@
   },
   {
     "id": 16,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42412264,
       "lon": -75.68207603,
@@ -3746,7 +3746,7 @@
   },
   {
     "id": 16,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42410658,
       "lon": -75.6821146,
@@ -3781,7 +3781,7 @@
   },
   {
     "id": 16,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42410217,
       "lon": -75.68215944,
@@ -3816,7 +3816,7 @@
   },
   {
     "id": 16,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42409324,
       "lon": -75.68219841,
@@ -3851,7 +3851,7 @@
   },
   {
     "id": 16,
-    "type": "(W1) Wood, Light Frame (<= 5,000 sq. ft.)",
+    "type": "(URM) Unreinforced Masonry Bearing Walls",
     "gps": {
       "lat": 45.42407162,
       "lon": -75.68222738,
