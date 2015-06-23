@@ -582,6 +582,7 @@ getMapcanvas <- function(xmin, ymin, xmax, ymax, EPSG) {
 			addChildren(destinationsrs, getSpatialrefsys(EPSG))
 		newXMLNode('layer_coordinate_transform_info', parent=mapcanvas)
 	mapcanvas
+}
 
 
 #' Symboles for the classified shp

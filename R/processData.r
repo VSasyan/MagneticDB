@@ -31,7 +31,7 @@ source(file='generate_qgs.r', encoding='UTF-8')
 #' @date  06/23/2015
 #' @examples
 #' generate_qgs(filter='uOttawa.*',resolution=1,erase=FALSE)
-processData <- function(filter='uOttawa', resolution=0, export=TRUE, erase=TRUE, EPSG=EPSG_, interpolation='idw', param=0.5) {
+processData <- function(filter='uOttawa', resolution=0, export=TRUE, erase=TRUE, EPSG=EPSG_, interpolation='idw', param=0.5, classif=1) {
 	tic('processData')
 
 		# 1) We read the exported data:
@@ -47,9 +47,11 @@ processData <- function(filter='uOttawa', resolution=0, export=TRUE, erase=TRUE,
 		}
 
 		# 3) Classification:
-		tic('Classification')
-		proj.classif <- classification(proj.df)
-		toc()
+		if (classif != 0) {
+			tic('Classification')
+			proj.classif <- classification(proj.df)
+			toc()
+		}
 
 		# 4) Exportation:
 		tic('Exportation')
@@ -64,7 +66,9 @@ processData <- function(filter='uOttawa', resolution=0, export=TRUE, erase=TRUE,
 				}
 			}
 			# Classified data:
-			writeOGR(proj.classif, dsn = paste('data//',folder,sep=''), layer = 'classifData', driver = "ESRI Shapefile", overwrite_layer=erase, check_exists=TRUE)
+			if (classif != 0) {
+				writeOGR(proj.classif, dsn = paste('data//',folder,sep=''), layer = 'classifData', driver = "ESRI Shapefile", overwrite_layer=erase, check_exists=TRUE)
+			}
 			# QGIS Project:
 			if (isWritable(erase, paste('data//',folder,'//QGIS_project.qgs',sep=''))) {
 				generate_qgs(paste('data',folder,sep='/'), 'QGIS_project.qgs', EPSG)
