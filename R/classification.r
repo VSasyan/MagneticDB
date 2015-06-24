@@ -5,43 +5,34 @@ library('e1071')
 #' @param debug boolean, to use the debug mode
 #' @return proj.done SpatialPointsDataFrame, the points classified
 #' @author Valentin SASYAN
-#' @version 1.1.1
-#' @date  06/23/2015
+#' @version 2.0.0
+#' @date  06/24/2015
 classification <- function(proj.df, debug=FALSE) {
 
 	# Separate 1) the data used as model and 2) the data to process:
-	proj.model <- subset(proj.df[,c(2,3,5)], type != 0)
-	proj.process <- subset(proj.df[,c(2,3,5)], type == 0)
-
-	# But keep the meta-data:
-	proj.model_ <- subset(proj.df[,-c(2,3)], type != 0)
-	proj.process_ <- subset(proj.df[,-c(2,3)], type == 0)
+	proj.model <- as.data.frame(subset(proj.df, type != 0))
+	proj.process <- as.data.frame(subset(proj.df, type == 0))
 
 	# Create the model for classification:
-	model.data <<- as.data.frame(proj.model)
-	model.data$lat <<- NULL
-	model.data$lon <<- NULL
-	model.factor <<- factor(model.data$type)
+	model.data <- proj.model[c(1,2)]
+	model.factor <- factor(proj.model$type)
 
 	# Learn
-	model.x <- subset(model.data, select = model.factor)
-	model.y <- model.factor
-	model.svm <- svm(model.x, model.y)
+	model.svm <- svm(model.data, model.factor)
 
 	if (debug) {
 		# Test with train data:
-		model.pred <- predict(model.svm, model.x)
+		model.pred <- predict(model.svm, model.data)
 
 		# Check accuracy:
-		print(table(model.pred, model.y))
+		print(table(model.pred, model.factor))
 	}
 
 	# Predict the data to process:
-	process.data <- as.data.frame(proj.process)
-	process.x <- subset(process.data, select = model.factor)
-	process.pred <- predict(model.svm, process.x)
+	process.data <- proj.process[c(1,2)]
+	process.pred <- predict(model.svm, process.data)
 
-	# Set the prediction in the data to process:
+	# Set the type in the data to process:
 	proj.process$type <- process.pred
 	
 	# Tag the data:
@@ -49,11 +40,8 @@ classification <- function(proj.df, debug=FALSE) {
 	proj.process$svm = 'classif'
 
 	# Add the meta-data:
-	proj.done <<- rbind(proj.model, proj.process)
-	proj.done_ <<- rbind(proj.model_, proj.process_)
-	proj.done$id = proj.done_$id
-	proj.done$folder = proj.done_$folder
+	proj.done <- rbind(proj.model, proj.process)
 
-	# Return the done data:
-	proj.done
+	# Return the done data in SpatialDF:
+	proj.done <- SpatialPointsDataFrame(coords=proj.done[9:10], data=proj.done[,-c(9,10)])
 }
