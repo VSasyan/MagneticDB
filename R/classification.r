@@ -10,16 +10,18 @@ library('e1071')
 classification <- function(proj.df, debug=FALSE) {
 
 	# Separate 1) the data used as model and 2) the data to process:
-	proj.model <- subset(proj.df[,c(1,2,3,5)], type != 0)
-	proj.process <- subset(proj.df[,c(1,2,3,5)], type == 0)
+	proj.model <- subset(proj.df[,c(2,3,5)], type != 0)
+	proj.process <- subset(proj.df[,c(2,3,5)], type == 0)
 
 	# But keep the meta-data:
-	proj.model_ <- subset(proj.df[,-c(1,2,3)], type != 0)
-	proj.process_ <- subset(proj.df[,-c(1,2,3)], type == 0)
+	proj.model_ <- subset(proj.df[,-c(2,3)], type != 0)
+	proj.process_ <- subset(proj.df[,-c(2,3)], type == 0)
 
 	# Create the model for classification:
-	model.data <- as.data.frame(proj.model)
-	model.factor <- factor(model.data$type)
+	model.data <<- as.data.frame(proj.model)
+	model.data$lat <<- NULL
+	model.data$lon <<- NULL
+	model.factor <<- factor(model.data$type)
 
 	# Learn
 	model.x <- subset(model.data, select = model.factor)
