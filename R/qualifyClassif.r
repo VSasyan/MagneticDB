@@ -9,15 +9,15 @@ qualifyClassif <- function(proj.classif, debug=FALSE) {
 	# Separate 1) the data used as model and 2) the data to process:
 	classif <- as.data.frame(subset(proj.classif, svm == 'classif'))
 	listId <- unique(classif$id)
-	print('\nClassification information:')
+	cat('\nClassification information:')
 
 	for (Id in listId) {
 		classifTemp <- subset(classif, id == Id)
 		factor <- factor(classifTemp$type)
 		s <- sort(summary(factor), decreasing=T)
-		print(paste('\nBuilding #', Id, ': ', listTypeBuilding[[as.integer(labels(s)[[1]])]], sep=''))
-		print(paste('Sunnary for Building #', Id, ':', sep=''))
+		cat(paste('\nBuilding #', Id, ': ', listTypeBuilding[[as.integer(labels(s)[[1]])]], sep=''))
+		cat(paste('\nSummary for Building #', Id, ':\n', sep=''))
 		print(s)
 	}
-	print('\nEND\n')
+	cat('\n\n')
 }
