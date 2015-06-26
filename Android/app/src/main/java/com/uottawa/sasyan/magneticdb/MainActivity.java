@@ -71,7 +71,6 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
 
     // Utilitaires :
     Timer spotTimer;
-    TimerTask spotTask;
     long lastSave = 0;
     Settings settings;
     Cursor model;
@@ -163,6 +162,9 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
             }
         });
 
+        // Initialize timer :
+        spotTimer = new Timer();
+
         majAffichage("");
     }
 
@@ -205,8 +207,6 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         } else {
             if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER))
                 lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, settings.getTimeGPS(), 0, this);
-            else
-                lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, settings.getTimeGPS(), 0, this);
         }
 
         initializeMap();
@@ -518,7 +518,7 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
 
         // We save the result ;
         if (!this.settings.getRecording().equals("false")) {this.saveResult(false);}
-        if (settings.getRecording().equals("forced")) {resetSpot();}
+        resetSpot();
     }
 
     @Override
@@ -582,27 +582,36 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     /*** Sauvegarde ******************************************************/
     /********************************************************************/
     public void saveResult(boolean spot) {
-        // Check if we cam spot if necessary:
-        long temp = System.currentTimeMillis();
-        if (spot & (temp - lastSave < settings.getTimeSpot())) {return;}
-        lastSave = temp;
+        if (!settings.getRecording().equals("false")) {
+            // Check if we cam spot if necessary:
+            long temp = System.currentTimeMillis();
+            if (spot & (temp - lastSave < settings.getTimeSpot())) {
+                return;
+            }
+            lastSave = temp;
 
-        // Then save data:
-        ConvertInt ID = new ConvertInt(id.getText().toString(), 0);
-        Measurement result = new Measurement(
-                ID.getValue(),
-                spinner.getSelectedItem().toString(),
-                this.gps,
-                this.absMagneticField,
-                this.relMagneticField,
-                this.relGravity,
-                this.absLinearAcce,
-                this.relLinearAcce
-        );
-        if (spot) {Toast.makeText(this, "Spot: " + result.toString(), Toast.LENGTH_SHORT).show();}
-        else {Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show();}
-        helper.insert(result);
-        model.requery();
+            // Then save data:
+            ConvertInt ID = new ConvertInt(id.getText().toString(), 0);
+            Measurement result = new Measurement(
+                    ID.getValue(),
+                    spinner.getSelectedItem().toString(),
+                    this.gps,
+                    this.absMagneticField,
+                    this.relMagneticField,
+                    this.relGravity,
+                    this.absLinearAcce,
+                    this.relLinearAcce
+            );
+            if (spot) {
+                Toast.makeText(this, settings.getRecording()+" Spot: " + result.toString(), Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show();
+            }
+            helper.insert(result);
+            model.requery();
+        } else if (spot) {
+            unsetSpot();
+        }
     }
 
     /********************************************************************/
@@ -658,7 +667,7 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     /*** Spot's function ************************************************/
     /********************************************************************/
     private void setSpot() {
-        spotTask = new TimerTask() {
+        TimerTask spotTask = new TimerTask() {
             @Override
             public void run() {
                 runOnUiThread(new Runnable() {
@@ -669,20 +678,16 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
                 });
             }
         };
-        spotTimer = new Timer();
-        spotTimer.schedule(spotTask, settings.getTimeGPS(), settings.getTimeSpot());
+        spotTimer.schedule(spotTask, settings.getTimeSpot(), settings.getTimeSpot());
     }
 
     private void unsetSpot() {
-        if (spotTask != null) {spotTask.cancel();}
-        if (spotTimer != null) {spotTimer.cancel();}
+        if (spotTimer != null) {spotTimer.purge();}
     }
 
     private void resetSpot() {
         unsetSpot();
-        if (settings.getRecording().equals("forced")) {
-            setSpot();
-        }
+        if (settings.getRecording().equals("forced")) {setSpot();}
     }
 
 }
