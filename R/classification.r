@@ -2,19 +2,21 @@ library('e1071')
 
 #' Classify the given SpatialPointsDataFrame
 #' @param proj.df SpatialPointsDataFrame, the points to classify
+#' @param useX boolean, use axe X for the classification
 #' @param debug boolean, to use the debug mode
 #' @return proj.done SpatialPointsDataFrame, the points classified
 #' @author Valentin SASYAN
-#' @version 2.0.0
-#' @date  06/24/2015
-classification <- function(proj.df, debug=FALSE) {
+#' @version 2.1.0
+#' @date  07/02/2015
+classification <- function(proj.df, useX=FALSE, debug=FALSE) {
+	if (useX == TRUE) {axes <- c(1,2,3)} else {axes <- c(2,3)}
 
 	# Separate 1) the data used as model and 2) the data to process:
 	proj.model <- as.data.frame(subset(proj.df, type != 0))
 	proj.process <- as.data.frame(subset(proj.df, type == 0))
 
 	# Create the model for classification:
-	model.data <- proj.model[c(1,2)]
+	model.data <- proj.model[axes]
 	model.factor <- factor(proj.model$type)
 
 	# Learn
@@ -29,7 +31,7 @@ classification <- function(proj.df, debug=FALSE) {
 	}
 
 	# Predict the data to process:
-	process.data <- proj.process[c(1,2)]
+	process.data <- proj.process[axes]
 	process.pred <- predict(model.svm, process.data)
 
 	# Set the type in the data to process:
