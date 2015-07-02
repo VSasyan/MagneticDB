@@ -50,6 +50,7 @@ public class SettingsActivity extends Activity {
         ((EditText)findViewById(R.id.text_session)).setText(settings.getSession());
         ((EditText)findViewById(R.id.text_timeGPS)).setText(String.valueOf(settings.getTimeGPS()));
         ((EditText)findViewById(R.id.text_timeSpot)).setText(String.valueOf(settings.getTimeSpot()));
+        ((EditText)findViewById(R.id.text_sizeAverage)).setText(String.valueOf(settings.getSizeAverage()));
         return true;
     }
 
@@ -63,6 +64,7 @@ public class SettingsActivity extends Activity {
             settings.setSession(((EditText) findViewById(R.id.text_session)).getText().toString());
             settings.setTimeGPS(((EditText) findViewById(R.id.text_timeGPS)).getText().toString());
             settings.setTimeSpot(((EditText) findViewById(R.id.text_timeSpot)).getText().toString());
+            settings.setSizeAverage(((EditText) findViewById(R.id.text_sizeAverage)).getText().toString());
             this.finish();
             return true;
         }

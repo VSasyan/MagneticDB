@@ -13,7 +13,7 @@ import com.uottawa.sasyan.magneticdb.SettingsActivity;
 public class Settings {
     private Context context;
     private String folder, dateFormat, show, session, recording;
-    private int showType, interType, normType, timeGPS, timeSpot;
+    private int showType, interType, normType, timeGPS, timeSpot, sizeAverage;
     private boolean WifiOnly;
 
     public Settings(Context context) {
@@ -34,6 +34,7 @@ public class Settings {
         this.normType = preferences.getInt("normType", 0);
         this.timeGPS = preferences.getInt("timeGPS", 3000);
         this.timeSpot = preferences.getInt("timeSpot", 6000);
+        this.sizeAverage = preferences.getInt("sizeAverage", 100);
         return true;
     }
 
@@ -51,6 +52,7 @@ public class Settings {
         e.putInt("normType", this.normType);
         e.putInt("timeGPS", this.timeGPS);
         e.putInt("timeSpot", this.timeSpot);
+        e.putInt("sizeAverage", this.sizeAverage);
         e.commit();
         return true;
     }
@@ -92,6 +94,9 @@ public class Settings {
     }
     public int getTimeSpot() {
         return timeSpot;
+    }
+    public int getSizeAverage() {
+        return sizeAverage;
     }
 
     public void setDateFormat(String dateFormat) {
@@ -138,6 +143,10 @@ public class Settings {
         this.timeSpot = timeSpot;
         saveSettings();
     }
+    public void setSizeAverage(int sizeAverage) {
+        this.sizeAverage = sizeAverage;
+        saveSettings();
+    }
 
     public void setTimeGPS(String timeGPS) {
         ConvertInt time = new ConvertInt(timeGPS, 3000);
@@ -146,6 +155,10 @@ public class Settings {
     public void setTimeSpot(String timeSpot) {
         ConvertInt time = new ConvertInt(timeSpot, 6000);
         setTimeSpot(time.getValue());
+    }
+    public void setSizeAverage(String sizeAverage) {
+        ConvertInt size = new ConvertInt(sizeAverage, 100);
+        setSizeAverage(size.getValue());
     }
 
     public String getFolderSession() {

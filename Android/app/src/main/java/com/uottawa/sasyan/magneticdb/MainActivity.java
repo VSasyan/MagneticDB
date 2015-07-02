@@ -43,6 +43,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import com.uottawa.sasyan.magneticdb.Class.AverageVector;
 import com.uottawa.sasyan.magneticdb.Class.ConvertInt;
 import com.uottawa.sasyan.magneticdb.Class.DirectoryChooserDialog;
 import com.uottawa.sasyan.magneticdb.Class.Measurement;
@@ -84,7 +85,8 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     Vector absMagneticField = new Vector(0,0,0), relMagneticField = new Vector(0,0,0),
             relGravity = new Vector(0,0,0), relLinearAcce = new Vector(0,0,0),
             absLinearAcce = new Vector(0,0,0);
-    List<Vector> listAbsLinearAcce = new ArrayList<Vector>();
+    AverageVector averageLinearAcce;
+    AverageVector averageMagneticField;
     GPS gps = new GPS(0,0,0,0);
 
     /********************************************************************/
@@ -95,6 +97,8 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         super.onCreate(arg0);
         setContentView(R.layout.activity_main);
         settings = new Settings(this);
+        averageLinearAcce = new AverageVector(settings.getSizeAverage());
+        averageMagneticField = new AverageVector(settings.getSizeAverage());
 
         helper = new HelperMeasurement(this);
 
@@ -201,13 +205,18 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         sensorManager.registerListener(this, sensorGravity, SensorManager.SENSOR_DELAY_GAME);
         // SENSOR_DELAY_FASTEST,  SENSOR_DELAY_GAME, SENSOR_DELAY_UI, SENSOR_DELAY_NORMAL
 
-        // Update GPS (or Wifi if there is not GPS) :
+        // Update GPS (or Wifi if there is not GPS):
         if (this.settings.isWifiOnly()) {
             lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, settings.getTimeGPS(), 0, this);
         } else {
             if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER))
                 lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, settings.getTimeGPS(), 0, this);
         }
+
+        // Update the settings:
+        this.settings.getSettings();
+        this.averageMagneticField.setSize(settings.getSizeAverage());
+        this.averageLinearAcce.setSize(settings.getSizeAverage());
 
         initializeMap();
 
@@ -451,7 +460,8 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
             rCompass[2] = float_magneticField[2];
             rCompass[3] = 0;
             android.opengl.Matrix.multiplyMV(aCompass, 0, Rinv, 0, rCompass, 0);
-            absMagneticField.update(aCompass, 1000);
+            this.averageMagneticField.addVector(new Vector(aCompass));
+            this.absMagneticField.update(this.averageMagneticField.getAverage(), 1000);
             this.showAbsMagneticField();
         }
 
@@ -477,23 +487,10 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
             rLinearAcce[2] = float_linearAcce[2];
             rLinearAcce[3] = 0;
             android.opengl.Matrix.multiplyMV(aLinearAcce, 0, Rinv, 0, rLinearAcce, 0);
-            //this.addAbsLinearAcce(new Vector(aLinearAcce));
-            this.absLinearAcce.update(aLinearAcce);
+            this.averageLinearAcce.addVector(new Vector(aLinearAcce));
+            this.absLinearAcce.update(this.averageLinearAcce.getAverage());
             this.showAbsLinearAcce();
         }
-    }
-
-    /********************************************************************/
-    /*** Filtering and stocking function ********************************/
-    /********************************************************************/
-    private void addAbsLinearAcce(Vector v) {
-        this.listAbsLinearAcce.add(v);
-        if (this.listAbsLinearAcce.size() > 8) {
-            // we delete the first element :
-            this.listAbsLinearAcce.remove(0);
-        }
-        // We calculate a mean :
-        this.absLinearAcce.beMeanOf(this.listAbsLinearAcce);
     }
 
     /********************************************************************/

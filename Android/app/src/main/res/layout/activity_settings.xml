@@ -86,6 +86,22 @@
                     android:inputType="number" />
             </TableLayout>
 
+            <TableLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_sizeAverage"
+                    android:id="@+id/title_sizeAverage"
+                    android:labelFor="@+id/text_sizeAverage" />
+            </TableLayout>
+            <TableLayout>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_sizeAverage"
+                    android:inputType="number" />
+            </TableLayout>
+
         </TableLayout>
 
         <TableLayout>

@@ -1,15 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <string name="app_name">MagneticDB</string>
     <string name="title_activity_picture">Prendre une photo</string>
-    <string name="title_activity_export">Exporter les donnees</string>
-    <string name="title_activity_heat">Donnees collectees</string>
+    <string name="title_activity_export">Exporter les données</string>
+    <string name="title_activity_heat">Données collectées</string>
+    <string name="title_activity_settings">Paramètres</string>
 
     <string name="title_absMagneticField">CM absolu :</string>
     <string name="title_relMagneticField">CM relatif :</string>
     <string name="title_absLinearAcce">AL absolue :</string>
     <string name="title_relLinearAcce">AL relative :</string>
-    <string name="title_gravity">Gravite :</string>
+    <string name="title_gravity">Gravité :</string>
     <string name="title_gps">GPS :</string>
     <string name="title_x">X : %1$s</string>
     <string name="title_y">Y : %1$s</string>
@@ -19,20 +20,22 @@
     <string name="title_alt">Alt : %1$s</string>
     <string name="title_acc">Pre : %1$s</string>
     <string name="title_listMeasurement">Liste des mesures :</string>
-    <string name="title_folder">Dossier ou enregistrer les sessions :</string>
+    <string name="title_folder">Dossier où enregistrer les sessions :</string>
     <string name="title_exportationFolder">Dossier d\'exportation :</string>
     <string name="title_pickFolder">&#8230;</string>
     <string name="title_fileName">Nom du fichier :</string>
     <string name="title_sessionName">Nom de la session :</string>
     <string name="title_dateFormat">Format de la date:</string>
-    <string name="title_settingsSession">Parametres pour la session :</string>
+    <string name="title_settingsSession">Paramètres pour la session :</string>
     <string name="title_timeGPS">Temps entre deux mesures GPS (ms):</string>
     <string name="title_timeSpot">Temps entre deux mesures Spot (ms):</string>
-    <string name="title_settingsExport">Parametres pour l\'exportation :</string>
+    <string name="title_sizeAverage">Nombre de mesures pour calculer la moyenne :</string>
+    <string name="title_settingsRecord">Paramètres pour l\'enregistrement :</string>
+    <string name="title_settingsExport">Paramètres pour l\'exportation :</string>
 
     <string name="menu_record">Enregistrement&#8230;</string>
     <string name="menu_play">Commencer l\'enregistrement</string>
-    <string name="menu_stop">Arreter l\'enregistrement</string>
+    <string name="menu_stop">Arrêter l\'enregistrement</string>
     <string name="menu_spot">Forcer l\'enregistrement</string>
     <string name="menu_gps">GPS et Wifi</string>
     <string name="menu_wifi">Wifi uniquement</string>
@@ -41,46 +44,46 @@
     <string name="menu_maps">Afficher que la carte</string>
     <string name="menu_list">Afficher que la liste</string>
     <string name="menu_delete">Supprimer toutes les mesures</string>
-    <string name="menu_export">Exporter les donnees</string>
-    <string name="menu_norm">See the norm of magnetic field</string>
-    <string name="menu_x">See the x axe of magnetic field</string>
-    <string name="menu_y">See the y axe of magnetic field</string>
-    <string name="menu_z">See the z axe of magnetic field</string>
-    <string name="menu_center">Centrer la vue</string>
+    <string name="menu_export">Exporter les données</string>
+    <string name="menu_heat">Voir les données collectées</string>
+    <string name="menu_norm">Voir la norme du champ magnétique</string>
+    <string name="menu_x">Voir l\'axe x du champ magnétique</string>
+    <string name="menu_y">Voir l\'axe y du champ magnétique</string>
+    <string name="menu_z">Voir l\'axe z du champ magnétique</string>
+    <string name="menu_center">Voir toutes les données</string>
     <string name="menu_bounds">Actualiser la vue</string>
     <string name="menu_interpolation">Interpolation</string>
     <string name="menu_save">Sauver</string>
+    <string name="menu_settings">Paramètres</string>
 
     <string name="inter_raw">RAW (Pas d\'interpolation)</string>
     <string name="inter_nn">NN (Plus Proche Voisin)</string>
-    <string name="inter_lin">Lin (Lineaire)</string>
+    <string name="inter_lin">Lin (Linéaire)</string>
     <string name="inter_inv">Inv (Inverse des distances)</string>
     <string name="inter_spl">Spl (Spline)</string>
 
-    <string name="send_server">Envoyer les donnees sur l\'appareil au serveur.</string>
-
     <string name="apiKey">AIzaSyAhx4zWd9KoasTM44AXf_GnuchLe6haDXo</string>
     <string name="back">Retour</string>
-    <string name="sendDataEmail">Envoyer les donnees par mail</string>
-    <string name="provider_enabled">Le fournisseur %s est maintenant active.</string>
-    <string name="provider_disabled">Le fournisseur %s est maintenant desactive.</string>
-    <string name="new_location">Nouvelle localisation : Latitude = %1$s, Longitude = %2$s, Altitude = %3$s ; Precision : %4$s m</string>
+    <string name="sendDataEmail">Envoyer les données par mail</string>
+    <string name="provider_enabled">Le fournisseur %s est maintenant activé.</string>
+    <string name="provider_disabled">Le fournisseur %s est maintenant désactivé.</string>
+    <string name="new_location">Nouvelle localisation : Latitude = %1$s, Longitude = %2$s, Altitude = %3$s ; Précision : %4$s m</string>
     <string name="use_gps">Utilisation du GPS et du Wifi.</string>
     <string name="use_wifiOnly">Utilisation du Wifi uniquement.</string>
-    <string name="recordingStop">Session d\'enregistrement commencee.</string>
-    <string name="recordingPlay">Session d\'enregistrement terminee.</string>
-    <string name="recordingForced">Session d\'enregistrement forcee.</string>
+    <string name="recordingStop">Session d\'enregistrement commencée.</string>
+    <string name="recordingPlay">Session d\'enregistrement terminée.</string>
+    <string name="recordingForced">Session d\'enregistrement forcée.</string>
 
-    <string name="impossible_getLatlon">Impossible de recuperer les coordonnees GPS : %s</string>
-    <string name="impossible_setLatlon">Impossible de transferer les coordonnees GPS : %s</string>
-    <string name="impossible_parserJSON">Impossible de parser les donnees JSON : %s</string>
-    <string name="impossible_setJSON">Impossible de recuperer les donnees JSON : %s</string>
-    <string name="impossible_getJSON">Impossible de transferer les donnees JSON : %s</string>
+    <string name="impossible_getLatlon">Impossible de récuperer les coordonnées GPS : %s</string>
+    <string name="impossible_setLatlon">Impossible de transférer les coordonnées GPS : %s</string>
+    <string name="impossible_parserJSON">Impossible de parser les données JSON : %s</string>
+    <string name="impossible_setJSON">Impossible de récupérer les données JSON : %s</string>
+    <string name="impossible_getJSON">Impossible de transférer les données JSON : %s</string>
 
-    <string name="error_dataNotExported">Impossible d\exporter les donnees!</string>
+    <string name="error_dataNotExported">Impossible d\exporter les données!</string>
 
-    <string name="done_dataExported">Donnes exportees avec succes!</string>
+    <string name="done_dataExported">Données exportées avec succés!</string>
 
-    <string name="hint_BuildingId">Identifiant du batiment</string>
-    <string name="hint_BuildingType">Type du batiment</string>
+    <string name="hint_BuildingId">Id du bâtiment</string>
+    <string name="hint_BuildingType">Type du bâtiment</string>
 </resources>

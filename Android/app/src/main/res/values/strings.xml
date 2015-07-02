@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <string name="app_name">MagneticDB</string>
     <string name="title_activity_picture">Take a picture</string>
     <string name="title_activity_export">Export data</string>
     <string name="title_activity_heat">Collected Data</string>
+    <string name="title_activity_settings">Settings</string>
 
     <string name="title_absMagneticField">Absolute MF (nT):</string>
     <string name="title_relMagneticField">Relatif MF (nT):</string>
@@ -25,9 +26,10 @@
     <string name="title_fileName">File name:</string>
     <string name="title_sessionName">Session name:</string>
     <string name="title_dateFormat">Date format:</string>
+    <string name="title_settingsSession">Session Settings:</string>
     <string name="title_timeGPS">Time between GPS measurement (ms):</string>
     <string name="title_timeSpot">Time between Spot measurement (ms):</string>
-    <string name="title_settingsSession">Session Settings:</string>
+    <string name="title_sizeAverage">Number of measurements to calculate average:</string>
     <string name="title_settingsRecord">Record Settings:</string>
     <string name="title_settingsExport">Export Settings:</string>
 
@@ -48,18 +50,17 @@
     <string name="menu_x">See the x axe of magnetic field</string>
     <string name="menu_y">See the y axe of magnetic field</string>
     <string name="menu_z">See the z axe of magnetic field</string>
-    <string name="menu_center">Centrer la vue</string>
-    <string name="menu_bounds">Actualiser la vue</string>
+    <string name="menu_center">Show all the data</string>
+    <string name="menu_bounds">Recalculate</string>
     <string name="menu_interpolation">Interpolation</string>
     <string name="menu_save">Save</string>
+    <string name="menu_settings">Settings</string>
 
     <string name="inter_raw">RAW (No interpolation)</string>
     <string name="inter_nn">NN (Nearest neighbor)</string>
     <string name="inter_lin">Lin (Linear)</string>
     <string name="inter_inv">Inv (Inverse of distances)</string>
     <string name="inter_spl">Spl (Spline)</string>
-
-    <string name="text_sendServer">Send the data on the phone to the server.</string>
 
     <string name="apiKey">AIzaSyAhx4zWd9KoasTM44AXf_GnuchLe6haDXo</string>
     <string name="back">Back</string>
@@ -82,10 +83,6 @@
     <string name="error_dataNotExported">Unable to export data!</string>
 
     <string name="done_dataExported">Data exported!</string>
-    <string name="title_activity_settings">Settings</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
 
     <string name="hint_BuildingId">Building id</string>
     <string name="hint_BuildingType">Building type</string>

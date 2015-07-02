@@ -53,6 +53,10 @@ public class Vector {
         this.update(v.getX(), v.getY(), v.getZ());
     }
 
+    public void update(Vector v, int A) {
+        this.update(v.getX(), v.getY(), v.getZ(), A);
+    }
+
     public void update(float[] ar) {
         this.update(ar[0], ar[1], ar[2]);
     }
