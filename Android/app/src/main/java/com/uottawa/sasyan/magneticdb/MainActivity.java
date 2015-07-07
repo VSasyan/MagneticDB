@@ -5,6 +5,7 @@
 package com.uottawa.sasyan.magneticdb;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -18,8 +19,8 @@ import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
 import android.os.PowerManager;
-import android.os.WorkSource;
 import android.support.v4.app.FragmentActivity;
+import android.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,7 +33,6 @@ import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,7 +45,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import com.uottawa.sasyan.magneticdb.Class.AverageVector;
 import com.uottawa.sasyan.magneticdb.Class.ConvertInt;
-import com.uottawa.sasyan.magneticdb.Class.DirectoryChooserDialog;
 import com.uottawa.sasyan.magneticdb.Class.Measurement;
 import com.uottawa.sasyan.magneticdb.Class.GPS;
 import com.uottawa.sasyan.magneticdb.Class.Settings;
@@ -337,9 +336,19 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
                 return true;
 
             case R.id.menu_del:
-                helper.deleteAll();
-                model.requery();
-                map.clear();
+                AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+                dlgAlert.setMessage(getString(R.string.ask_deleteAll));
+                dlgAlert.setTitle(getString(R.string.menu_delete));
+                dlgAlert.setNegativeButton(getString(R.string.no), null);
+                dlgAlert.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        helper.deleteAll();
+                        model.requery();
+                        map.clear();
+                    }
+                });
+                dlgAlert.setCancelable(true);
+                dlgAlert.create().show();
                 return true;
 
             case R.id.menu_export:

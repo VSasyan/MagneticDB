@@ -87,6 +87,11 @@
     <string name="hint_BuildingId">Building id</string>
     <string name="hint_BuildingType">Building type</string>
 
+    <string name="ask_deleteAll">Do you really want to delete all the measurements?</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
     <string-array name="type_array">
         <item type="array-string">none</item>
         <item type="array-string">(W1) Wood, Light Frame (&lt;= 5,000 sq. ft.)</item>

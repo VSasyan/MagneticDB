@@ -70,8 +70,8 @@
     <string name="new_location">Nouvelle localisation : Latitude = %1$s, Longitude = %2$s, Altitude = %3$s ; Précision : %4$s m</string>
     <string name="use_gps">Utilisation du GPS et du Wifi.</string>
     <string name="use_wifiOnly">Utilisation du Wifi uniquement.</string>
-    <string name="recordingStop">Session d\'enregistrement commencée.</string>
-    <string name="recordingPlay">Session d\'enregistrement terminée.</string>
+    <string name="recordingStop">Session d\'enregistrement terminée.</string>
+    <string name="recordingPlay">Session d\'enregistrement commencée.</string>
     <string name="recordingForced">Session d\'enregistrement forcée.</string>
 
     <string name="impossible_getLatlon">Impossible de récuperer les coordonnées GPS : %s</string>
@@ -86,4 +86,9 @@
 
     <string name="hint_BuildingId">Id du bâtiment</string>
     <string name="hint_BuildingType">Type du bâtiment</string>
+
+    <string name="ask_deleteAll">Etes-vous sûr de supprimer toutes les mesures ?</string>
+
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
 </resources>
