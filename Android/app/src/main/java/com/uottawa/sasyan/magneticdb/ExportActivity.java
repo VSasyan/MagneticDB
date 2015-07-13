@@ -11,13 +11,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.uottawa.sasyan.magneticdb.Class.Settings;
+
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-
-import com.uottawa.sasyan.magneticdb.Class.Settings;
 
 
 public class ExportActivity extends Activity {

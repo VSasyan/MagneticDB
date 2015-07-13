@@ -3,6 +3,7 @@ package com.uottawa.sasyan.magneticdb;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,11 +13,11 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Toast;
-import android.hardware.Camera;
-import org.json.JSONObject;
 
 import com.uottawa.sasyan.magneticdb.Class.GPS;
 import com.uottawa.sasyan.magneticdb.Class.PhotoHandler;
+
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.List;

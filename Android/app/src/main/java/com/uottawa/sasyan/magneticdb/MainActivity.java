@@ -4,10 +4,10 @@
 
 package com.uottawa.sasyan.magneticdb;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -20,7 +20,6 @@ import android.location.LocationProvider;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.support.v4.app.FragmentActivity;
-import android.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,23 +41,18 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import com.uottawa.sasyan.magneticdb.Class.AverageVector;
 import com.uottawa.sasyan.magneticdb.Class.ConvertInt;
-import com.uottawa.sasyan.magneticdb.Class.Measurement;
 import com.uottawa.sasyan.magneticdb.Class.GPS;
+import com.uottawa.sasyan.magneticdb.Class.Measurement;
 import com.uottawa.sasyan.magneticdb.Class.Settings;
 import com.uottawa.sasyan.magneticdb.Class.Vector;
 import com.uottawa.sasyan.magneticdb.Helper.HelperMeasurement;
 
 import org.json.JSONObject;
 
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Handler;
 
 public class MainActivity extends FragmentActivity implements SensorEventListener, LocationListener {
     // Elements :
@@ -375,6 +369,12 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
 
             case R.id.menu_settings:
                 settings.showSettings();
+                return true;
+
+            case R.id.menu_check:
+                // Show the check activity :
+                intent = new Intent(MainActivity.this, CheckActivity.class);
+                startActivity(intent);
                 return true;
 
             default:

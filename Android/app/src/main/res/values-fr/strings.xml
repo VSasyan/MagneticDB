@@ -5,6 +5,7 @@
     <string name="title_activity_export">Exporter les données</string>
     <string name="title_activity_heat">Données collectées</string>
     <string name="title_activity_settings">Paramètres</string>
+    <string name="title_activity_check">Vérification matérielle</string>
 
     <string name="title_absMagneticField">CM absolu :</string>
     <string name="title_relMagneticField">CM relatif :</string>
@@ -27,8 +28,8 @@
     <string name="title_sessionName">Nom de la session :</string>
     <string name="title_dateFormat">Format de la date:</string>
     <string name="title_settingsSession">Paramètres pour la session :</string>
-    <string name="title_timeGPS">Temps entre deux mesures GPS (ms):</string>
-    <string name="title_timeSpot">Temps entre deux mesures Spot (ms):</string>
+    <string name="title_timeGPS">Temps entre deux mesures GPS (ms) :</string>
+    <string name="title_timeSpot">Temps entre deux mesures Spot (ms) :</string>
     <string name="title_sizeAverage">Nombre de mesures pour calculer la moyenne :</string>
     <string name="title_settingsRecord">Paramètres pour l\'enregistrement :</string>
     <string name="title_settingsExport">Paramètres pour l\'exportation :</string>
@@ -55,6 +56,7 @@
     <string name="menu_interpolation">Interpolation</string>
     <string name="menu_save">Sauver</string>
     <string name="menu_settings">Paramètres</string>
+    <string name="menu_check">Vérification matérielle</string>
 
     <string name="inter_raw">RAW (Pas d\'interpolation)</string>
     <string name="inter_nn">NN (Plus Proche Voisin)</string>
@@ -81,8 +83,10 @@
     <string name="impossible_getJSON">Impossible de transférer les données JSON : %s</string>
 
     <string name="error_dataNotExported">Impossible d\exporter les données!</string>
+    <string name="error_checked">Votre appareil ne peut pas faire tourner MagneticDB !</string>
 
     <string name="done_dataExported">Données exportées avec succés!</string>
+    <string name="done_checked">Votre appareil peut faire tourner MagneticDB !</string>
 
     <string name="hint_BuildingId">Id du bâtiment</string>
     <string name="hint_BuildingType">Type du bâtiment</string>
@@ -91,4 +95,11 @@
 
     <string name="yes">Oui</string>
     <string name="no">Non</string>
+    <string name="colon">&#160;:&#160;</string>
+
+    <string-array name="sensor_name_array">
+        <item>Magnétomètre</item>
+        <item>Gravité</item>
+        <item>Accélération linéaire</item>
+    </string-array>
 </resources>

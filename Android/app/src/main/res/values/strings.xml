@@ -5,6 +5,7 @@
     <string name="title_activity_export">Export data</string>
     <string name="title_activity_heat">Collected Data</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_check">Hardware verification</string>
 
     <string name="title_absMagneticField">Absolute MF (nT):</string>
     <string name="title_relMagneticField">Relatif MF (nT):</string>
@@ -55,6 +56,7 @@
     <string name="menu_interpolation">Interpolation</string>
     <string name="menu_save">Save</string>
     <string name="menu_settings">Settings</string>
+    <string name="menu_check">Hardware verification</string>
 
     <string name="inter_raw">RAW (No interpolation)</string>
     <string name="inter_nn">NN (Nearest neighbor)</string>
@@ -81,8 +83,10 @@
     <string name="impossible_getJSON">Unable to get JSON data : %s</string>
 
     <string name="error_dataNotExported">Unable to export data!</string>
+    <string name="error_checked">You device can not run MagneticDB!</string>
 
     <string name="done_dataExported">Data exported!</string>
+    <string name="done_checked">You device can run MagneticDB!</string>
 
     <string name="hint_BuildingId">Building id</string>
     <string name="hint_BuildingType">Building type</string>
@@ -91,6 +95,13 @@
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="colon">:&#160;</string>
+
+    <string-array name="sensor_name_array">
+        <item>Magnetometer</item>
+        <item>Gravity</item>
+        <item>Linear acceleration</item>
+    </string-array>
 
     <string-array name="type_array">
         <item type="array-string">none</item>
@@ -111,4 +122,7 @@
         <item type="array-string">(URM) Unreinforced Masonry Bearing Walls</item>
         <item type="array-string">(MH) Mobile Homes</item>
     </string-array>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>

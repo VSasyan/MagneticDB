@@ -3,12 +3,9 @@
  */
 package com.uottawa.sasyan.magneticdb.Class;
 
-import android.util.Log;
-
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.maps.android.heatmaps.WeightedLatLng;
 
 import org.la4j.Matrix;

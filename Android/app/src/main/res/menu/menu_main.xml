@@ -93,4 +93,9 @@
         android:showAsAction="never"
         android:title="@string/menu_settings"/>
 
+    <item
+        android:id="@+id/menu_check"
+        android:showAsAction="never"
+        android:title="@string/menu_check"/>
+
 </menu>

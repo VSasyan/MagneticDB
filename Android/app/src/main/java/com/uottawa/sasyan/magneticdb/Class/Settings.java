@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import com.uottawa.sasyan.magneticdb.HeatActivity;
 import com.uottawa.sasyan.magneticdb.SettingsActivity;
 
 public class Settings {

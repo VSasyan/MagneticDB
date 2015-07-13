@@ -7,13 +7,12 @@ package com.uottawa.sasyan.magneticdb.Helper;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
+import android.database.sqlite.SQLiteOpenHelper;
 
+import com.uottawa.sasyan.magneticdb.Class.GPS;
 import com.uottawa.sasyan.magneticdb.Class.Measurement;
 import com.uottawa.sasyan.magneticdb.Class.Vector;
-import com.uottawa.sasyan.magneticdb.Class.GPS;
 
 import org.json.JSONArray;
 

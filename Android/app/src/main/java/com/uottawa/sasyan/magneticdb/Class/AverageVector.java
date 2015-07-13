@@ -9,11 +9,13 @@ import java.util.List;
 
 public class AverageVector {
     private int size;
-    List<Vector> vectors;
+    private List<Vector> vectors;
+    private Vector average;
 
     public AverageVector(int size) {
         this.size = size;
         this.vectors = new ArrayList<Vector>();
+        this.average = new Vector(0,0,0);
     }
 
     public void setSize(int size) {
@@ -21,12 +23,11 @@ public class AverageVector {
         while (this.vectors.size() > this.size) {
             this.vectors.remove(0);
         }
+        this.calculateAverage();
     }
 
     public Vector getAverage() {
-        Vector vector = new Vector(0,0,0);
-        vector.beMeanOf(this.vectors);
-        return vector;
+        return this.average;
     }
 
     public void addVector(Vector vector) {
@@ -34,6 +35,11 @@ public class AverageVector {
         if (this.vectors.size() > this.size) {
             this.vectors.remove(0);
         }
+        this.calculateAverage();
+    }
+
+    private void calculateAverage() {
+        this.average.beMeanOf(this.vectors);
     }
 }
 

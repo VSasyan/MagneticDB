@@ -3,13 +3,11 @@
  */
 package com.uottawa.sasyan.magneticdb.Class;
 
-import android.content.res.Resources;
 import android.util.Log;
-import android.widget.Toast;
-import org.json.JSONObject;
 
 import com.google.android.gms.maps.model.LatLng;
-import com.uottawa.sasyan.magneticdb.R;
+
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -77,20 +75,15 @@ public class Vector {
 
     public void beMeanOf(List<Vector> list) {
         int N = list.size(), M = 0;
-//        Log.w("N", String.valueOf(N));
         if (N > 0) {
             float x = 0, y = 0, z = 0;
             for (int i = 0; i < N; i++) {
-                //if (list.get(i).getNorme() > 0.2) {
                     x += list.get(i).getX();
                     y += list.get(i).getY();
                     z += list.get(i).getZ();
                     M += 1;
-                //}
             }
             this.update(x / Math.max(M, 1), y / Math.max(M, 1), z / Math.max(M, 1));
-            //Log.w("x,y,z cor ", String.valueOf(this.getX()) + ", " + String.valueOf(this.getY()) + ", " + String.valueOf(this.getZ()));
-            //Log.w("x,y,z raw ", String.valueOf(list.get(N - 1).getX()) + ", " + String.valueOf(list.get(N - 1).getY()) + ", " + String.valueOf(list.get(N - 1).getZ()));
             Log.w("N = " + String.valueOf(N) + ", m/o : ", String.valueOf(this.getNorme()/list.get(N - 1).getNorme()));
         }
     }
