@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Switch;
 
 import com.uottawa.sasyan.magneticdb.Class.DirectoryChooserDialog;
 import com.uottawa.sasyan.magneticdb.Class.Settings;
@@ -48,6 +49,7 @@ public class SettingsActivity extends Activity {
         ((EditText)findViewById(R.id.text_folder)).setText(settings.getFolder());
         ((EditText)findViewById(R.id.text_date)).setText(settings.getDateFormat());
         ((EditText)findViewById(R.id.text_session)).setText(settings.getSession());
+        ((Switch) findViewById(R.id.spotting)).setChecked(settings.getSpotting());
         ((EditText)findViewById(R.id.text_timeGPS)).setText(String.valueOf(settings.getTimeGPS()));
         ((EditText)findViewById(R.id.text_timeSpot)).setText(String.valueOf(settings.getTimeSpot()));
         ((EditText)findViewById(R.id.text_sizeAverage)).setText(String.valueOf(settings.getSizeAverage()));
@@ -62,6 +64,7 @@ public class SettingsActivity extends Activity {
             settings.setFolder(((EditText) findViewById(R.id.text_folder)).getText().toString());
             settings.setDateFormat(((EditText) findViewById(R.id.text_date)).getText().toString());
             settings.setSession(((EditText) findViewById(R.id.text_session)).getText().toString());
+            settings.setSpotting(((Switch) findViewById(R.id.spotting)).isChecked());
             settings.setTimeGPS(((EditText) findViewById(R.id.text_timeGPS)).getText().toString());
             settings.setTimeSpot(((EditText) findViewById(R.id.text_timeSpot)).getText().toString());
             settings.setSizeAverage(((EditText) findViewById(R.id.text_sizeAverage)).getText().toString());

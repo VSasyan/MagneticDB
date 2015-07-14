@@ -28,6 +28,7 @@
     <string name="title_sessionName">Session name:</string>
     <string name="title_dateFormat">Date format:</string>
     <string name="title_settingsSession">Session Settings:</string>
+    <string name="title_spotting">Allow spotting measurements:</string>
     <string name="title_timeGPS">Time between GPS measurement (ms):</string>
     <string name="title_timeSpot">Time between Spot measurement (ms):</string>
     <string name="title_sizeAverage">Number of measurements to calculate average:</string>

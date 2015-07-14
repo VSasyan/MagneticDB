@@ -54,53 +54,77 @@
                     android:paddingTop="@dimen/title_settingsPadding" />
             </TableLayout>
 
-            <TableLayout>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_spotting"
+                    android:id="@+id/title_spotting"
+                    android:labelFor="@+id/spotting"
+                    android:layout_weight="6" />
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spotting"
+                    android:layout_weight="4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/title_timeGPS"
                     android:id="@+id/title_timeGPS"
-                    android:labelFor="@+id/text_timeGPS" />
-            </TableLayout>
-            <TableLayout>
+                    android:labelFor="@+id/text_timeGPS"
+                    android:layout_weight="6" />
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/text_timeGPS"
-                    android:inputType="number" />
-            </TableLayout>
+                    android:inputType="number"
+                    android:layout_weight="4" />
+            </LinearLayout>
 
-            <TableLayout>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/title_timeSpot"
                     android:id="@+id/title_timeSpot"
-                    android:labelFor="@+id/text_timeSpot" />
-            </TableLayout>
-            <TableLayout>
+                    android:labelFor="@+id/text_timeSpot"
+                    android:layout_weight="6" />
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/text_timeSpot"
-                    android:inputType="number" />
-            </TableLayout>
+                    android:inputType="number"
+                    android:layout_weight="4" />
+            </LinearLayout>
 
-            <TableLayout>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/title_sizeAverage"
                     android:id="@+id/title_sizeAverage"
-                    android:labelFor="@+id/text_sizeAverage" />
-            </TableLayout>
-            <TableLayout>
+                    android:labelFor="@+id/text_sizeAverage"
+                    android:layout_weight="6" />
+
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/text_sizeAverage"
-                    android:inputType="number" />
-            </TableLayout>
+                    android:inputType="number"
+                    android:layout_weight="4" />
+            </LinearLayout>
 
         </TableLayout>
 

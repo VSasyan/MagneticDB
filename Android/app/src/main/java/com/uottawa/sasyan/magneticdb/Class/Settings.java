@@ -6,14 +6,15 @@ package com.uottawa.sasyan.magneticdb.Class;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.uottawa.sasyan.magneticdb.SettingsActivity;
 
 public class Settings {
     private Context context;
-    private String folder, dateFormat, show, session, recording;
+    private String folder, dateFormat, show, session;
     private int showType, interType, normType, timeGPS, timeSpot, sizeAverage;
-    private boolean WifiOnly;
+    private boolean WifiOnly, recording, spotting;
 
     public Settings(Context context) {
         this.context = context;
@@ -22,11 +23,23 @@ public class Settings {
 
     public boolean getSettings() {
         SharedPreferences preferences = context.getSharedPreferences("settings", 0);
+        try {
+            this.getSettings(preferences);
+        } catch (Exception e) {
+            Log.e("Loading preferences", e.toString() + "; Preferences cleaned");
+            preferences.edit().clear().apply();
+            this.getSettings(preferences);
+        }
+        return true;
+    }
+
+    private boolean getSettings(SharedPreferences preferences) {
         this.folder = preferences.getString("folder", "/MagneticDB");
         this.session = preferences.getString("session", "Session_1");
         this.dateFormat = preferences.getString("dateFormat", "yyyy-MM-dd_HH-mm-ss");
         this.WifiOnly = preferences.getBoolean("WifiOnly", true);
-        this.recording = preferences.getString("recording", "false");
+        this.recording = preferences.getBoolean("recording", false);
+        this.spotting = preferences.getBoolean("spotting", true);
         this.show = preferences.getString("show", "all");
         this.showType = preferences.getInt("showType", 0);
         this.interType = preferences.getInt("interType", 0);
@@ -44,7 +57,8 @@ public class Settings {
         e.putString("session", session);
         e.putString("dateFormat", dateFormat);
         e.putBoolean("WifiOnly", this.WifiOnly);
-        e.putString("recording", this.recording);
+        e.putBoolean("recording", this.recording);
+        e.putBoolean("spotting", this.spotting);
         e.putString("show", this.show);
         e.putInt("showType", this.showType);
         e.putInt("interType", this.interType);
@@ -61,8 +75,11 @@ public class Settings {
         context.startActivity(intent);
     }
 
-    public String getRecording() {
+    public boolean getRecording() {
         return recording;
+    }
+    public boolean getSpotting() {
+        return spotting;
     }
     public boolean isWifiOnly() {
         return WifiOnly;
@@ -106,8 +123,12 @@ public class Settings {
         this.folder = folder;
         saveSettings();
     }
-    public void setRecording(String recording) {
+    public void setRecording(boolean recording) {
         this.recording = recording;
+        saveSettings();
+    }
+    public void setSpotting(boolean spotting) {
+        this.spotting = spotting;
         saveSettings();
     }
     public void setShow(String show) {

@@ -167,7 +167,7 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
 
     @Override
     protected void onPause() {
-        if (this.settings.getRecording().equals("false")) {
+        if (this.settings.getRecording()) {
             // Unlistener sensor :
             sensorManager.unregisterListener(this, sensorMagneticField);
             sensorManager.unregisterListener(this, sensorLinearAcce);
@@ -233,15 +233,16 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        if (this.settings.getRecording().equals("false")) {
+        if (!this.settings.getRecording()) {
             menu.findItem(R.id.menu_stop).setVisible(false);
-            menu.findItem(R.id.menu_record).setIcon(R.drawable.ic_stop);
-        } else if (this.settings.getRecording().equals("true")) {
+            if (settings.getSpotting()) {
+                menu.findItem(R.id.menu_play).setVisible(false);
+            } else {
+                menu.findItem(R.id.menu_spot).setVisible(false);
+            }
+        } else {
             menu.findItem(R.id.menu_play).setVisible(false);
-            menu.findItem(R.id.menu_record).setIcon(R.drawable.ic_play);
-        } else { // "all"
             menu.findItem(R.id.menu_spot).setVisible(false);
-            menu.findItem(R.id.menu_record).setIcon(R.drawable.ic_spot);
         }
         menu.findItem(R.id.menu_gps).setVisible(!this.settings.isWifiOnly());
         menu.findItem(R.id.menu_wifi).setVisible(this.settings.isWifiOnly());
@@ -268,21 +269,21 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         switch (item.getItemId()) {
 
             case R.id.menu_stop:
-                this.settings.setRecording("false");
+                this.settings.setRecording(false);
                 invalidateOptionsMenu();
                 Toast.makeText(this, R.string.recordingStop, Toast.LENGTH_SHORT).show();
                 unsetSpot();
                 return true;
 
             case R.id.menu_play:
-                this.settings.setRecording("true");
+                this.settings.setRecording(true);
                 invalidateOptionsMenu();
                 Toast.makeText(this, R.string.recordingPlay, Toast.LENGTH_SHORT).show();
                 unsetSpot();
                 return true;
 
             case R.id.menu_spot:
-                this.settings.setRecording("forced");
+                this.settings.setRecording(true);
                 invalidateOptionsMenu();
                 Toast.makeText(this, R.string.recordingForced, Toast.LENGTH_SHORT).show();
                 return true;
@@ -523,7 +524,7 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         this.showGPS();
 
         // We save the result ;
-        if (!this.settings.getRecording().equals("false")) {this.saveResult(false);}
+        if (this.settings.getRecording()) {this.saveResult(false);}
         resetSpot();
     }
 
@@ -588,7 +589,7 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     /*** Sauvegarde ******************************************************/
     /********************************************************************/
     public void saveResult(boolean spot) {
-        if (!settings.getRecording().equals("false")) {
+        if (settings.getRecording()) {
             // Check if we cam spot if necessary:
             long temp = System.currentTimeMillis();
             if (spot & (temp - lastSave < settings.getTimeSpot())) {
@@ -693,7 +694,7 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
 
     private void resetSpot() {
         unsetSpot();
-        if (settings.getRecording().equals("forced")) {setSpot();}
+        if (settings.getRecording() && settings.getSpotting()) {setSpot();}
     }
 
 }

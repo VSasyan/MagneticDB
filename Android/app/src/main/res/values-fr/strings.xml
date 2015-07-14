@@ -28,6 +28,7 @@
     <string name="title_sessionName">Nom de la session :</string>
     <string name="title_dateFormat">Format de la date:</string>
     <string name="title_settingsSession">Paramètres pour la session :</string>
+    <string name="title_spotting">Autoriser les mesures "spot" :</string>
     <string name="title_timeGPS">Temps entre deux mesures GPS (ms) :</string>
     <string name="title_timeSpot">Temps entre deux mesures Spot (ms) :</string>
     <string name="title_sizeAverage">Nombre de mesures pour calculer la moyenne :</string>
