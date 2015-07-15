@@ -82,6 +82,7 @@
     <string name="impossible_parserJSON">Impossible de parser les données JSON : %s</string>
     <string name="impossible_setJSON">Impossible de récupérer les données JSON : %s</string>
     <string name="impossible_getJSON">Impossible de transférer les données JSON : %s</string>
+    <string name="impossible_seeHeatMap">Impossible d\'afficher la carte : il y a moins de 3 mesures.</string>
 
     <string name="error_dataNotExported">Impossible d\exporter les données!</string>
     <string name="error_checked">Votre appareil ne peut pas faire tourner MagneticDB !</string>

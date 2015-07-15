@@ -35,7 +35,7 @@ public class PhotoHandler implements Camera.PictureCallback {
     }
 
     public void onPictureTaken(byte[] bytes, Camera camera) {
-        Settings settings = new Settings(this.context);
+        Settings settings = new Settings(this.activity);
         File pictureFileDir = Environment.getExternalStoragePublicDirectory(settings.getFolderPictures());
 
         if (!pictureFileDir.exists() && !pictureFileDir.mkdirs()) {

@@ -68,15 +68,20 @@ public class SettingsActivity extends Activity {
             settings.setTimeGPS(((EditText) findViewById(R.id.text_timeGPS)).getText().toString());
             settings.setTimeSpot(((EditText) findViewById(R.id.text_timeSpot)).getText().toString());
             settings.setSizeAverage(((EditText) findViewById(R.id.text_sizeAverage)).getText().toString());
-            this.finish();
+            this.finish_();
             return true;
         }
 
         if (id == R.id.menu_back) {
-            this.finish();
+            this.finish_();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void finish_() {
+        setResult(MainActivity.REQUEST_CODE_SETTINGS);
+        finish();
     }
 }

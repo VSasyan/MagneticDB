@@ -29,9 +29,13 @@ public class HelperMeasurement extends SQLiteOpenHelper {
     // History of select all :
     private String selAll_v1 = "SELECT _id, id, type, gps, absMagneticField, relMagneticField, relGravity, relLinearAcce, absLinearAcce FROM measurement;";
 
+    // History of other request:
+    private String selCount_v1 = "SELECT count(_id) FROM measurement;";
+
     // SQL to use:
     private String create = create_v1;
     private String selAll = selAll_v1;
+    private String selCount = selCount_v1;
 
     public HelperMeasurement(Context context) {
         super(context, DATABASE_NAME, null, SCHEMA_VERSION);
@@ -85,6 +89,13 @@ public class HelperMeasurement extends SQLiteOpenHelper {
             c.moveToNext();
         }
         return tab.toString();
+    }
+
+    public int getSize() {
+        Cursor c = getReadableDatabase().rawQuery(selCount, null);
+        if (c.moveToFirst()) {
+            return c.getInt(0);
+        } else {return -1;}
     }
 
     public int getId(Cursor c) {

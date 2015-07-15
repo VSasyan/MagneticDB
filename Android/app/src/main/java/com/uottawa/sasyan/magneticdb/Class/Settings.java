@@ -3,34 +3,37 @@
  */
 package com.uottawa.sasyan.magneticdb.Class;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.uottawa.sasyan.magneticdb.MainActivity;
 import com.uottawa.sasyan.magneticdb.SettingsActivity;
 
 public class Settings {
-    private Context context;
+    private Activity activity;
     private String folder, dateFormat, show, session;
     private int showType, interType, normType, timeGPS, timeSpot, sizeAverage;
     private boolean WifiOnly, recording, spotting;
 
-    public Settings(Context context) {
-        this.context = context;
+    public Settings(Activity activity) {
+        this.activity = activity;
         this.getSettings();
     }
 
     public boolean getSettings() {
-        SharedPreferences preferences = context.getSharedPreferences("settings", 0);
+        boolean success = false;
+        SharedPreferences preferences = activity.getSharedPreferences("settings", 0);
         try {
-            this.getSettings(preferences);
+            success = this.getSettings(preferences);
         } catch (Exception e) {
             Log.e("Loading preferences", e.toString() + "; Preferences cleaned");
             preferences.edit().clear().apply();
-            this.getSettings(preferences);
+            success = this.getSettings(preferences);
         }
-        return true;
+        return success;
     }
 
     private boolean getSettings(SharedPreferences preferences) {
@@ -51,7 +54,7 @@ public class Settings {
     }
 
     public boolean saveSettings() {
-        SharedPreferences preferences = context.getSharedPreferences("settings", 0);
+        SharedPreferences preferences = activity.getSharedPreferences("settings", 0);
         SharedPreferences.Editor e = preferences.edit();
         e.putString("folder", folder);
         e.putString("session", session);
@@ -71,8 +74,8 @@ public class Settings {
     }
 
     public void showSettings() {
-        Intent intent = new Intent(context, SettingsActivity.class);
-        context.startActivity(intent);
+        Intent intent = new Intent(activity, SettingsActivity.class);
+        activity.startActivityForResult(intent, MainActivity.REQUEST_CODE_SETTINGS);
     }
 
     public boolean getRecording() {

@@ -15,12 +15,6 @@
         android:title="@string/menu_stop"/>
 
     <item
-        android:id="@+id/menu_spot"
-        android:icon="@drawable/ic_spot"
-        android:showAsAction="always"
-        android:title="@string/menu_spot"/>
-
-    <item
         android:id="@+id/menu_picture"
         android:icon="@drawable/ic_picture"
         android:showAsAction="always"

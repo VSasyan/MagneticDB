@@ -84,7 +84,6 @@ public class Vector {
                     M += 1;
             }
             this.update(x / Math.max(M, 1), y / Math.max(M, 1), z / Math.max(M, 1));
-            Log.w("N = " + String.valueOf(N) + ", m/o : ", String.valueOf(this.getNorme()/list.get(N - 1).getNorme()));
         }
     }
 

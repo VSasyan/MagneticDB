@@ -20,6 +20,7 @@ import android.location.LocationProvider;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -233,16 +234,10 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        if (!this.settings.getRecording()) {
+        if (!this.settings.getRecording()) {menu.findItem(R.id.menu_play).setVisible(false);}
+        else {
             menu.findItem(R.id.menu_stop).setVisible(false);
-            if (settings.getSpotting()) {
-                menu.findItem(R.id.menu_play).setVisible(false);
-            } else {
-                menu.findItem(R.id.menu_spot).setVisible(false);
-            }
-        } else {
-            menu.findItem(R.id.menu_play).setVisible(false);
-            menu.findItem(R.id.menu_spot).setVisible(false);
+            if (settings.getSpotting()) {menu.findItem(R.id.menu_play).setIcon(R.drawable.ic_spot).setTitle(R.string.menu_spot);}
         }
         menu.findItem(R.id.menu_gps).setVisible(!this.settings.isWifiOnly());
         menu.findItem(R.id.menu_wifi).setVisible(this.settings.isWifiOnly());
@@ -269,24 +264,17 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         switch (item.getItemId()) {
 
             case R.id.menu_stop:
+                this.settings.setRecording(true);
+                invalidateOptionsMenu();
+                if (settings.getSpotting()) {Toast.makeText(this, R.string.recordingForced, Toast.LENGTH_SHORT).show();}
+                else {Toast.makeText(this, R.string.recordingPlay, Toast.LENGTH_SHORT).show();}
+                return true;
+
+            case R.id.menu_play:
                 this.settings.setRecording(false);
                 invalidateOptionsMenu();
                 Toast.makeText(this, R.string.recordingStop, Toast.LENGTH_SHORT).show();
                 unsetSpot();
-                return true;
-
-            case R.id.menu_play:
-                this.settings.setRecording(true);
-                invalidateOptionsMenu();
-                Toast.makeText(this, R.string.recordingPlay, Toast.LENGTH_SHORT).show();
-                unsetSpot();
-                return true;
-
-            case R.id.menu_spot:
-                this.settings.setRecording(true);
-                invalidateOptionsMenu();
-                Toast.makeText(this, R.string.recordingForced, Toast.LENGTH_SHORT).show();
-                return true;
 
             case R.id.menu_gps:
                 this.settings.setWifiOnly(true);
@@ -364,8 +352,12 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
 
             case R.id.menu_heat:
                 // Show the head activity (nothing to intent) :
-                intent = new Intent(MainActivity.this, HeatActivity.class);
-                startActivity(intent);
+                if (helper.getSize() >=3){
+                    intent = new Intent(MainActivity.this, HeatActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, getString(R.string.impossible_seeHeatMap), Toast.LENGTH_SHORT).show();
+                }
                 return true;
 
             case R.id.menu_settings:
@@ -435,7 +427,10 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     /********************************************************************/
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // We do nothing
+        // Relative magnetic field :
+        if (sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
+            //Log.w("accuracyChanged", String.valueOf(accuracy));
+        }
     }
 
     @Override
@@ -696,5 +691,17 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         unsetSpot();
         if (settings.getRecording() && settings.getSpotting()) {setSpot();}
     }
+
+    /********************************************************************/
+    /*** ActivityResult *************************************************/
+    /********************************************************************/
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == resultCode) {
+            // Let draw again the menu:
+            invalidateOptionsMenu();
+        }
+    }
+    public static final int REQUEST_CODE_SETTINGS = 1;
 
 }

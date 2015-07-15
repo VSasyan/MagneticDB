@@ -82,6 +82,7 @@
     <string name="impossible_parserJSON">Unable to parse JSON data : %s</string>
     <string name="impossible_setJSON">Unable to generate JSON data : %s</string>
     <string name="impossible_getJSON">Unable to get JSON data : %s</string>
+    <string name="impossible_seeHeatMap">Unable to show the Map: there is less than 3 measurements.</string>
 
     <string name="error_dataNotExported">Unable to export data!</string>
     <string name="error_checked">You device can not run MagneticDB!</string>

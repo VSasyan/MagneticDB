@@ -162,6 +162,7 @@ public class Interpolation {
     }
 
     // Spline of interpolation (rho == 0) / of lissage (rho != 0)
+    // DO NOT WORK!!!
     private boolean interp_spl(int rho) {
         int I;
 
