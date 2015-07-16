@@ -418,7 +418,7 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         Marker m = map.addMarker(new MarkerOptions().position(position)
                 .title(title)
                 .snippet(snippet)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.lt_blue)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_blue)));
         return m;
     }
 

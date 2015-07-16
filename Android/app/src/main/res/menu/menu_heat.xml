@@ -46,7 +46,7 @@
 
     <item
         android:id="@+id/menu_interpolation"
-        android:icon="@drawable/ic_interpolation"
+        android:icon="@drawable/ic_raw"
         android:showAsAction="always"
         android:title="@string/menu_interpolation" >
 
@@ -54,22 +54,27 @@
             <group android:id="@+id/menu_group_inter">
                 <item
                     android:id="@+id/menu_raw"
-                    android:title="@string/inter_raw" />
+                    android:title="@string/inter_raw"
+                    android:icon="@drawable/ic_raw" />
                 <item
                     android:id="@+id/menu_nn"
-                    android:title="@string/inter_nn" />
+                    android:title="@string/inter_nn"
+                    android:icon="@drawable/ic_nn" />
 
                 <item
                     android:id="@+id/menu_lin"
-                    android:title="@string/inter_lin" />
+                    android:title="@string/inter_lin"
+                    android:icon="@drawable/ic_lin" />
 
                 <item
                     android:id="@+id/menu_inv"
-                    android:title="@string/inter_inv" />
+                    android:title="@string/inter_inv"
+                    android:icon="@drawable/ic_inv" />
 
                 <item
                     android:id="@+id/menu_spl"
-                    android:title="@string/inter_spl" />
+                    android:title="@string/inter_spl"
+                    android:icon="@drawable/ic_spl" />
             </group>
         </menu>
     </item>

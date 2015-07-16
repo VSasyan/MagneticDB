@@ -59,7 +59,7 @@
     <string name="menu_settings">Settings</string>
     <string name="menu_check">Hardware verification</string>
 
-    <string name="inter_raw">RAW (No interpolation)</string>
+    <string name="inter_raw">RAW (no interpolation)</string>
     <string name="inter_nn">NN (Nearest neighbor)</string>
     <string name="inter_lin">Lin (Linear)</string>
     <string name="inter_inv">Inv (Inverse of distances)</string>

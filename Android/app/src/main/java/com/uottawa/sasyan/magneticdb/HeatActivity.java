@@ -88,22 +88,27 @@ public class HeatActivity extends Activity {
             case -1:
                 menu.findItem(R.id.menu_raw).setVisible(false);
                 menu.findItem(R.id.menu_interpolation).setTitle(R.string.inter_raw);
+                menu.findItem(R.id.menu_interpolation).setIcon(R.drawable.ic_raw);
                 break;
             case 1:
                 menu.findItem(R.id.menu_lin).setVisible(false);
                 menu.findItem(R.id.menu_interpolation).setTitle(R.string.inter_lin);
+                menu.findItem(R.id.menu_interpolation).setIcon(R.drawable.ic_lin);
                 break;
             case 2:
                 menu.findItem(R.id.menu_inv).setVisible(false);
                 menu.findItem(R.id.menu_interpolation).setTitle(R.string.inter_inv);
+                menu.findItem(R.id.menu_interpolation).setIcon(R.drawable.ic_inv);
                 break;
             case 3:
                 menu.findItem(R.id.menu_spl).setVisible(false);
                 menu.findItem(R.id.menu_interpolation).setTitle(R.string.inter_spl);
+                menu.findItem(R.id.menu_interpolation).setIcon(R.drawable.ic_spl);
                 break;
             default:
                 menu.findItem(R.id.menu_nn).setVisible(false);
                 menu.findItem(R.id.menu_interpolation).setTitle(R.string.inter_nn);
+                menu.findItem(R.id.menu_interpolation).setIcon(R.drawable.ic_nn);
                 break;
         }
         return true;
