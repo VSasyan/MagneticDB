@@ -65,6 +65,7 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     EditText id;
 
     // Utilitaires :
+    int accuracy = 0;
     Timer spotTimer;
     long lastSave = 0;
     Settings settings;
@@ -264,10 +265,12 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         switch (item.getItemId()) {
 
             case R.id.menu_stop:
-                this.settings.setRecording(true);
-                invalidateOptionsMenu();
-                if (settings.getSpotting()) {Toast.makeText(this, R.string.recordingForced, Toast.LENGTH_SHORT).show();}
-                else {Toast.makeText(this, R.string.recordingPlay, Toast.LENGTH_SHORT).show();}
+                if (checkAccuracy()) {
+                    this.settings.setRecording(true);
+                    invalidateOptionsMenu();
+                    if (settings.getSpotting()) {Toast.makeText(this, R.string.recordingForced, Toast.LENGTH_SHORT).show();}
+                    else {Toast.makeText(this, R.string.recordingPlay, Toast.LENGTH_SHORT).show();}
+                } else {Toast.makeText(this, R.string.error_lowAccuracy, Toast.LENGTH_SHORT).show();}
                 return true;
 
             case R.id.menu_play:
@@ -429,7 +432,10 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
         // Relative magnetic field :
         if (sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
-            //Log.w("accuracyChanged", String.valueOf(accuracy));
+            this.accuracy = accuracy;
+            String[] accuracyName = getResources().getStringArray(R.array.accuracyName);
+            Toast.makeText(this, accuracyName[accuracy], Toast.LENGTH_SHORT).show();
+            this.checkAccuracy();
         }
     }
 
@@ -690,6 +696,18 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     private void resetSpot() {
         unsetSpot();
         if (settings.getRecording() && settings.getSpotting()) {setSpot();}
+    }
+
+    private boolean checkAccuracy() {
+        if (accuracy < settings.getMinimumAccuracy()) {
+            if (settings.getRecording()) {
+                this.settings.setRecording(false);
+                invalidateOptionsMenu();
+                Toast.makeText(this, R.string.error_lowAccuracy, Toast.LENGTH_SHORT).show();
+                unsetSpot();
+            }
+            return false;
+        } else {return true;}
     }
 
     /********************************************************************/

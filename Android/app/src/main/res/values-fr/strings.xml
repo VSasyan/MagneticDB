@@ -34,6 +34,7 @@
     <string name="title_sizeAverage">Nombre de mesures pour calculer la moyenne :</string>
     <string name="title_settingsRecord">Paramètres pour l\'enregistrement :</string>
     <string name="title_settingsExport">Paramètres pour l\'exportation :</string>
+    <string name="title_minimalAccuracy">Précision minimale :</string>
 
     <string name="menu_record">Enregistrement&#8230;</string>
     <string name="menu_play">Commencer l\'enregistrement</string>
@@ -86,6 +87,7 @@
 
     <string name="error_dataNotExported">Impossible d\exporter les données!</string>
     <string name="error_checked">Votre appareil ne peut pas faire tourner MagneticDB !</string>
+    <string name="error_lowAccuracy">Précision trop faible. Vous devez calibrer le téléphone.</string>
 
     <string name="done_dataExported">Données exportées avec succés!</string>
     <string name="done_checked">Votre appareil peut faire tourner MagneticDB !</string>
@@ -103,5 +105,12 @@
         <item>Magnétomètre</item>
         <item>Gravité</item>
         <item>Accélération linéaire</item>
+    </string-array>
+
+    <string-array name="accuracyName">
+        <item>Mesures non fiables</item>
+        <item>Précision faible</item>
+        <item>Précision moyenne</item>
+        <item>Précision haute</item>
     </string-array>
 </resources>

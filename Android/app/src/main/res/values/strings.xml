@@ -34,6 +34,7 @@
     <string name="title_sizeAverage">Number of measurements to calculate average:</string>
     <string name="title_settingsRecord">Record Settings:</string>
     <string name="title_settingsExport">Export Settings:</string>
+    <string name="title_minimalAccuracy">Minimal accuracy:</string>
 
     <string name="menu_record">Record&#8230;</string>
     <string name="menu_play">Start record</string>
@@ -86,6 +87,7 @@
 
     <string name="error_dataNotExported">Unable to export data!</string>
     <string name="error_checked">You device can not run MagneticDB!</string>
+    <string name="error_lowAccuracy">Too bad accuracy, please calibrate the phone.</string>
 
     <string name="done_dataExported">Data exported!</string>
     <string name="done_checked">You device can run MagneticDB!</string>
@@ -103,6 +105,13 @@
         <item>Magnetometer</item>
         <item>Gravity</item>
         <item>Linear acceleration</item>
+    </string-array>
+
+    <string-array name="accuracyName">
+        <item>Measurements unreliable</item>
+        <item>Low accuracy</item>
+        <item>Medium accuracy</item>
+        <item>High accuracy</item>
     </string-array>
 
     <string-array name="type_array">

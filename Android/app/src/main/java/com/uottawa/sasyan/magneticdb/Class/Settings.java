@@ -15,7 +15,7 @@ import com.uottawa.sasyan.magneticdb.SettingsActivity;
 public class Settings {
     private Activity activity;
     private String folder, dateFormat, show, session;
-    private int showType, interType, normType, timeGPS, timeSpot, sizeAverage;
+    private int showType, interType, normType, timeGPS, timeSpot, sizeAverage, minimumAccuracy;
     private boolean WifiOnly, recording, spotting;
 
     public Settings(Activity activity) {
@@ -50,6 +50,7 @@ public class Settings {
         this.timeGPS = preferences.getInt("timeGPS", 3000);
         this.timeSpot = preferences.getInt("timeSpot", 6000);
         this.sizeAverage = preferences.getInt("sizeAverage", 100);
+        this.minimumAccuracy = preferences.getInt("minimumAccuracy", 2);
         return true;
     }
 
@@ -69,6 +70,7 @@ public class Settings {
         e.putInt("timeGPS", this.timeGPS);
         e.putInt("timeSpot", this.timeSpot);
         e.putInt("sizeAverage", this.sizeAverage);
+        e.putInt("minimumAccuracy", this.minimumAccuracy);
         e.commit();
         return true;
     }
@@ -116,6 +118,9 @@ public class Settings {
     }
     public int getSizeAverage() {
         return sizeAverage;
+    }
+    public int getMinimumAccuracy() {
+        return minimumAccuracy;
     }
 
     public void setDateFormat(String dateFormat) {
@@ -168,6 +173,10 @@ public class Settings {
     }
     public void setSizeAverage(int sizeAverage) {
         this.sizeAverage = sizeAverage;
+        saveSettings();
+    }
+    public void setMinimumAccuracy(int minimumAccuracy) {
+        this.minimumAccuracy = minimumAccuracy;
         saveSettings();
     }
 

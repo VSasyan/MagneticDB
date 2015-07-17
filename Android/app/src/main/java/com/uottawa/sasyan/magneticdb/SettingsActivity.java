@@ -5,15 +5,26 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Switch;
+
+import  com.android.internal.util.*;
 
 import com.uottawa.sasyan.magneticdb.Class.DirectoryChooserDialog;
 import com.uottawa.sasyan.magneticdb.Class.Settings;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 
 public class SettingsActivity extends Activity {
     Settings settings;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,18 +38,28 @@ public class SettingsActivity extends Activity {
                 DirectoryChooserDialog DCD = new DirectoryChooserDialog(SettingsActivity.this, new DirectoryChooserDialog.ChosenDirectoryListener() {
                     @Override
                     public void onChosenDir(String chosenDir) {
-                        ((EditText)findViewById(R.id.text_folder)).setText(chosenDir);
+                        ((EditText) findViewById(R.id.text_folder)).setText(chosenDir);
                     }
                 });
                 DCD.setNewFolderEnabled(true);
-                String temp = ((EditText)findViewById(R.id.text_folder)).getText().toString();
-                if (temp != null) {
+                String temp = ((EditText) findViewById(R.id.text_folder)).getText().toString();
+                File dir = new File(temp);
+                if(dir.exists() && dir.isDirectory()) {
                     DCD.chooseDirectory(temp);
                 } else {
                     DCD.chooseDirectory();
                 }
             }
         });
+
+        // Populate the spinner:
+        String[] accuracyName = getResources().getStringArray(R.array.accuracyName);
+        List<String> accuracyNames = new ArrayList<String>(Arrays.asList(accuracyName));
+        accuracyNames.remove(0);
+        spinner = (Spinner)findViewById(R.id.minimalAccuracy);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, accuracyNames);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
     }
 
     @Override
@@ -53,6 +74,7 @@ public class SettingsActivity extends Activity {
         ((EditText)findViewById(R.id.text_timeGPS)).setText(String.valueOf(settings.getTimeGPS()));
         ((EditText)findViewById(R.id.text_timeSpot)).setText(String.valueOf(settings.getTimeSpot()));
         ((EditText)findViewById(R.id.text_sizeAverage)).setText(String.valueOf(settings.getSizeAverage()));
+        ((Spinner)findViewById(R.id.minimalAccuracy)).setSelection(settings.getMinimumAccuracy()-1);
         return true;
     }
 
@@ -68,6 +90,7 @@ public class SettingsActivity extends Activity {
             settings.setTimeGPS(((EditText) findViewById(R.id.text_timeGPS)).getText().toString());
             settings.setTimeSpot(((EditText) findViewById(R.id.text_timeSpot)).getText().toString());
             settings.setSizeAverage(((EditText) findViewById(R.id.text_sizeAverage)).getText().toString());
+            settings.setMinimumAccuracy(((Spinner) findViewById(R.id.minimalAccuracy)).getSelectedItemPosition()+1);
             this.finish_();
             return true;
         }
