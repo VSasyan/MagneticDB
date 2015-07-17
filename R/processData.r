@@ -29,13 +29,14 @@ source(file='generate_qgs.r', encoding='UTF-8')
 #' @param classif integer, 1 if you want to do the classif
 #' @param qualify integer, 1 if you want to shoe the classif statistic
 #' @param useX boolean, use axe X for the classification
+#' @param lessType boolean, merge similar types
 #' @return nothing
 #' @author Valentin SASYAN
-#' @version 0.6.0
-#' @date  07/02/2015
+#' @version 0.7.0
+#' @date  07/17/2015
 #' @examples
 #' generate_qgs(filter='uOttawa.*',resolution=1,erase=FALSE)
-processData <- function(filter='uOttawa', resolution=0, export=TRUE, erase=TRUE, EPSG=EPSG_, interpolation='idw', param=0.5, classif=1, qualify=0, useX=FALSE) {
+processData <- function(filter='uOttawa', resolution=0, export=TRUE, erase=TRUE, EPSG=EPSG_, interpolation='idw', param=0.5, classif=1, qualify=0, useX=FALSE, lessType=FALSE) {
 	tic('processData')
 
 		# 1) We read the exported data:
@@ -53,7 +54,7 @@ processData <- function(filter='uOttawa', resolution=0, export=TRUE, erase=TRUE,
 		# 3) Classification:
 		if (classif != 0) {
 			tic('Classification')
-			proj.classif <<- classification(proj.df, useX=useX)
+			proj.classif <- classification(proj.df, useX=useX, lessType)
 			toc()
 		}
 

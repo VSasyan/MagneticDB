@@ -3,13 +3,26 @@ library('e1071')
 #' Classify the given SpatialPointsDataFrame
 #' @param proj.df SpatialPointsDataFrame, the points to classify
 #' @param useX boolean, use axe X for the classification
+#' @param lessType boolean, merge similar types
 #' @param debug boolean, to use the debug mode
 #' @return proj.done SpatialPointsDataFrame, the points classified
 #' @author Valentin SASYAN
-#' @version 2.1.0
-#' @date  07/02/2015
-classification <- function(proj.df, useX=FALSE, debug=FALSE) {
+#' @version 2.2.0
+#' @date  07/17/2015
+classification <- function(proj.df, useX=FALSE, lessType=FALSE, debug=FALSE) {
 	if (useX == TRUE) {axes <- c(1,2,3)} else {axes <- c(2,3)}
+
+	# Fusion the similar types ?
+	if (lessType) {
+		proj.df$type <- unlist(lapply(proj.df$type, function(type) {
+			if (type == 2) {type <- 1}
+			if (type == 4 || type == 5 || type == 6 || type == 7) {type <- 3}
+			if (type == 9 || type == 10) {type <- 8}
+			if (type == 12) {type <- 11}
+			if (type == 14) {type <- 13}
+			type
+		}))
+	}
 
 	# Separate 1) the data used as model and 2) the data to process:
 	proj.model <- as.data.frame(subset(proj.df, type != 0))
@@ -38,11 +51,12 @@ classification <- function(proj.df, useX=FALSE, debug=FALSE) {
 	proj.process$type <- process.pred
 	
 	# Tag the data:
-	proj.model$svm = 'learn'
-	proj.process$svm = 'classif'
+	proj.model$svm <- 'learn'
+	proj.process$svm <- 'classif'
 
 	# Add the meta-data:
 	proj.done <- rbind(proj.model, proj.process)
+	proj.done$lessType <- lessType;
 
 	# Return the done data in SpatialDF:
 	proj.done <- SpatialPointsDataFrame(coords=proj.done[9:10], data=proj.done[,-c(9,10)])
