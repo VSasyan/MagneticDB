@@ -1,5 +1,6 @@
 # setwd("C:/MagneticDB/R/")
 # source("processData.r")
+# traceback()
 
 # EPSG for Canada/Ottawa :
 EPSG_ <- c(authid='EPSG:2951', srsid='920', proj4='+proj=tmerc +lat_0=0 +lon_0=-76.5 +k=0.9999 +x_0=304800 +y_0=0 +ellps=GRS80 +units=m +no_defs', srid='2951', description='NAD83(CSRS) / MTM zone 9', projectionacronym='tmerc', ellipsoidacronym='GRS80', geographicflag='false')
