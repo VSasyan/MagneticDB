@@ -1,0 +1,7 @@
+Package: MagneticDB
+Title: MagneticDB R Package
+Description: MagneticDB R Package furnishes some tools to process the data exported from the MagneticDB Android Application.
+Version: 1.0
+License: MIT
+Author: V. Sasyan <valentin.sasyan@gmail.com>
+Maintainer: LAGGISS, uOttawa <laggiss@gmail.com>
