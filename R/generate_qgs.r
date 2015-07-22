@@ -9,9 +9,8 @@ library('raster')	# For the rasters' manipulation
 #' @param EPSG list, EPSG description of the reference systeme used as destination
 #' @param Google boolean, true to add a Google Streets Layer at the QGIS Project
 #' @return nothing
-#' @author Valentin SASYAN
-#' @version 1.2.0
-#' @date  06/22/2015
+#' @author
+#' Valentin SASYAN, v. 1.2.0, 06/22/2015
 #' @examples
 #' generate_qgs('data/generated/', 'qgis_project.qgs', EPSG, FALSE)
 generate_qgs <- function(folder, file, EPSG, Google=TRUE) {
@@ -93,16 +92,15 @@ generate_qgs <- function(folder, file, EPSG, Google=TRUE) {
 
 #' Create information for a Google Streets Layer
 #' @param Google boolean, must create the information or not?
-#' @return a list with all the informations OR FALSE
-#' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/15/2015
+#' @return list, a list with all the information
+#' @author
+#' Valentin SASYAN, v. 1.0.0, 06/15/2015
 #' @examples
 #' google <- getGoogle(TRUE)
 #' google <- getGoogle(FALSE)
 getGoogle <- function(Google) {
 	if (Google == TRUE) {
-		Google <- list(
+		google <- list(
 			id = paste('OpenLayers_plugin_layer', gsub('[^0-9]','',Sys.time()), sep=''),
 			name = 'Google Streets',
 			EPSG = c(
@@ -117,17 +115,16 @@ getGoogle <- function(Google) {
 			)
 		)
 	} else {
-		Google = FALSE
+		google <- list()
 	}
-	Google
+	google
 }
 
-#' Get information for all the .asc files of the folder passed in parameter
+#' Get information for all the .asc files of the folder given for parameter
 #' @param folder string, folder to scan
-#' @return a list with all the informations
-#' @author Valentin SASYAN
-#' @version 1.0.1
-#' @date  06/12/2015
+#' @return list, a list with all the information
+#' @author
+#' Valentin SASYAN, v. 1.0.1, 06/12/2015
 #' @examples
 #' getASCinfo('data/generated/')
 getASCinfo <- function(folder) {
@@ -164,12 +161,11 @@ getASCinfo <- function(folder) {
 	}))
 }
 
-#' Get information for all the .shp files of the folder passed in parameter
+#' Get information for all the .shp files of the folder given for parameter
 #' @param folder string, folder to scan
-#' @return a list with all the informations
-#' @author Valentin SASYAN
-#' @version 1.0.1
-#' @date  06/12/2015
+#' @return list, a list with all the information
+#' @author
+#' Valentin SASYAN, v. 1.0.1, 06/12/2015
 #' @examples
 #' getSHPinfo('data/generated/')
 getSHPinfo <- function(folder) {
@@ -194,10 +190,9 @@ getSHPinfo <- function(folder) {
 #' @param spatialrefsys XML element, specifications of the spatial reference systeme
 #' @param noData XML element, number of the data
 #' @param pipe XML element, specifications of the colorisation of the layer
-#' @return a XML element
-#' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/12/2015
+#' @return XMLNode, the XML element generated
+#' @author
+#' Valentin SASYAN, v. 1.0.0, 06/12/2015
 getMapLayerAsc <- function(id, datasource, layername, spatialrefsys, noData, pipe) {
 	maplayer = newXMLNode('maplayer', attrs=c(minimumScale="0", maximumScale="1e+08", type="raster", hasScaleBasedVisibilityFlag="0"))
 		newXMLNode('id', id, parent=maplayer)
@@ -235,10 +230,9 @@ getMapLayerAsc <- function(id, datasource, layername, spatialrefsys, noData, pip
 #' @param id string, id of the layer
 #' @param layername string, layername of the layer
 #' @param spatialrefsys XML element, specifications of the spatial reference systeme
-#' @return a XML element
-#' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/15/2015
+#' @return XMLNode, the XML element generated
+#' @author
+#' Valentin SASYAN, v. 1.0.0, 06/15/2015
 getMapLayerGoogle <- function(id, layername, spatialrefsys) {
 	maplayer = newXMLNode('maplayer', attrs=c(minimumScale="0", maximumScale="1e+08", type="plugin", hasScaleBasedVisibilityFlag="0", name="openlayers"))
 		newXMLNode('id', id, parent=maplayer)
@@ -267,10 +261,9 @@ getMapLayerGoogle <- function(id, layername, spatialrefsys) {
 #' @param layername string, layername of the layer
 #' @param spatialrefsys XML element, specifications of the spatial reference systeme
 #' @param editTypes list, list of the name of the file's band
-#' @return a XML element
-#' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/12/2015
+#' @return XMLNode, the XML element generated
+#' @author
+#' Valentin SASYAN, v. 1.0.0, 06/12/2015
 getMapLayerShp <- function(id, datasource, layername, spatialrefsys, editTypes) {
 	maplayer = newXMLNode('maplayer', attrs=c(minimumScale="0", maximumScale="1e+08", simplifyDrawingHints="0", minLabelScale="0", maxLabelScale="1e+08", simplifyDrawingTol="1", geometry="Point", simplifyMaxScale="1", type="vector", hasScaleBasedVisibilityFlag="0", simplifyLocal="1", scaleBasedLabelVisibilityFlag="0"))
 		newXMLNode('id', id, parent=maplayer)
@@ -307,10 +300,9 @@ getMapLayerShp <- function(id, datasource, layername, spatialrefsys, editTypes) 
 
 #' Generate the 'edittype' XML element of a .shp 'maplayer' XML element
 #' @param editTypes list, list of the name of the file's band
-#' @return a XML element
-#' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/12/2015
+#' @return XMLNode, the XML element generated
+#' @author
+#' Valentin SASYAN, v. 1.0.0, 06/12/2015
 getEditType <- function(editTypes) {
 	et = newXMLNode('edittype')
 		for (e in editTypes) {
@@ -321,10 +313,9 @@ getEditType <- function(editTypes) {
 }
 
 #' Generate the 'renderer-v2' XML element of a .shp 'maplayer' XML element
-#' @return a XML element
-#' @author Valentin SASYAN
-#' @version 1.1.0
-#' @date  06/22/2015
+#' @return XMLNode, the XML element generated
+#' @author
+#' Valentin SASYAN, v. 1.1.0, 06/22/2015
 getRendererv2 <- function() {
 	I <- length(symbolsList)
 	renderer = newXMLNode('renderer-v2', attrs=c(attr="type", symbollevels="0", type="categorizedSymbol"))
@@ -341,20 +332,18 @@ getRendererv2 <- function() {
 
 #' Generate the 'categroy' XML element of a .shp 'categories' XML element
 #' @param i integer, indice of the symbol in the symbols list
-#' @return a XML element
-#' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/22/2015
+#' @return XMLNode, the XML element generated
+#' @author
+#' Valentin SASYAN, v. 1.0.0, 06/22/2015
 getCategory <- function(i) {
 	newXMLNode('category', attrs=c(render="true", symbol=symbolsList[[i]][['symbol']], value=symbolsList[[i]][['value']], label=symbolsList[[i]][['label']]))
 }
 
 #' Generate the 'categroy' XML element of a .shp 'categories' XML element
 #' @param i integer, indice of the symbol in the symbols list
-#' @return a XML element
-#' @author Valentin SASYAN
-#' @version 1.1.0
-#' @date  06/23/2015
+#' @return XMLNode, the XML element generated
+#' @author
+#' Valentin SASYAN, v. 1.1.0, 06/23/2015
 getSymbol <- function(i) {
 	name <- 'circle'
 	size <- '2'
@@ -390,10 +379,9 @@ getSymbol <- function(i) {
 
 #' Generate the 'spatialrefsys' XML element of a 'maplayer' XML element
 #' @param EPSG list, EPSG description of the reference systeme used as destination
-#' @return a XML element
-#' @author Valentin SASYAN
-#' @version 1.1.0
-#' @date  06/15/2015
+#' @return XMLNode, the XML element generated
+#' @author
+#' Valentin SASYAN, v. 1.1.0, 06/15/2015
 getSpatialrefsys <- function(EPSG) {
 	spatialrefsys = newXMLNode('spatialrefsys')
 		newXMLNode('proj4', EPSG[['proj4']], parent=spatialrefsys)
@@ -410,10 +398,9 @@ getSpatialrefsys <- function(EPSG) {
 #' Generate the 'pipe' XML element of a .asc 'maplayer' XML element
 #' @param liste list, specification of the color used for each band
 #' @param opacity double, opacity of the layer
-#' @return a XML element
-#' @author Valentin SASYAN
-#' @version 1.1.0
-#' @date  06/15/2015
+#' @return XMLNode, the XML element generated
+#' @author
+#' Valentin SASYAN, v. 1.1.0, 06/15/2015
 #' @examples
 #' getPipe(list(red=c(min=-1,max=1),green=c(min=-0.84, max=0.42),blue=c(min=-0.42,max=0.84))
 getPipe <- function(liste, opacity=1) {
@@ -443,10 +430,9 @@ getPipe <- function(liste, opacity=1) {
 #' Generate the 'ContrastEnhancement' XML element of a pipe XML element
 #' @param color string, name of the color
 #' @param liste list, min and max for this color
-#' @return a XML element
-#' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/12/2015
+#' @return XMLNode, the XML element generated
+#' @author
+#' Valentin SASYAN, v. 1.0.0, 06/12/2015
 #' @examples
 #' getContrastEnhancement('green', c(min=-0.84, max=0.42))
 getContrastEnhancement <- function(color, liste) {	
@@ -460,10 +446,9 @@ getContrastEnhancement <- function(color, liste) {
 #' Generate the 'noData' XML element of a .asc 'maplayer' XML element
 #' @param min int, first number of the data
 #' @param max int, last number of the data
-#' @return a XML element
-#' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/12/2015
+#' @return XMLNode, the XML element generated
+#' @author
+#' Valentin SASYAN, v. 1.0.0, 06/12/2015
 #' @examples
 #' getNoData(1,3)
 getNoData<- function(min, max) {
@@ -476,10 +461,9 @@ getNoData<- function(min, max) {
 
 #' Generate the 'properties' XML element of a .asc 'maplayer' XML element
 #' @param EPSG list, EPSG description of the reference systeme used as destination
-#' @return a XML element
-#' @author Valentin SASYAN
-#' @version 1.1.0
-#' @date  06/15/2015
+#' @return XMLNode, the XML element generated
+#' @author
+#' Valentin SASYAN, v. 1.1.0, 06/15/2015
 getProperties <- function(EPSG) {
 	properties = newXMLNode('properties')
 
@@ -528,10 +512,9 @@ getProperties <- function(EPSG) {
 #' Generate the 'noData' XML element of a 'legend' XML element
 #' @param Name string, name of the layer
 #' @param ID string, id of the layer
-#' @return a XML element
-#' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/12/2015
+#' @return XMLNode, the XML element generated
+#' @author
+#' Valentin SASYAN, v. 1.0.0, 06/12/2015
 #' @examples
 #' getLegendlayer('exportedData','exportedData20150612104242')
 getLegendlayer <- function(Name, ID) {
@@ -544,10 +527,9 @@ getLegendlayer <- function(Name, ID) {
 #' Generate the 'layer-tree-layer' XML element of a 'layer-tree-group' XML element
 #' @param Name string, name of the layer
 #' @param ID string, id of the layer
-#' @return a XML element
-#' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/12/2015
+#' @return XMLNode, the XML element generated
+#' @author
+#' Valentin SASYAN, v. 1.0.0, 06/12/2015
 #' @examples
 #' getLayerTreeLayer('exportedData','exportedData20150612104242')
 getLayerTreeLayer <- function(Name, ID) {
@@ -562,10 +544,9 @@ getLayerTreeLayer <- function(Name, ID) {
 #' @param xmax double, xmax limit of the map canevas
 #' @param ymax double, ymax limit of the map canevas
 #' @param EPSG list, EPSG description of the reference systeme used as destination
-#' @return a XML element
-#' @author Valentin SASYAN
-#' @version 1.1.0
-#' @date  06/15/2015
+#' @return XMLNode, the XML element generated
+#' @author
+#' Valentin SASYAN, v. 1.1.0, 06/15/2015
 #' @examples
 #' getMapcanvas(-42,-42,42,42)
 getMapcanvas <- function(xmin, ymin, xmax, ymax, EPSG) {
@@ -585,10 +566,10 @@ getMapcanvas <- function(xmin, ymin, xmax, ymax, EPSG) {
 }
 
 
-#' Symboles for the classified shp
-#' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/22/2015
+# Symboles for the classified shp
+# @author
+# Valentin SASYAN, v. 1.0.0, 06/22/2015
+# NOT in the documentation
 symbolsList <<- list(
 	c(symbol="0", value="", label="", color="178,223,138,255"),
 	c(symbol="1", value="1", label="W1", color="106,0,51,255"),

@@ -3,16 +3,15 @@ library('rgdal')		# for SpatialDataFrame
 library('automap')		# for interpolation (krige)
 library('gstat')		# for interpolation (idw)
 
-#' Interpolate the date in the SpatialPointsDataFrame passed in parameter
+#' Interpolate the date in the SpatialPointsDataFrame given for parameter
 #' @param proj.df SpatialPointsDataFrame, the data to interpolate
 #' @param resolution double, resolution of the grid of interpolation (size of 1 px in real)
 #' @param EPSG list, EPSG description of the reference systeme used as destination
 #' @param interpolation string, the name of the interplation to use
 #' @param param variant, parameter for some interpolation
-#' @return proj.dfKri SpatialPointsDataFrame, the data interpolated
-#' @author Valentin SASYAN
-#' @version 1.3.1
-#' @date  06/17/2015
+#' @return SpatialPointsDataFrame, the data interpolated
+#' @author
+#' Valentin SASYAN, v. 1.3.1, 06/17/2015
 interpolation <- function(proj.df, resolution=100, EPSG, interpolation='idw', param=0.5) {
 	# getPointList:
 	pointList = getPointList(extent(proj.df), resolution)
@@ -48,10 +47,9 @@ interpolation <- function(proj.df, resolution=100, EPSG, interpolation='idw', pa
 #' Generate a list of SpatialPoint
 #' @param extent extent, area to cover
 #' @param resolution double, resolution of the grid of interpolation (size of 1 px in real)
-#' @return pointList, a list of a list of SpatialPoint
-#' @author Valentin SASYAN
-#' @version 1.1.0
-#' @date  06/12/2015
+#' @return list, a list of SpatialPoint
+#' @author
+#' Valentin SASYAN, v. 1.1.0, 06/12/2015
 getPointList <- function(extent, resolution) {
 	deltaX <- abs(xmax(extent) - xmin(extent))
 	deltaY <- abs(ymax(extent) - ymin(extent))

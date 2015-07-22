@@ -2,9 +2,8 @@
 #' @param filter RegExpr, filter for the name of the folders to use
 #' @param EPSG list, EPSG description of the reference systeme used as destination
 #' @return SpatialPointsDataFrame, the data of the JSON in a SPDF ready for the interpolation
-#' @author Valentin SASYAN
-#' @version 1.1.0
-#' @date  06/16/2015
+#' @author
+#' Valentin SASYAN, v. 1.1.0, 06/16/2015
 readExport <- function(filter, EPSG) {
 	# Get the list of the files:
 	liste <- list.files('data', filter, full.names=TRUE)
@@ -63,9 +62,8 @@ readExport <- function(filter, EPSG) {
 #' Convert the raw JSON export in a usable listPointXYZ
 #' @param x list, the raw JSON export
 #' @return list, the usable listPointXYZ
-#' @author Valentin SASYAN
-#' @version 1.2.0
-#' @date  06/18/2015
+#' @author
+#' Valentin SASYAN, v. 1.2.0, 06/18/2015
 convertJsonExport <- function(x, folder){
 	list(
 		lon = x[['gps']][['lon']],
@@ -80,10 +78,9 @@ convertJsonExport <- function(x, folder){
 
 #' Convert the String type of a building in a integer type
 #' @param typeString String, the String type of the building
-#' @return idType integer, the integer type of the building
-#' @author Valentin SASYAN
-#' @version 1.0.0
-#' @date  06/18/2015
+#' @return integer, the integer type of the building
+#' @author
+#' Valentin SASYAN, v. 1.0.0, 06/18/2015
 getIdType <- function(typeString) {
 	idType <- 0
 	for (i in 1:sizeListTypeBuilding) {
@@ -96,8 +93,7 @@ getIdType <- function(typeString) {
 
 #' List of the possible building type
 #' @author LAGGISS, uOttawa
-#' @version 1.1.1
-#' @date  06/19/2015
+#' v. 1.1.1, 06/19/2015
 listTypeBuilding <<- c(
 	'(W1) Wood, Light Frame (<= 5,000 sq. ft.)',
 	'(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)',

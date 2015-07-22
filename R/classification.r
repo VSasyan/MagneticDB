@@ -5,10 +5,9 @@ library('e1071')
 #' @param useX boolean, use axe X for the classification
 #' @param lessType boolean, merge similar types
 #' @param debug boolean, to use the debug mode
-#' @return proj.done SpatialPointsDataFrame, the points classified
-#' @author Valentin SASYAN
-#' @version 2.2.0
-#' @date  07/17/2015
+#' @return SpatialPointsDataFrame, the points classified
+#' @author
+#' Valentin SASYAN, v. 2.2.0, 07/17/2015
 classification <- function(proj.df, useX=FALSE, lessType=FALSE, debug=FALSE) {
 	if (useX == TRUE) {axes <- c(1,2,3)} else {axes <- c(2,3)}
 
