@@ -2,16 +2,16 @@
   <title></title>
   <layer-tree-group expanded="1" checked="Qt::Checked" name="">
     <customproperties/>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="classifData20150717150508" name="classifData">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="classifData20150722133311" name="classifData">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="savedData20150717150508" name="savedData">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="savedData20150722133311" name="savedData">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="interpolatedData_idw_120150717150508" name="interpolatedData_idw_1">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="OpenLayers_plugin_layer20150717150509" name="Google Streets">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="OpenLayers_plugin_layer20150722133312" name="Google Streets">
       <customproperties/>
     </layer-tree-layer>
   </layer-tree-group>
@@ -43,21 +43,21 @@
   <visibility-presets/>
   <layer-tree-canvas>
     <custom-order enabled="0">
-      <item>classifData20150717150508</item>
-      <item>savedData20150717150508</item>
+      <item>classifData20150722133311</item>
+      <item>savedData20150722133311</item>
       <item>interpolatedData_idw_120150717150508</item>
-      <item>OpenLayers_plugin_layer20150717150509</item>
+      <item>OpenLayers_plugin_layer20150722133312</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="classifData" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="classifData20150717150508" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="classifData20150722133311" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="savedData" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="savedData20150717150508" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="savedData20150722133311" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="interpolatedData_idw_1" showFeatureCount="0">
@@ -67,13 +67,13 @@
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Google Streets" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="OpenLayers_plugin_layer20150717150509" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="OpenLayers_plugin_layer20150722133312" visible="1"/>
       </filegroup>
     </legendlayer>
   </legend>
   <projectlayers layercount="4">
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <id>classifData20150717150508</id>
+      <id>classifData20150722133311</id>
       <datasource>.//classifData.shp</datasource>
       <title></title>
       <abstract></abstract>
@@ -907,7 +907,7 @@
       </renderer-v2>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <id>savedData20150717150508</id>
+      <id>savedData20150722133311</id>
       <datasource>.//savedData.shp</datasource>
       <title></title>
       <abstract></abstract>
@@ -1794,7 +1794,7 @@
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" type="plugin" hasScaleBasedVisibilityFlag="0" name="openlayers">
-      <id>OpenLayers_plugin_layer20150717150509</id>
+      <id>OpenLayers_plugin_layer20150722133312</id>
       <datasource></datasource>
       <title></title>
       <abstract></abstract>
