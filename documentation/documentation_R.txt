@@ -1,0 +1,1 @@
+"C:\Program Files\R\R-3.2.1patched\bin\x64\R.exe" CMD Rd2pdf MagneticDB_R
