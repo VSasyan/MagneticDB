@@ -4,11 +4,13 @@ library('e1071')
 #' @param proj.df SpatialPointsDataFrame, the points to classify
 #' @param useX boolean, use axe X for the classification
 #' @param lessType boolean, merge similar types
-#' @param debug boolean, to use the debug mode
+#' @param rePredict boolean, the known types can be modified during the classification
+#' @param debug boolean, debug mode (more printed information)
 #' @return SpatialPointsDataFrame, the points classified
 #' @author
-#' Valentin SASYAN, v. 2.2.0, 07/17/2015
-classification <- function(proj.df, useX=FALSE, lessType=FALSE, debug=FALSE) {
+
+#' Valentin SASYAN, v. 2.3.0, 07/24/2015
+classification <- function(proj.df, useX=FALSE, lessType=FALSE, rePredict=FALSE, debug=FALSE) {
 	if (useX == TRUE) {axes <- c(1,2,3)} else {axes <- c(2,3)}
 
 	# Fusion the similar types ?
@@ -25,7 +27,7 @@ classification <- function(proj.df, useX=FALSE, lessType=FALSE, debug=FALSE) {
 
 	# Separate 1) the data used as model and 2) the data to process:
 	proj.model <- as.data.frame(subset(proj.df, type != 0))
-	proj.process <- as.data.frame(subset(proj.df, type == 0))
+	proj.process <- as.data.frame(subset(proj.df, type == 0 || rePredict))
 
 	# Create the model for classification:
 	model.data <- proj.model[axes]
