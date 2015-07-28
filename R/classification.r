@@ -59,5 +59,5 @@ classification <- function(proj.df, useX=FALSE, lessType=FALSE, rePredict=FALSE,
 	proj.done$lessType <- lessType;
 
 	# Return the done data in SpatialDF:
-	proj.done <- SpatialPointsDataFrame(coords=proj.done[9:10], data=proj.done[,-c(9,10)])
+	proj.done <- SpatialPointsDataFrame(coords=proj.done[7:8], data=proj.done[,-c(7,8)])
 }

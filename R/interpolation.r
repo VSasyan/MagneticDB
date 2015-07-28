@@ -20,17 +20,10 @@ interpolation <- function(proj.df, resolution=100, EPSG, p=0.5) {
 	proj4string(proj.new) <- CRS(EPSG[['proj4']])
 
 	# Now, try to interpolate:
-	if (interpolation == 'krige') { # scaled data
-		proj.intX <- autoKrige(x~1, proj.df, proj.new)
-		proj.intY <- autoKrige(y_~1, proj.df, proj.new)
-		proj.intZ <- autoKrige(z_~1, proj.df, proj.new)
-		kriList = list(x=proj.intX$krige_output['var1.pred'][[1]], y=proj.intY$krige_output['var1.pred'][[1]], z=proj.intZ$krige_output['var1.pred'][[1]])
-	} else if (interpolation == 'idw') { # raw data
-		proj.intX <- idw(x~1, proj.df, proj.new, idp=p)
-		proj.intY <- idw(y~1, proj.df, proj.new, idp=p)
-		proj.intZ <- idw(z~1, proj.df, proj.new, idp=p)
-		kriList = list(x=proj.intX['var1.pred'][[1]], y=proj.intY['var1.pred'][[1]], z=proj.intZ['var1.pred'][[1]])
-	}
+	proj.intX <- idw(x~1, proj.df, proj.new, idp=p)
+	proj.intY <- idw(y~1, proj.df, proj.new, idp=p)
+	proj.intZ <- idw(z~1, proj.df, proj.new, idp=p)
+	kriList <- list(x=proj.intX['var1.pred'][[1]], y=proj.intY['var1.pred'][[1]], z=proj.intZ['var1.pred'][[1]])
 
 	# Then create a SpatialDataFrame with the interpolated data:
 	dfInterXYZ <- data.frame(t(matrix(unlist(kriList), nrow=3, byrow=T)))

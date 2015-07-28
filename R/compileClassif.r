@@ -19,5 +19,5 @@ compileClassif <- function(proj.classif) {
 		} else {proj.compile}
 	}
 
-	proj.compile <- SpatialPointsDataFrame(coords=proj.compile[11:12], data=proj.compile[,-c(11,12)])
+	proj.compile <- SpatialPointsDataFrame(coords=proj.compile[9:10], data=proj.compile[,-c(9,10)])
 }

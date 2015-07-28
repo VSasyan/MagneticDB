@@ -74,8 +74,8 @@ processData <- function(filter='uOttawa', resolution=0, export=TRUE, erase=TRUE,
 			writeOGR(proj.df, dsn = paste('data//',folder,sep=''), layer = 'savedData', driver = "ESRI Shapefile", overwrite_layer=erase, check_exists=TRUE)
 			# Interpolated data:
 			if (resolution != 0) {
-				if (isWritable(erase, paste('data//',folder,'//interpolatedData_',interpolation,'_',resolution,'.asc',sep=''))) {
-					writeGDAL(proj.dfKri, paste('data//',folder,'//interpolatedData_',interpolation,'_',resolution,'.asc',sep=''))
+				if (isWritable(erase, paste('data//',folder,'//interpolatedData_',resolution,'.asc',sep=''))) {
+					writeGDAL(proj.dfKri, paste('data//',folder,'//interpolatedData_',resolution,'.asc',sep=''))
 				}
 			}
 			# Classified data:

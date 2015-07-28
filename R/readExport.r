@@ -34,7 +34,7 @@ readExport <- function(filter, EPSG) {
 	})
 
 	# Convert to a list of SpatialDataFrame:
-	my.listDf <<- lapply(listDfPointXYZ, function(dfPointXYZ) {SpatialPointsDataFrame(coords=dfPointXYZ[1:2], data=dfPointXYZ[,c(3,4,5,6,7,8,9,10)])})
+	my.listDf <<- lapply(listDfPointXYZ, function(dfPointXYZ) {SpatialPointsDataFrame(coords=dfPointXYZ[1:2], data=dfPointXYZ[,c(3,4,5,6,7,8)])})
 
 	# Combine all the SpatialDataFrame in one:
 	for (i in 1:length(my.listDf)) {
