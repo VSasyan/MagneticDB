@@ -7,12 +7,11 @@ library('gstat')		# for interpolation (idw)
 #' @param proj.df SpatialPointsDataFrame, the data to interpolate
 #' @param resolution double, resolution of the grid of interpolation (size of 1 px in real)
 #' @param EPSG list, EPSG description of the reference systeme used as destination
-#' @param interpolation string, the name of the interplation to use
-#' @param param variant, parameter for some interpolation
+#' @param p real, power p for the interpolation
 #' @return SpatialPointsDataFrame, the data interpolated
 #' @author
-#' Valentin SASYAN, v. 1.3.1, 06/17/2015
-interpolation <- function(proj.df, resolution=100, EPSG, interpolation='idw', param=0.5) {
+#' Valentin SASYAN, v. 1.4.0, 07/28/2015
+interpolation <- function(proj.df, resolution=100, EPSG, p=0.5) {
 	# getPointList:
 	pointList = getPointList(extent(proj.df), resolution)
 
@@ -27,9 +26,9 @@ interpolation <- function(proj.df, resolution=100, EPSG, interpolation='idw', pa
 		proj.intZ <- autoKrige(z_~1, proj.df, proj.new)
 		kriList = list(x=proj.intX$krige_output['var1.pred'][[1]], y=proj.intY$krige_output['var1.pred'][[1]], z=proj.intZ$krige_output['var1.pred'][[1]])
 	} else if (interpolation == 'idw') { # raw data
-		proj.intX <- idw(x~1, proj.df, proj.new, idp=param)
-		proj.intY <- idw(y~1, proj.df, proj.new, idp=param)
-		proj.intZ <- idw(z~1, proj.df, proj.new, idp=param)
+		proj.intX <- idw(x~1, proj.df, proj.new, idp=p)
+		proj.intY <- idw(y~1, proj.df, proj.new, idp=p)
+		proj.intZ <- idw(z~1, proj.df, proj.new, idp=p)
 		kriList = list(x=proj.intX['var1.pred'][[1]], y=proj.intY['var1.pred'][[1]], z=proj.intZ['var1.pred'][[1]])
 	}
 
@@ -49,7 +48,7 @@ interpolation <- function(proj.df, resolution=100, EPSG, interpolation='idw', pa
 #' @param resolution double, resolution of the grid of interpolation (size of 1 px in real)
 #' @return list, a list of SpatialPoint
 #' @author
-#' Valentin SASYAN, v. 1.1.0, 06/12/2015
+#' Valentin SASYAN, v. 1.1.0, 06/12/2015
 getPointList <- function(extent, resolution) {
 	deltaX <- abs(xmax(extent) - xmin(extent))
 	deltaY <- abs(ymax(extent) - ymin(extent))

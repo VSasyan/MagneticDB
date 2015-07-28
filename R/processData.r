@@ -25,8 +25,7 @@ source(file='R/generate_qgs.r', encoding='UTF-8')
 #' @param export bool, true if the function have to export the used data
 #' @param erase bool, true if the function can erase existing used data
 #' @param EPSG list, EPSG description of the reference systeme used as destination
-#' @param interpolation string, the name of the interplation to use
-#' @param param variant, parameter for some interpolation
+#' @param p real, power p for the interpolation
 #' @param classif boolean, do or not the the classification
 #' @param compile boolean, do or not the compilation of the classification
 #' @param useX boolean, use axe X for the classification
@@ -35,10 +34,10 @@ source(file='R/generate_qgs.r', encoding='UTF-8')
 #' @param debug boolean, debug mode (more printed information)
 #' @return nothing
 #' @author
-#' Valentin SASYAN, v. 0.8.0, 07/28/2015
+#' Valentin SASYAN, v. 0.9.0, 07/28/2015
 #' @examples
 #' generate_qgs(filter='uOttawa.*',resolution=1,erase=FALSE)
-processData <- function(filter='uOttawa', resolution=0, export=TRUE, erase=TRUE, EPSG=EPSG_, interpolation='idw', param=0.5, classif=TRUE, compile=FALSE, useX=FALSE, lessType=FALSE, rePredict=FALSE, debug=FALSE) {
+processData <- function(filter='uOttawa', resolution=0, export=TRUE, erase=TRUE, EPSG=EPSG_, p=0.5, classif=TRUE, compile=FALSE, useX=FALSE, lessType=FALSE, rePredict=FALSE, debug=FALSE) {
 	tic('processData')
 
 		# 1) We read the exported data:
@@ -49,7 +48,7 @@ processData <- function(filter='uOttawa', resolution=0, export=TRUE, erase=TRUE,
 		# 2) Interpolation:
 		if (resolution != 0) {
 			tic('Interpolation')
-			proj.dfKri <- interpolation(proj.df, resolution, EPSG, interpolation, param)
+			proj.dfKri <- interpolation(proj.df, resolution, EPSG, p)
 			toc()
 		}
 

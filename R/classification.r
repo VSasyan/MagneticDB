@@ -8,7 +8,6 @@ library('e1071')
 #' @param debug boolean, debug mode (more printed information)
 #' @return SpatialPointsDataFrame, the points classified
 #' @author
-
 #' Valentin SASYAN, v. 2.3.0, 07/24/2015
 classification <- function(proj.df, useX=FALSE, lessType=FALSE, rePredict=FALSE, debug=FALSE) {
 	if (useX == TRUE) {axes <- c(1,2,3)} else {axes <- c(2,3)}

@@ -3,7 +3,7 @@
 #' @param EPSG list, EPSG description of the reference systeme used as destination
 #' @return SpatialPointsDataFrame, the data of the JSON in a SPDF ready for the interpolation
 #' @author
-#' Valentin SASYAN, v. 1.1.0, 06/16/2015
+#' Valentin SASYAN, v. 1.2.0, 07/28/2015
 readExport <- function(filter, EPSG) {
 	# Get the list of the files:
 	liste <- list.files('data', filter, full.names=TRUE)
@@ -26,14 +26,8 @@ readExport <- function(filter, EPSG) {
 		# Give a good name to the df's col:
 		colnames(dfPointXYZ) <- c('lat', 'lon', 'x', 'y', 'z', 'id', 'type')
 
-		# The data is scaled and centered:
-		#dfPointXYZ[,'x'] = scale(dfPointXYZ[,'x'])[,1] NOT with x witch is ~0 and witch is kept just to show error
-		dfPointXYZ[,'y_'] = scale(dfPointXYZ$y)[,1]
-		dfPointXYZ[,'z_'] = scale(dfPointXYZ$z)[,1]
+		# Add the folder information:
 		dfPointXYZ[,'folder'] = folder
-
-		# Final colonne name:
-		#colnames(dfPointXYZ) <- c('lat', 'lon', 'x', 'y', 'z', 'id', 'type', 'y_', 'z_', 'folder')
 
 		# Return
 		dfPointXYZ
@@ -63,7 +57,7 @@ readExport <- function(filter, EPSG) {
 #' @param x list, the raw JSON export
 #' @return list, the usable listPointXYZ
 #' @author
-#' Valentin SASYAN, v. 1.2.0, 06/18/2015
+#' Valentin SASYAN, v. 1.2.0, 06/18/2015
 convertJsonExport <- function(x, folder){
 	list(
 		lon = x[['gps']][['lon']],
@@ -80,7 +74,7 @@ convertJsonExport <- function(x, folder){
 #' @param typeString String, the String type of the building
 #' @return integer, the integer type of the building
 #' @author
-#' Valentin SASYAN, v. 1.0.0, 06/18/2015
+#' Valentin SASYAN, v. 1.0.0, 06/18/2015
 getIdType <- function(typeString) {
 	idType <- 0
 	for (i in 1:sizeListTypeBuilding) {
