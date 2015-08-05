@@ -103,8 +103,8 @@
 
     <string-array name="sensor_name_array">
         <item>Magnétomètre</item>
-        <item>Gravité</item>
-        <item>Accélération linéaire</item>
+        <item>Gravimètre</item>
+        <item>Accéléromètre</item>
     </string-array>
 
     <string-array name="accuracyName">
