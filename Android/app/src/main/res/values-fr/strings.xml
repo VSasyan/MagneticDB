@@ -31,7 +31,7 @@
     <string name="title_spotting">Autoriser les mesures "spot" :</string>
     <string name="title_timeGPS">Temps entre deux mesures GPS (ms) :</string>
     <string name="title_timeSpot">Temps entre deux mesures Spot (ms) :</string>
-    <string name="title_sizeAverage">Nombre de mesures pour calculer la moyenne :</string>
+    <string name="title_sizeAverage">Mesures pour moyenner :</string>
     <string name="title_settingsRecord">Paramètres pour l\'enregistrement :</string>
     <string name="title_settingsExport">Paramètres pour l\'exportation :</string>
     <string name="title_minimalAccuracy">Précision minimale :</string>

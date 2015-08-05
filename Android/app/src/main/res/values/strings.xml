@@ -31,7 +31,7 @@
     <string name="title_spotting">Allow spotting measurements:</string>
     <string name="title_timeGPS">Time between GPS measurement (ms):</string>
     <string name="title_timeSpot">Time between Spot measurement (ms):</string>
-    <string name="title_sizeAverage">Number of measurements to calculate average:</string>
+    <string name="title_sizeAverage">Measurements to calculate average:</string>
     <string name="title_settingsRecord">Record Settings:</string>
     <string name="title_settingsExport">Export Settings:</string>
     <string name="title_minimalAccuracy">Minimal accuracy:</string>
