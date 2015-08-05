@@ -24,7 +24,6 @@ import java.util.List;
 
 public class SettingsActivity extends Activity {
     Settings settings;
-    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +55,7 @@ public class SettingsActivity extends Activity {
         String[] accuracyName = getResources().getStringArray(R.array.accuracyName);
         List<String> accuracyNames = new ArrayList<String>(Arrays.asList(accuracyName));
         accuracyNames.remove(0);
-        spinner = (Spinner)findViewById(R.id.minimalAccuracy);
+        Spinner spinner = (Spinner)findViewById(R.id.minimalAccuracy);
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, accuracyNames);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerAdapter);

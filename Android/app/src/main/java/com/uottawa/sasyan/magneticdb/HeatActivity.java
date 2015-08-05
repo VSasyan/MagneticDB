@@ -30,19 +30,19 @@ public class HeatActivity extends Activity {
     // Interpolation type -  -1 : raw, 0 : nn, 1 : lin, 2 : inv, 3 : spl
     // Normalization type - 0 : not, 1 : lin
     GoogleMap map;
-    HelperMeasurement helper;
     String dataBase;
+    HelperMeasurement helper;
+    Interpolation interpolation;
+    Settings settings;
     HeatmapTileProvider mProvider;
     TileOverlay mOverlay;
-    Interpolation interpolation;
-    Settings s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heat);
 
-        s = new Settings(this);
+        this.settings = new Settings(this);
 
         // Load the maps:
         if (initializeMap()) {
@@ -65,7 +65,7 @@ public class HeatActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_heat, menu);
-        switch (this.s.getShowType()) {
+        switch (this.settings.getShowType()) {
             case 1:
                 menu.findItem(R.id.menu_x).setVisible(false);
                 menu.findItem(R.id.menu_show).setIcon(R.drawable.ic_x).setTitle(R.string.menu_x);
@@ -84,7 +84,7 @@ public class HeatActivity extends Activity {
                 break;
         }
         menu.findItem(R.id.menu_spl).setVisible(false);
-        switch (this.s.getInterType()) {
+        switch (this.settings.getInterType()) {
             case -1:
                 menu.findItem(R.id.menu_raw).setVisible(false);
                 menu.findItem(R.id.menu_interpolation).setTitle(R.string.inter_raw);
@@ -130,48 +130,48 @@ public class HeatActivity extends Activity {
                 break;
 
             case R.id.menu_norm:
-                this.s.setShowType(0);
+                this.settings.setShowType(0);
                 this.showData();
                 invalidateOptionsMenu();
                 break;
             case R.id.menu_x:
-                this.s.setShowType(1);
+                this.settings.setShowType(1);
                 this.showData();
                 invalidateOptionsMenu();
                 break;
             case R.id.menu_y:
-                this.s.setShowType(2);
+                this.settings.setShowType(2);
                 this.showData();
                 invalidateOptionsMenu();
                 break;
             case R.id.menu_z:
-                this.s.setShowType(3);
+                this.settings.setShowType(3);
                 this.showData();
                 invalidateOptionsMenu();
                 break;
 
             case R.id.menu_raw:
-                this.s.setInterType(-1);
+                this.settings.setInterType(-1);
                 this.showData();
                 invalidateOptionsMenu();
                 break;
             case R.id.menu_nn:
-                this.s.setInterType(0);
+                this.settings.setInterType(0);
                 this.showData();
                 invalidateOptionsMenu();
                 break;
             case R.id.menu_lin:
-                this.s.setInterType(1);
+                this.settings.setInterType(1);
                 this.showData();
                 invalidateOptionsMenu();
                 break;
             case R.id.menu_inv:
-                this.s.setInterType(2);
+                this.settings.setInterType(2);
                 this.showData();
                 invalidateOptionsMenu();
                 break;
             case R.id.menu_spl:
-                this.s.setInterType(3);
+                this.settings.setInterType(3);
                 this.showData();
                 invalidateOptionsMenu();
                 break;
@@ -200,10 +200,10 @@ public class HeatActivity extends Activity {
     private void showData() {
         if (this.mOverlay != null) {this.mOverlay.remove();}
         // Interpolation:
-        this.interpolation.setType(this.s.getInterType());
+        this.interpolation.setType(this.settings.getInterType());
         if (this.interpolation.interpolate(3)) {
             // Show on the map:
-            mProvider = new HeatmapTileProvider.Builder().weightedData(this.interpolation.getDataPoint(s.getNormType())).build();
+            mProvider = new HeatmapTileProvider.Builder().weightedData(this.interpolation.getDataPoint(this.settings.getNormType())).build();
             //mProvider.setRadius(42);
             mOverlay = map.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
         }
@@ -224,7 +224,7 @@ public class HeatActivity extends Activity {
                 gps = new GPS(ob.getString("gps"));
 
                 // We had the point :
-                switch (this.s.getShowType()) {
+                switch (this.settings.getShowType()) {
                     case 1: // x
                         list.add(new Vector(gps.getLat(), gps.getLon(), mf.getX()));
                         break;
