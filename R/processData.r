@@ -29,7 +29,7 @@ source(file='R/generate_qgs.r', encoding='UTF-8')
 #' @param classif boolean, do or not the the classification
 #' @param compile boolean, do or not the compilation of the classification
 #' @param useX boolean, use axe X for the classification
-#' @param lessType boolean, merge similar types
+#' @param lessType integer, 0 : no merge, 1 : merge similar types, 2 : merge "wood / not wood"
 #' @param rePredict boolean, the known types can be modified during the classification
 #' @param debug boolean, debug mode (more printed information)
 #' @return nothing
@@ -61,7 +61,7 @@ processData <- function(filter='uOttawa', resolution=0, export=TRUE, erase=TRUE,
 
 		# 4) Compile classification:
 		if (classif && compile) {
-			tic('qualifyClassif')
+			tic('compileClassif')
 			proj.compile <- compileClassif(proj.classif)
 			toc()
 		}

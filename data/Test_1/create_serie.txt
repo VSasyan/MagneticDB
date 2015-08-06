@@ -1,0 +1,5 @@
+CASE
+	WHEN id < 10 then 1
+	WHEN id > 20 then 3
+	ELSE 2
+END
