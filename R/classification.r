@@ -3,7 +3,7 @@ library('e1071')
 #' Classify the given SpatialPointsDataFrame
 #' @param proj.df SpatialPointsDataFrame, the points to classify
 #' @param useX boolean, use axe X for the classification
-#' @param lessType boolean, merge similar types
+#' @param lessType integer, 0 : no merge, 1 : merge similar types, 2 : merge "wood / not wood"
 #' @param rePredict boolean, the known types can be modified during the classification
 #' @param debug boolean, debug mode (more printed information)
 #' @return SpatialPointsDataFrame, the points classified
@@ -13,13 +13,18 @@ classification <- function(proj.df, useX=FALSE, lessType=FALSE, rePredict=FALSE,
 	if (useX == TRUE) {axes <- c(1,2,3)} else {axes <- c(2,3)}
 
 	# Fusion the similar types ?
-	if (lessType) {
+	if (lessType == 1) {
 		proj.df$type <- unlist(lapply(proj.df$type, function(type) {
 			if (type == 2) {type <- 1}
 			if (type == 4 || type == 5 || type == 6 || type == 7) {type <- 3}
 			if (type == 9 || type == 10) {type <- 8}
 			if (type == 12) {type <- 11}
 			if (type == 14) {type <- 13}
+			type
+		}))
+	} else if (lessType == 2) {
+		proj.df$type <- unlist(lapply(proj.df$type, function(type) {
+			if (type == 1 || type == 2) {type <- 1} else {type <- 2}
 			type
 		}))
 	}
