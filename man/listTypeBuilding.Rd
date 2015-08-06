@@ -4,7 +4,7 @@
 \name{listTypeBuilding}
 \alias{listTypeBuilding}
 \title{List of the possible building type}
-\format{\preformatted{ chr [1:16] "(W1) Wood, Light Frame (<= 5,000 sq. ft.)" "(W2) Wood, Commercial and Industrial (>5,000 sq. ft.)" ...
+\format{\preformatted{ chr [1:16] "(W1) Wood, Light Frame (<= 5,000 sq. ft.)" ...
 }}
 \usage{
 listTypeBuilding

@@ -18,6 +18,6 @@ SpatialPointsDataFrame, the data of the JSON in a SPDF ready for the interpolati
 Read the date in the json file
 }
 \author{
-Valentin SASYAN, v. 1.1.0, 06/16/2015
+Valentin SASYAN, v. 1.2.0, 07/28/2015
 }
 

@@ -4,8 +4,7 @@
 \alias{interpolation}
 \title{Interpolate the date in the SpatialPointsDataFrame given for parameter}
 \usage{
-interpolation(proj.df, resolution = 100, EPSG, interpolation = "idw",
-  param = 0.5)
+interpolation(proj.df, resolution = 100, EPSG, p = 0.5)
 }
 \arguments{
 \item{proj.df}{SpatialPointsDataFrame, the data to interpolate}
@@ -14,9 +13,7 @@ interpolation(proj.df, resolution = 100, EPSG, interpolation = "idw",
 
 \item{EPSG}{list, EPSG description of the reference systeme used as destination}
 
-\item{interpolation}{string, the name of the interplation to use}
-
-\item{param}{variant, parameter for some interpolation}
+\item{p}{real, power p for the interpolation}
 }
 \value{
 SpatialPointsDataFrame, the data interpolated
@@ -25,6 +22,6 @@ SpatialPointsDataFrame, the data interpolated
 Interpolate the date in the SpatialPointsDataFrame given for parameter
 }
 \author{
-Valentin SASYAN, v. 1.3.1, 06/17/2015
+Valentin SASYAN, v. 1.4.0, 07/28/2015
 }
 
