@@ -26,7 +26,8 @@ classification <- function(proj.df, useX=FALSE, lessType=FALSE, rePredict=FALSE,
 
 	# Separate 1) the data used as model and 2) the data to process:
 	proj.model <- as.data.frame(subset(proj.df, type != 0))
-	proj.process <- as.data.frame(subset(proj.df, type == 0 || rePredict))
+	if (rePredict == TRUE) {proj.process <- as.data.frame((proj.df))}
+	else {proj.process <- as.data.frame(subset(proj.df, type == 0))}
 
 	# Create the model for classification:
 	model.data <- proj.model[axes]

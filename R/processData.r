@@ -61,7 +61,7 @@ processData <- function(filter='uOttawa', resolution=0, export=TRUE, erase=TRUE,
 
 		# 4) Compile classification:
 		if (classif && compile) {
-			tic('qualifyClassif')
+			tic('compileClassif')
 			proj.compile <- compileClassif(proj.classif)
 			toc()
 		}
