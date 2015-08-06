@@ -16,7 +16,7 @@ compileClassif <- function(proj.classif) {
 		classifTemp$type <- chosenType
 		if (is.null(proj.compile)) {
 			proj.compile <- classifTemp
-		} else {proj.compile}
+		} else {proj.compile <- rbind(proj.compile, classifTemp)}
 	}
 
 	proj.compile <- SpatialPointsDataFrame(coords=proj.compile[9:10], data=proj.compile[,-c(9,10)])
