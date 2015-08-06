@@ -12,9 +12,4 @@
         android:showAsAction="ifRoom"
         android:title="@string/back"/>
 
-    <item
-        android:id="@+id/menu_settings"
-        android:showAsAction="never"
-        android:title="@string/menu_settings"/>
-
 </menu>

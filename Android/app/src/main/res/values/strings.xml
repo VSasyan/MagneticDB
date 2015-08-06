@@ -66,7 +66,7 @@
     <string name="inter_inv">Inv (Inverse of distances)</string>
     <string name="inter_spl">Spl (Spline)</string>
 
-    <string name="apiKey">AIzaSyAhx4zWd9KoasTM44AXf_GnuchLe6haDXo</string>
+    <string name="apiKey">AIzaSyD_9b7rEVqNiDVN0T363iyHDCNC3EFdGMc</string>
     <string name="back">Back</string>
     <string name="sendDataEmail">Send data by email</string>
     <string name="provider_enabled">The provider %s is now enabled</string>
@@ -133,7 +133,4 @@
         <item type="array-string">(URM) Unreinforced Masonry Bearing Walls</item>
         <item type="array-string">(MH) Mobile Homes</item>
     </string-array>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
 </resources>

@@ -66,7 +66,7 @@
     <string name="inter_inv">Inv (Inverse des distances)</string>
     <string name="inter_spl">Spl (Spline)</string>
 
-    <string name="apiKey">AIzaSyAhx4zWd9KoasTM44AXf_GnuchLe6haDXo</string>
+    <string name="apiKey">AIzaSyD_9b7rEVqNiDVN0T363iyHDCNC3EFdGMc</string>
     <string name="back">Retour</string>
     <string name="sendDataEmail">Envoyer les données par mail</string>
     <string name="provider_enabled">Le fournisseur %s est maintenant activé.</string>
@@ -112,5 +112,25 @@
         <item>Précision faible</item>
         <item>Précision moyenne</item>
         <item>Précision haute</item>
+    </string-array>
+
+    <string-array name="type_array">
+        <item type="array-string">none</item>
+        <item type="array-string">(W1) Wood, Light Frame (&lt;= 5,000 sq. ft.)</item>
+        <item type="array-string">(W2) Wood, Commercial and Industrial (&gt;5,000 sq. ft.)</item>
+        <item type="array-string">(S1) Steel Moment Frame</item>
+        <item type="array-string">(S2) Steel Braced Frame</item>
+        <item type="array-string">(S3) Steel Light Frame</item>
+        <item type="array-string">(S4) Steel Frame with Cast-in-Place Concrete Shear Walls</item>
+        <item type="array-string">(S5) Steel Frame with Unreinforced Masonry Infill Walls</item>
+        <item type="array-string">(C1) Concrete Moment Frame</item>
+        <item type="array-string">(C2) Concrete Shear Walls</item>
+        <item type="array-string">(C3) Concrete Frame with Unreinforced Masonry Infill Walls</item>
+        <item type="array-string">(PC1) Precast Concrete Tilt-Up Walls</item>
+        <item type="array-string">(PC2) Precast Concrete Frames with Concrete Shear Walls</item>
+        <item type="array-string">(RM1) Reinforced Masonry Bearing Walls with Wood or Metal Deck Diaphragms</item>
+        <item type="array-string">(RM2) Reinforced Masonry Bearing Walls with Precast Concrete Diaphragms</item>
+        <item type="array-string">(URM) Unreinforced Masonry Bearing Walls</item>
+        <item type="array-string">(MH) Mobile Homes</item>
     </string-array>
 </resources>
