@@ -8,8 +8,8 @@ android {
         applicationId "com.uottawa.sasyan.magneticdb"
         minSdkVersion 17
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.0.2"
     }
     sourceSets { main { java.srcDirs = ['src/main/java', 'src/main/java/Class'] } }
 }
